@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3130710472357529734}
-  - component: {fileID: 3130710472357529733}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Untagged
@@ -34,19 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3130710472357529733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3130710472357529851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 645f03e2bb95d5f4c832e915041b437b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: 0.1
 --- !u!1 &3291445734896616349
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,6 +44,7 @@ GameObject:
   - component: {fileID: 3291445734896616350}
   - component: {fileID: 3291445734896616351}
   - component: {fileID: 3291445734896616344}
+  - component: {fileID: 529421809282268957}
   m_Layer: 0
   m_Name: score point
   m_TagString: Score
@@ -126,6 +113,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &529421809282268957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291445734896616349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645f03e2bb95d5f4c832e915041b437b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 0.1
 --- !u!1 &3291445735474355157
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 3291445735474355152}
   - component: {fileID: 3291445735474355159}
   - component: {fileID: 3291445735474355153}
+  - component: {fileID: 8358249224376821807}
   m_Layer: 0
   m_Name: Clash of Deliverance - Obstacle2
   m_TagString: Obstacle
@@ -153,7 +154,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3291445735474355157}
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0.00000041723246}
-  m_LocalPosition: {x: -9.77, y: 4.91, z: 20.234617}
+  m_LocalPosition: {x: -9.77, y: 5.03, z: 20.234617}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3130710472357529734}
@@ -220,18 +221,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.006938219, y: -0.111002326}
+  m_Offset: {x: -0.006938219, y: 0.115160346}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.42, y: 5.66}
+    oldSize: {x: 3.42, y: 6.84}
     newSize: {x: 3.42, y: 5.66}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5458622, y: 4.993989}
+  m_Size: {x: 2.5458622, y: 5.446315}
   m_EdgeRadius: 0
 --- !u!50 &3291445735474355153
 Rigidbody2D:
@@ -254,6 +255,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8358249224376821807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291445735474355157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645f03e2bb95d5f4c832e915041b437b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 0.1
 --- !u!1 &3291445736299041386
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,6 +280,7 @@ GameObject:
   - component: {fileID: 3291445736299041397}
   - component: {fileID: 3291445736299041396}
   - component: {fileID: 3291445736299041398}
+  - component: {fileID: 6986418457537291678}
   m_Layer: 0
   m_Name: Clash of Deliverance - Obstacle
   m_TagString: Obstacle
@@ -281,7 +296,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3291445736299041386}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.77376, y: -4.251563, z: 20.234617}
+  m_LocalPosition: {x: -9.77376, y: -4.63, z: 20.234617}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3130710472357529734}
@@ -348,18 +363,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.025794506, y: -0.22354984}
+  m_Offset: {x: 0.025794506, y: 0.046477318}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.42, y: 5.66}
+    oldSize: {x: 3.42, y: 6.84}
     newSize: {x: 3.42, y: 5.66}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5773878, y: 5.2129}
+  m_Size: {x: 2.5773878, y: 5.7529545}
   m_EdgeRadius: 0
 --- !u!50 &3291445736299041398
 Rigidbody2D:
@@ -382,3 +397,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6986418457537291678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291445736299041386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645f03e2bb95d5f4c832e915041b437b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 0.1

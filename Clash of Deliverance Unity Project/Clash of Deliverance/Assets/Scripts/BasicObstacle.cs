@@ -5,6 +5,9 @@ using UnityEngine;
 public class BasicObstacle : MonoBehaviour
 {
     public float velocity;
+
+    private float timer;
+    private float life_time = 8;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,15 +19,20 @@ public class BasicObstacle : MonoBehaviour
     {
         gameObject.transform.position = new Vector2(gameObject.transform.position.x - velocity, gameObject.transform.position.y);
 
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-        if (collision.transform.tag == "Destroy")
-        {
+        timer += Time.deltaTime;
+        if (timer > life_time)
             Destroy(gameObject);
-        }
-
     }
+
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+
+    //    if (collision.transform.tag == "Destroy")
+    //    {
+    //        Debug.Log("Destroyed :)");
+    //        Destroy(gameObject);
+    //    }
+
+    //}
+
 }

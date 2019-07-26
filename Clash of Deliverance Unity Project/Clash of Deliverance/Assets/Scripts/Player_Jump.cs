@@ -59,7 +59,6 @@ public class Player_Jump : MonoBehaviour
         }
         if (collision.transform.tag == "Score")
         {
-            Debug.Log("You Scored!");
             Score.score_value += 1;
         }
     }

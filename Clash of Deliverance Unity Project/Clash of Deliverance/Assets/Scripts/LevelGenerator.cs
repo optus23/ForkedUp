@@ -17,7 +17,11 @@ public class LevelGenerator : MonoBehaviour
     void Update()
     {
         //Difficulty curve
-        time -= Mathf.Log(time + 0.6f) / 800;    
+        time -= Mathf.Log(time + 0.6f) / 3000;
+
+        //Max time per obstacle (35 score)
+        if (time < 1.2f)
+            time = 1.2f;
     }
 
     void Generator()
