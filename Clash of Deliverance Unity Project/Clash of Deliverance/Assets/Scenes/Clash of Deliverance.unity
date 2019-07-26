@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 369987820}
   m_Layer: 0
   m_Name: DeathFloor
-  m_TagString: DeathFloor
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -521,8 +521,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76cde21722e40f4e991b32adb3f60be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: []
-  time: 0
+  obj:
+  - {fileID: 3130710472357529851, guid: 589233e35b10b7e4ca84eb4e7445e7b0, type: 3}
+  time: 2
 --- !u!4 &1002933269
 Transform:
   m_ObjectHideFlags: 0
@@ -531,7 +532,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1002933267}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3708487, y: 3.4529169, z: -50.868725}
+  m_LocalPosition: {x: 32.1, y: 3.4529169, z: -50.868725}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -770,7 +771,7 @@ PrefabInstance:
     - target: {fileID: 3130710472357529734, guid: 589233e35b10b7e4ca84eb4e7445e7b0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.47
+      value: 21.4
       objectReference: {fileID: 0}
     - target: {fileID: 3130710472357529734, guid: 589233e35b10b7e4ca84eb4e7445e7b0,
         type: 3}

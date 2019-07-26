@@ -22,7 +22,7 @@ public class LevelGenerator : MonoBehaviour
 
     void Generator()
     {
-        Instantiate(obj[Random.Range(0, obj.Length)], new Vector3(transform.position.x, Random.Range(-3.5f, 3.5f), 0), Quaternion.identity);
+        Instantiate(obj[Random.Range(0, obj.Length)], new Vector3(transform.position.x, Random.Range(-3, 3), 0), Quaternion.identity);
         Invoke("Generator", time);
     }
 }
