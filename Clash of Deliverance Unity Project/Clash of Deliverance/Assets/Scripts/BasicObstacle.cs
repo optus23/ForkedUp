@@ -17,22 +17,16 @@ public class BasicObstacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position = new Vector2(gameObject.transform.position.x - velocity, gameObject.transform.position.y);
+        if(!Player_Jump.dead)
+        {
+            gameObject.transform.position = new Vector2(gameObject.transform.position.x - velocity, gameObject.transform.position.y);
 
-        timer += Time.deltaTime;
-        if (timer > life_time)
-            Destroy(gameObject);
+            timer += Time.deltaTime;
+            if (timer > life_time)
+                Destroy(gameObject);
+        }
+
+       
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-
-    //    if (collision.transform.tag == "Destroy")
-    //    {
-    //        Debug.Log("Destroyed :)");
-    //        Destroy(gameObject);
-    //    }
-
-    //}
 
 }

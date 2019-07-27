@@ -11,6 +11,7 @@ public class Player_Jump : MonoBehaviour
     private bool key_down;
     private float initial_player_position_x;
     private Quaternion initial_player_rotation;
+    public static bool dead;
 
     // Start is called before the first frame update
     private void Awake()
@@ -26,13 +27,14 @@ public class Player_Jump : MonoBehaviour
         //First Jump without Input Keydown
         rb2D.velocity = Vector2.zero;
         rb2D.AddForce(transform.up * force);
+        dead = false;
     }
     
     // Update is called once per frame
     void Update()
     {
        
-        if((Input.GetKeyDown("space") || Input.GetKeyDown(KeyCode.Mouse0))&& !key_down)
+        if((Input.GetKeyDown("space") || Input.GetKeyDown(KeyCode.Mouse0))&& !key_down && !dead)
         {
             rb2D.velocity = Vector2.zero;
             rb2D.AddForce(transform.up * force);
@@ -43,9 +45,15 @@ public class Player_Jump : MonoBehaviour
             key_down = false;
         }
 
-        //Keep Vector initial position x & Quaterion rotation gameObject the same all time
-        gameObject.transform.position = new Vector2(initial_player_position_x, gameObject.transform.position.y);
-        gameObject.transform.rotation = initial_player_rotation;
+        if (!dead)
+        {
+            //Keep Vector initial position x & Quaterion rotation gameObject the same all time
+            gameObject.transform.position = new Vector2(initial_player_position_x, gameObject.transform.position.y);
+            gameObject.transform.rotation = initial_player_rotation;
+        }
+        else //Flip
+            gameObject.transform.rotation = new Quaternion(gameObject.transform.rotation.x +10 , gameObject.transform.rotation.y, gameObject.transform.rotation.z, gameObject.transform.rotation.w);
+
 
     }
 
@@ -54,8 +62,10 @@ public class Player_Jump : MonoBehaviour
         if (collision.transform.tag == "DeathFloor" || collision.transform.tag == "Obstacle")
         {
             Debug.Log("You are dead!");
-            SceneManager.LoadScene("Main Menu");
-            //SceneManager.UnloadScene("Clash of Deliverance");
+            dead = true;
+            rb2D.AddForce(transform.right * -force);
+            rb2D.AddForce(transform.up * force);
+            //SceneManager.LoadScene("Main Menu");
         }
         if (collision.transform.tag == "Score")
         {
