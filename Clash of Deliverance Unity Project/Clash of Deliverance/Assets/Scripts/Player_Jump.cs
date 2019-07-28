@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Player_Jump : MonoBehaviour
@@ -13,6 +14,9 @@ public class Player_Jump : MonoBehaviour
     private Quaternion initial_player_rotation;
     public static bool dead;
     public CameraShake cameraShake;
+    private float time_death = 1.5f;
+    private float timer;
+    public Button Restart;
 
     // Start is called before the first frame update
     private void Awake()
@@ -52,8 +56,15 @@ public class Player_Jump : MonoBehaviour
             gameObject.transform.position = new Vector2(initial_player_position_x, gameObject.transform.position.y);
             gameObject.transform.rotation = initial_player_rotation;
         }
-        else //Flip when die
-            gameObject.transform.rotation = new Quaternion(gameObject.transform.rotation.x +10 , gameObject.transform.rotation.y, gameObject.transform.rotation.z, gameObject.transform.rotation.w);
+        else //Flip when die and SetActive Restart Button
+        {
+            gameObject.transform.rotation = new Quaternion(gameObject.transform.rotation.x + 10, gameObject.transform.rotation.y, gameObject.transform.rotation.z, gameObject.transform.rotation.w);
+            timer += Time.deltaTime;
+            if (timer > time_death)
+            {
+                Restart.gameObject.SetActive(true);
+            }
+        }
 
 
     }
@@ -68,7 +79,7 @@ public class Player_Jump : MonoBehaviour
             dead = true;
             rb2D.AddForce(transform.right * -force);
             rb2D.AddForce(transform.up * force);
-            SceneManager.LoadScene("WaitingPlayer");
+            
         }
         if (collision.transform.tag == "DeathFloor")
         {
@@ -78,7 +89,6 @@ public class Player_Jump : MonoBehaviour
             dead = true;
             rb2D.AddForce(transform.right * (force/2));
             rb2D.AddForce(transform.up * (force/2));
-            SceneManager.LoadScene("WaitingPlayer");
         }
         if (collision.transform.tag == "Score")
         {

@@ -40,4 +40,9 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene("Main Menu");
     }
+
+    public void ReturnWaitinfPlayer()
+    {
+        SceneManager.LoadScene("WaitingPlayer");
+    }
 }
