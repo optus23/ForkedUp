@@ -5,16 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    Scene scene;
     // Start is called before the first frame update
     void Start()
     {
-        
+       scene = SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(scene.name == "WaitingPlayer" && Input.GetKey("space"))
+        {
+            TouchToJump();
+        }
     }
 
     public void StartLevel(string level_name)
@@ -25,5 +29,15 @@ public class LevelManager : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void TouchToJump()
+    {
+        SceneManager.LoadScene("Clash of Deliverance");
+    }
+
+    public void ReturnMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 }
