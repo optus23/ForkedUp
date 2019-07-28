@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: a42b2503ce8b3f54883158d0f056b815
   - enabled: 1
+    path: Assets/Scenes/WaitingPlayer.unity
+    guid: daf803e35783987438bf7c720ea586bc
+  - enabled: 1
     path: Assets/Scenes/Clash of Deliverance.unity
     guid: 1691643cac33b2845ab78da9a95cf6ca
   m_configObjects: {}

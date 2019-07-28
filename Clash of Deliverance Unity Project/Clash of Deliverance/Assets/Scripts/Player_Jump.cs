@@ -12,6 +12,7 @@ public class Player_Jump : MonoBehaviour
     private float initial_player_position_x;
     private Quaternion initial_player_rotation;
     public static bool dead;
+    public CameraShake cameraShake;
 
     // Start is called before the first frame update
     private void Awake()
@@ -34,13 +35,13 @@ public class Player_Jump : MonoBehaviour
     void Update()
     {
        
-        if((Input.GetKeyDown("space") || Input.GetKeyDown(KeyCode.Mouse0))&& !key_down && !dead)
+        if(Input.GetKeyDown("space") && !key_down && !dead)
         {
             rb2D.velocity = Vector2.zero;
             rb2D.AddForce(transform.up * force);
             key_down = true;
         }
-        else if ((Input.GetKeyUp("space") || Input.GetKeyDown(KeyCode.Mouse0)) && key_down)
+        else if (Input.GetKeyUp("space") && key_down)
         {
             key_down = false;
         }
@@ -51,7 +52,7 @@ public class Player_Jump : MonoBehaviour
             gameObject.transform.position = new Vector2(initial_player_position_x, gameObject.transform.position.y);
             gameObject.transform.rotation = initial_player_rotation;
         }
-        else //Flip
+        else //Flip when die
             gameObject.transform.rotation = new Quaternion(gameObject.transform.rotation.x +10 , gameObject.transform.rotation.y, gameObject.transform.rotation.z, gameObject.transform.rotation.w);
 
 
@@ -59,13 +60,25 @@ public class Player_Jump : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "DeathFloor" || collision.transform.tag == "Obstacle")
+        if (collision.transform.tag == "Obstacle")
         {
             Debug.Log("You are dead!");
+
+            cameraShake.Shake(0.8f, 0.3f);
             dead = true;
             rb2D.AddForce(transform.right * -force);
             rb2D.AddForce(transform.up * force);
-            //SceneManager.LoadScene("Main Menu");
+            SceneManager.LoadScene("WaitingPlayer");
+        }
+        if (collision.transform.tag == "DeathFloor")
+        {
+            Debug.Log("You are dead!");
+
+            cameraShake.Shake(0.1f, 0.2f);
+            dead = true;
+            rb2D.AddForce(transform.right * (force/2));
+            rb2D.AddForce(transform.up * (force/2));
+            SceneManager.LoadScene("WaitingPlayer");
         }
         if (collision.transform.tag == "Score")
         {

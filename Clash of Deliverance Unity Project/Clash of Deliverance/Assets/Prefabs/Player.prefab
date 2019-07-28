@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 1000
+  cameraShake: {fileID: 0}
 --- !u!50 &5691972500309482652
 Rigidbody2D:
   serializedVersion: 4
