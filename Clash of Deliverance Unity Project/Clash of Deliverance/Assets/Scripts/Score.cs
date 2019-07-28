@@ -18,5 +18,9 @@ public class Score : MonoBehaviour
     void Update()
     {
         score.text = "" + score_value;
+
+       
     }
+
+    
 }
