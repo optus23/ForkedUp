@@ -16,7 +16,7 @@ public class Player_Jump : MonoBehaviour
     public CameraShake cameraShake;
     private float time_death = 1.5f;
     private float timer;
-    public Button Restart;
+    public GameObject Restart;
 
     // Start is called before the first frame update
     private void Awake()
