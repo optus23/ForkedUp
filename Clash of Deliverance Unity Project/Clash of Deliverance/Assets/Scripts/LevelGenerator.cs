@@ -20,8 +20,8 @@ public class LevelGenerator : MonoBehaviour
         time -= Mathf.Log(time + 0.6f) / 3000;
 
         //Max time per obstacle (35 score)
-        if (time < 1.5f)
-            time = 1.5f;
+        if (time < 1.65f)
+            time = 1.65f;
 
     }
 

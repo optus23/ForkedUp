@@ -45,4 +45,6 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene("WaitingPlayer");
     }
+
+    
 }
