@@ -49,6 +49,6 @@ MonoBehaviour:
     type: 3}
   Background3: {fileID: 4288612496897810268, guid: 4485b28681514bb419ff83fb52eabe04,
     type: 3}
-  time1: 6
-  time2: 8
-  time3: 14
+  time1: 11
+  time2: 32
+  time3: 40

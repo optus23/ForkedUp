@@ -30,20 +30,32 @@ public class ParallaxGenerator : MonoBehaviour
 
     void SpawnBackground1()
     {
-        Invoke("SpawnBackground1", time1);
-        Instantiate(Background1, new Vector2(Background1.transform.position.x, Background1.transform.position.y), Quaternion.identity);
+        if (!Player_Jump.dead)
+        {
+            Invoke("SpawnBackground1", time1);
+            Instantiate(Background1, new Vector2(Background1.transform.position.x + 9, Background1.transform.position.y), Quaternion.identity);
+
+        }
 
     }
     void SpawnBackground2()
     {
-        Invoke("SpawnBackground2", time2);
-        Instantiate(Background2, new Vector2(Background2.transform.position.x, Background2.transform.position.y), Quaternion.identity);
+        if (!Player_Jump.dead)
+        {
+            Invoke("SpawnBackground2", time2);
+            Instantiate(Background2, new Vector2(Background2.transform.position.x + 9, Background2.transform.position.y), Quaternion.identity);
+
+        }
 
     }
     void SpawnBackground3()
     {
-        Invoke("SpawnBackground3", time3);
-        Instantiate(Background3, new Vector2(Background3.transform.position.x, Background3.transform.position.y), Quaternion.identity);
+        if (!Player_Jump.dead)
+        {
+            Invoke("SpawnBackground3", time3);
+            Instantiate(Background3, new Vector2(Background3.transform.position.x + 8, Background3.transform.position.y), Quaternion.identity);
+
+        }
 
     }
 }

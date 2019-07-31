@@ -22,8 +22,12 @@ public class ParallaxMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Background1.transform.position = new Vector2(Background1.transform.position.x - speed1, Background1.transform.position.y);
-        Background2.transform.position = new Vector2(Background2.transform.position.x - speed2, Background2.transform.position.y);
-        Background3.transform.position = new Vector2(Background3.transform.position.x - speed3, Background3.transform.position.y);
+        if(!Player_Jump.dead)
+        {
+            Background1.transform.position = new Vector2(Background1.transform.position.x - speed1, Background1.transform.position.y);
+            Background2.transform.position = new Vector2(Background2.transform.position.x - speed2, Background2.transform.position.y);
+            Background3.transform.position = new Vector2(Background3.transform.position.x - speed3, Background3.transform.position.y);
+
+        }
     }
 }
