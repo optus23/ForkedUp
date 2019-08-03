@@ -24,9 +24,6 @@ public class HighScore : MonoBehaviour
         high_score = GetComponent<Text>();
         high_score_value = PlayerPrefs.GetInt("HighScore", 0);
         high_score.text = "High Score: " + high_score_value;
-        Debug.Log(high_score_value);
-
-
     }
 
     // Update is called once per frame
