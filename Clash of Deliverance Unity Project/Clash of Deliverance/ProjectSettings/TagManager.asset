@@ -58,9 +58,9 @@ TagManager:
   - name: Background 3
     uniqueID: 2032477165
     locked: 0
-  - name: Canvas
-    uniqueID: 1503239077
-    locked: 0
   - name: New Layer
     uniqueID: 2653427031
+    locked: 0
+  - name: Canvas
+    uniqueID: 1503239077
     locked: 0

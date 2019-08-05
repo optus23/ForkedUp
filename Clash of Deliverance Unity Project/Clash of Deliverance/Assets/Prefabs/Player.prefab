@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2034939430670154495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.102, y: -0.091, z: 0}
-  m_LocalScale: {x: 0.7064605, y: 0.7064605, z: 0.7064605}
+  m_LocalScale: {x: 0.4343596, y: 0.4343596, z: 0.4343596}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -59,6 +59,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -122,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 1000
   cameraShake: {fileID: 0}
+  Restart: {fileID: 0}
 --- !u!50 &5691972500309482652
 Rigidbody2D:
   serializedVersion: 4
