@@ -25,7 +25,7 @@ public class ParallaxGenerator : MonoBehaviour
         SpawnBackground1();
         SpawnBackground2();
         SpawnBackground3();
- 
+
     }
 
     // Update is called once per frame

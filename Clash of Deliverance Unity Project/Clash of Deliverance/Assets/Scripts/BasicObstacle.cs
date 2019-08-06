@@ -6,8 +6,6 @@ public class BasicObstacle : MonoBehaviour
 {
     public float velocity;
 
-    private float timer;
-    private float life_time = 8;
     private SpriteRenderer sprite;
     private int sorting_layer_order = 5;
     // Start is called before the first frame update
@@ -21,11 +19,8 @@ public class BasicObstacle : MonoBehaviour
     {
         if(!Player_Jump.dead)
         {
+            //gameObject.transform.position = -Vector2.right * velocity /**Time.deltaTime*/;
             gameObject.transform.position = new Vector2(gameObject.transform.position.x - velocity, gameObject.transform.position.y);
-
-            timer += Time.deltaTime;
-            if (timer > life_time)
-                Destroy(gameObject);
         }
 
         sprite.sortingOrder = sorting_layer_order;

@@ -24,6 +24,7 @@ public class Player_Jump : MonoBehaviour
     public float smoothRotation;
     private float timer_animation;
     public float start_rotating;
+    public GameObject Dust;
 
     Touch touch;
 
@@ -62,7 +63,7 @@ public class Player_Jump : MonoBehaviour
 
             //Animation
             transform.rotation = forwardRotation;
-            Debug.Log(transform.rotation);
+            //Instantiate(Dust, new Vector2(transform.position.x, transform.position.y), Dust.transform.rotation);
 
             timer_animation = 0f;
             smoothRotation = 1;

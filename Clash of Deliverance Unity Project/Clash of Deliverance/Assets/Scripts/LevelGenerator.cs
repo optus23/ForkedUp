@@ -6,6 +6,7 @@ public class LevelGenerator : MonoBehaviour
 {
     public GameObject[] obj;
     public float time;
+    public float timer;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,9 @@ public class LevelGenerator : MonoBehaviour
         if (time < 1.65f)
             time = 1.65f;
 
+
+        timer += Time.deltaTime;
+
     }
 
     void Generator()
@@ -31,6 +35,7 @@ public class LevelGenerator : MonoBehaviour
         {
             Instantiate(obj[0], new Vector3(transform.position.x, Random.Range(-2.2f, 3f), 0), Quaternion.identity);
             Invoke("Generator", time);
+            timer = 0f;
         }
          
     }
