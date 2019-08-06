@@ -117,21 +117,21 @@ public class Player_Jump : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.transform.tag == "Obstacle")
-        //{
-        //    cameraShake.Shake(0.8f, 0.3f);
-        //    dead = true;
-        //    rb2D.AddForce(transform.right * -force);
-        //    rb2D.AddForce(transform.up * force);
+        if (collision.transform.tag == "Obstacle")
+        {
+            cameraShake.Shake(0.8f, 0.3f);
+            dead = true;
+            rb2D.AddForce(transform.right * -force);
+            rb2D.AddForce(transform.up * force);
 
-        //}
-        //if (collision.transform.tag == "DeathFloor")
-        //{
-        //    cameraShake.Shake(0.1f, 0.2f);
-        //    dead = true;
-        //    rb2D.AddForce(transform.right * (force / 1.5f));
-        //    rb2D.AddForce(transform.up * (force / 1.5f));
-        //}
+        }
+        if (collision.transform.tag == "DeathFloor")
+        {
+            cameraShake.Shake(0.1f, 0.2f);
+            dead = true;
+            rb2D.AddForce(transform.right * (force / 1.5f));
+            rb2D.AddForce(transform.up * (force / 1.5f));
+        }
         if (collision.transform.tag == "Score")
         {
             Score.score_value += 1;

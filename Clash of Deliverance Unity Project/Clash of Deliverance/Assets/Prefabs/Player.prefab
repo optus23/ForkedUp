@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2034939430670154495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.102, y: -0.091, z: 0}
-  m_LocalScale: {x: 0.4343596, y: 0.4343596, z: 0.4343596}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -124,6 +124,9 @@ MonoBehaviour:
   force: 1000
   cameraShake: {fileID: 0}
   Restart: {fileID: 0}
+  smoothRotation: 1
+  start_rotating: 0.1
+  Dust: {fileID: 1683300373093542404, guid: f82f6c8696df9e8458813aba07853620, type: 3}
 --- !u!50 &5691972500309482652
 Rigidbody2D:
   serializedVersion: 4

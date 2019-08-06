@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     Scene scene;
+    Touch touch;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,8 +17,10 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(scene.name == "WaitingPlayer" && Input.GetKey("space"))
+        if(scene.name == "WaitingPlayer" && (Input.GetKey("space") || Input.touchCount > 0))
         {
+            if (Input.touchCount > 0)
+                touch = Input.GetTouch(0);
             TouchToJump();
         }
     }
