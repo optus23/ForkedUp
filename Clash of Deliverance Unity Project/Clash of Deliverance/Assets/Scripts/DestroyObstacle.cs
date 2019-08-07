@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class DestroyObstacle : MonoBehaviour
 {
-    void Start()
+    public GameObject Obstacle;
+    void Update()
     {
-        Destroy(gameObject, 6);
+        if(Obstacle.transform.position.x <= -40)
+        {
+            Destroy(gameObject);
+
+            Debug.Log("fuck");
+        }
     }
 }

@@ -24,6 +24,8 @@ public class Player_Jump : MonoBehaviour
     public float smoothRotation;
     private float timer_animation;
     public float start_rotating;
+
+    Quaternion dustRotation;
     public GameObject Dust;
 
     Touch touch;
@@ -37,6 +39,9 @@ public class Player_Jump : MonoBehaviour
 
         forwardRotation = Quaternion.Euler(0, 0, 30);
         downRotation = Quaternion.Euler(0, 0, -70);
+
+
+        dustRotation = Quaternion.Euler(0, 0, 45);
     }
 
     void Start()
@@ -63,7 +68,8 @@ public class Player_Jump : MonoBehaviour
 
             //Animation
             transform.rotation = forwardRotation;
-            //Instantiate(Dust, new Vector2(transform.position.x, transform.position.y), Dust.transform.rotation);
+            Instantiate(Dust, new Vector2(transform.position.x, transform.position.y), dustRotation);
+            Dust.transform.rotation = dustRotation;
 
             timer_animation = 0f;
             smoothRotation = 1;
@@ -92,10 +98,7 @@ public class Player_Jump : MonoBehaviour
             }
 
         }
-
-
-
-
+        
         if (!dead)
         {
             //Keep Vector initial position.x
@@ -111,8 +114,7 @@ public class Player_Jump : MonoBehaviour
                 Restart.gameObject.SetActive(true);
             }
         }
-
-
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -134,7 +136,13 @@ public class Player_Jump : MonoBehaviour
         //}
         if (collision.transform.tag == "Score")
         {
-            Score.score_value += 1;
+            Score.score_value++;
+
+        }
+        if (collision.transform.tag == "Basic_Money")
+        {
+            Money.player_money_value += 5;
+            PlayerPrefs.SetInt("Money", Money.player_money_value);
         }
     }
 }

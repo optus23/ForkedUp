@@ -8,6 +8,7 @@ public class BasicObstacle : MonoBehaviour
 
     private SpriteRenderer sprite;
     private int sorting_layer_order = 5;
+
     // Start is called before the first frame update
     void Start()
     {

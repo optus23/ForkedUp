@@ -9,6 +9,7 @@ TagManager:
   - Score
   - Destroy
   - DanceFloor
+  - Basic_Money
   layers:
   - Default
   - TransparentFX

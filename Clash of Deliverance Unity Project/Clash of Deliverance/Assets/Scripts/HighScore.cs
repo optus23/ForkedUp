@@ -10,14 +10,7 @@ public class HighScore : MonoBehaviour
     Text high_score;
     public static int high_score_value;
     string high_score_string;
-
-    //string logout;
    
-
-    private void Awake()
-    {
-        //CreateText();
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -37,23 +30,4 @@ public class HighScore : MonoBehaviour
 
         }
     }
-
-    //void CreateText()
-    //{
-    //    string path = Application.dataPath + "/HighScore.txt";
-    //    //Create File 
-    //    if (!File.Exists(path))
-    //    {
-    //        File.WriteAllText(path, "High Score Numbers" + Environment.NewLine);
-    //    }
-    //}
-
-    //private void OnApplicationQuit()
-    //{
-    //    string path = Application.dataPath + "/HighScore.txt";
-
-    //    high_score_string = Environment.NewLine + "High Score: " + high_score_value;
-    //    File.AppendAllText(path, high_score_string);
-
-    //}
 }
