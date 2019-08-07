@@ -19,8 +19,7 @@ public class BasicObstacle : MonoBehaviour
     {
         if(!Player_Jump.dead)
         {
-            //gameObject.transform.position = -Vector2.right * velocity /**Time.deltaTime*/;
-            gameObject.transform.position = new Vector2(gameObject.transform.position.x - velocity, gameObject.transform.position.y);
+            gameObject.transform.position = new Vector2(gameObject.transform.position.x - velocity * Time.deltaTime * 60, gameObject.transform.position.y);
         }
 
         sprite.sortingOrder = sorting_layer_order;

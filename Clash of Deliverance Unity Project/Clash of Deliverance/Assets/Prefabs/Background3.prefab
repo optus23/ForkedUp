@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4288612496897810270}
   - component: {fileID: 4288612496897810271}
   - component: {fileID: 525163611411221337}
-  - component: {fileID: 4547114748246191639}
   m_Layer: 0
   m_Name: Background3
   m_TagString: Untagged
@@ -27,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288612496897810268}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.11, y: -1.29, z: 0}
+  m_LocalPosition: {x: 13.11, y: -0.14, z: 0}
   m_LocalScale: {x: 1.6995122, y: 1.651535, z: 1.6081159}
   m_Children: []
   m_Father: {fileID: 0}
@@ -102,20 +101,3 @@ MonoBehaviour:
   speed1: 0
   speed2: 0
   speed3: 0.008
---- !u!114 &4547114748246191639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4288612496897810268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bb3f5c147b459a44a1c355682c21214, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Background1: {fileID: 1375340226236158053, guid: 56dddc4d860faa64fa1a3d25d3841309,
-    type: 3}
-  Background2: {fileID: 5200164677949256047, guid: 9aadc5d11e97d5c40a42b8764deee517,
-    type: 3}
-  Background3: {fileID: 4288612496897810268}

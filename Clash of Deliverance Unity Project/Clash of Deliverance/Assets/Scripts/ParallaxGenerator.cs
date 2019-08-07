@@ -31,7 +31,7 @@ public class ParallaxGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+      
     }
 
     void SpawnBackground1()
@@ -39,7 +39,7 @@ public class ParallaxGenerator : MonoBehaviour
         if (!Player_Jump.dead || scene.name == "WaitingPlayer")
         {
             Invoke("SpawnBackground1", time1);
-            Instantiate(Background1, new Vector2(Background1.transform.position.x + 9, Background1.transform.position.y), Quaternion.identity);
+            Instantiate(Background1, new Vector2(Background1.transform.position.x + 7, Background1.transform.position.y), Quaternion.identity);
 
         }
 
@@ -64,4 +64,7 @@ public class ParallaxGenerator : MonoBehaviour
         }
 
     }
+
+
+    
 }

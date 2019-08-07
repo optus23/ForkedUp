@@ -23,10 +23,6 @@ public class LevelGenerator : MonoBehaviour
         //Max time per obstacle (35 score)
         if (time < 1.65f)
             time = 1.65f;
-
-
-        timer += Time.deltaTime;
-
     }
 
     void Generator()
@@ -34,8 +30,7 @@ public class LevelGenerator : MonoBehaviour
         if (!Player_Jump.dead)
         {
             Instantiate(obj[0], new Vector3(transform.position.x, Random.Range(-2.2f, 3f), 0), Quaternion.identity);
-            Invoke("Generator", time);
-            timer = 0f;
+            Invoke("Generator", time); 
         }
          
     }
