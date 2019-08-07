@@ -10,6 +10,8 @@ TagManager:
   - Destroy
   - DanceFloor
   - Basic_Money
+  - Normal_Money
+  - Super_Money
   layers:
   - Default
   - TransparentFX

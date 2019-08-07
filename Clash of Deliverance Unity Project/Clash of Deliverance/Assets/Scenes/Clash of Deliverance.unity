@@ -935,6 +935,30 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1683300373093542404, guid: e1a82f00e93d8c64c8f4f5f652300c20,
         type: 3}
+    - target: {fileID: 577816551492329403, guid: c571bac8b4159d54f917cdf7398b8760,
+        type: 3}
+      propertyPath: MoneyParticle
+      value: 
+      objectReference: {fileID: 1683300373093542404, guid: e32b4df1dbe082a40b9cb079ac9de1fc,
+        type: 3}
+    - target: {fileID: 577816551492329403, guid: c571bac8b4159d54f917cdf7398b8760,
+        type: 3}
+      propertyPath: MoneyParticle2
+      value: 
+      objectReference: {fileID: 1683300373093542404, guid: 58e4d1ec1a4641b419c1f9c7a81f98af,
+        type: 3}
+    - target: {fileID: 577816551492329403, guid: c571bac8b4159d54f917cdf7398b8760,
+        type: 3}
+      propertyPath: MoneyParticle3
+      value: 
+      objectReference: {fileID: 1683300373093542404, guid: ba57c2e6528891e4bb4b7415915aa7e4,
+        type: 3}
+    - target: {fileID: 577816551492329403, guid: c571bac8b4159d54f917cdf7398b8760,
+        type: 3}
+      propertyPath: MoneyParticle1
+      value: 
+      objectReference: {fileID: 1683300373093542404, guid: e32b4df1dbe082a40b9cb079ac9de1fc,
+        type: 3}
     - target: {fileID: 4809111927833784123, guid: c571bac8b4159d54f917cdf7398b8760,
         type: 3}
       propertyPath: m_SortingLayerID

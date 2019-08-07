@@ -30,6 +30,10 @@ public class Player_Jump : MonoBehaviour
 
     Touch touch;
 
+    public GameObject MoneyParticle1;
+    public GameObject MoneyParticle2;
+    public GameObject MoneyParticle3;
+
 
     // Start is called before the first frame update
     private void Awake()
@@ -119,30 +123,50 @@ public class Player_Jump : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.transform.tag == "Obstacle")
-        //{
-        //    cameraShake.Shake(0.8f, 0.3f);
-        //    dead = true;
-        //    rb2D.AddForce(transform.right * -force);
-        //    rb2D.AddForce(transform.up * force);
+        if (collision.transform.tag == "Obstacle")
+        {
+            cameraShake.Shake(0.8f, 0.3f);
+            dead = true;
+            rb2D.AddForce(transform.right * -force);
+            rb2D.AddForce(transform.up * force);
 
-        //}
-        //if (collision.transform.tag == "DeathFloor")
-        //{
-        //    cameraShake.Shake(0.1f, 0.2f);
-        //    dead = true;
-        //    rb2D.AddForce(transform.right * (force / 1.5f));
-        //    rb2D.AddForce(transform.up * (force / 1.5f));
-        //}
+        }
+        if (collision.transform.tag == "DeathFloor")
+        {
+            cameraShake.Shake(0.1f, 0.2f);
+            dead = true;
+            rb2D.AddForce(transform.right * (force / 1.5f));
+            rb2D.AddForce(transform.up * (force / 1.5f));
+        }
         if (collision.transform.tag == "Score")
         {
             Score.score_value++;
 
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (collision.transform.tag == "Basic_Money")
+        {
+            Money.player_money_value ++;
+            PlayerPrefs.SetInt("Money", Money.player_money_value);
+
+            Instantiate(MoneyParticle1, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+        }
+        if (collision.transform.tag == "Normal_Money")
         {
             Money.player_money_value += 5;
             PlayerPrefs.SetInt("Money", Money.player_money_value);
+
+            Instantiate(MoneyParticle2, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+        }
+        if (collision.transform.tag == "Super_Money")
+        {
+            Money.player_money_value += 10;
+            PlayerPrefs.SetInt("Money", Money.player_money_value);
+
+            Instantiate(MoneyParticle3, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
         }
     }
 }
