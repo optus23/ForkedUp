@@ -12,6 +12,9 @@ TagManager:
   - Basic_Money
   - Normal_Money
   - Super_Money
+  - Wall
+  - InitialPosition
+  - Ceiling
   layers:
   - Default
   - TransparentFX

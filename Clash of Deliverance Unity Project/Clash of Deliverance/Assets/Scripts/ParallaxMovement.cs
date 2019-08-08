@@ -13,8 +13,6 @@ public class ParallaxMovement : MonoBehaviour
     public float speed2;
     public float speed3;
 
-    ParallaxGenerator b1;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -32,15 +30,4 @@ public class ParallaxMovement : MonoBehaviour
 
         }
     }
-
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.transform.tag == "Destroy")
-    //    {
-    //        Debug.Log("Triggered");
-
-    //        Destroy(gameObject, 1);
-    //    }
-    //}
 }

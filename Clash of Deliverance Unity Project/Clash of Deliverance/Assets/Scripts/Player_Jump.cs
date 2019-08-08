@@ -8,9 +8,23 @@ public class Player_Jump : MonoBehaviour
 {
 
     public float force;
+    public float dash_force;
+    public bool dash;
+    public bool dashing;
     private Rigidbody2D rb2D;
+    Quaternion upDash;
+    Quaternion downDash;
+    Quaternion rightDash;
+    public float smoothDash;
+    private float prepare_dash_timer;
+    public float prepare_dash_force;
+    public float time_preparing_dash;
+    public GameObject InitialPosition;
 
     private bool key_down;
+    private bool arrow_down;
+    private bool arrow_up;
+    private bool arrow_right;
     private float initial_player_position_x;
 
     public static bool dead;
@@ -44,6 +58,9 @@ public class Player_Jump : MonoBehaviour
         forwardRotation = Quaternion.Euler(0, 0, 30);
         downRotation = Quaternion.Euler(0, 0, -70);
 
+        upDash = Quaternion.identity;
+        downDash = Quaternion.Euler(0, 0, 180);
+        rightDash = Quaternion.Euler(0, 0, -90);
 
         dustRotation = Quaternion.Euler(0, 0, 45);
     }
@@ -55,13 +72,58 @@ public class Player_Jump : MonoBehaviour
         rb2D.AddForce(Vector2.up * force);
         dead = false;
         transform.rotation = Quaternion.Lerp(forwardRotation, transform.rotation, 2 * Time.deltaTime);
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Dash
+        if(dash)
+        {
+            prepare_dash_timer += Time.deltaTime;
+            PrepareDash();
+            dashing = true;
 
-        if ((Input.GetKeyDown("space") || Input.touchCount > 0) && !key_down && !dead)
+            rb2D.gravityScale = 0;
+            if (prepare_dash_timer >= time_preparing_dash)
+            {
+                rb2D.gravityScale = 3;
+                Dash();
+                prepare_dash_timer = 0;
+                dash = false;
+            }
+        }
+
+        if (Input.GetKeyDown("up"))
+        {
+            rb2D.velocity = Vector2.zero;
+            transform.rotation = Quaternion.Lerp(transform.rotation, upDash, smoothDash * Time.deltaTime);
+
+            arrow_up = true;
+            dash = true;
+        }
+        if (Input.GetKeyDown("down"))
+        {
+            rb2D.velocity = Vector2.zero;
+            transform.rotation = Quaternion.Lerp(transform.rotation, downDash, smoothDash * Time.deltaTime);
+
+            arrow_down = true;
+            dash = true;
+        }
+        if (Input.GetKeyDown("right"))
+        {
+            rb2D.velocity = Vector2.zero;
+            transform.rotation = rightDash;
+
+            arrow_right = true;
+            dash = true;
+        }
+       
+
+        //Jump
+        if ((Input.GetKeyDown("space") || Input.touchCount > 0) && !key_down && !dead && !dashing)
         {
             if (Input.touchCount > 0)
                 touch = Input.GetTouch(0);
@@ -83,7 +145,7 @@ public class Player_Jump : MonoBehaviour
             key_down = false;
 
         }
-        else
+        else if (!dash)
         {
             timer_animation += Time.deltaTime;
             if (timer_animation > start_rotating)
@@ -103,13 +165,7 @@ public class Player_Jump : MonoBehaviour
 
         }
         
-        if (!dead)
-        {
-            //Keep Vector initial position.x
-            gameObject.transform.position = new Vector2(initial_player_position_x, gameObject.transform.position.y);
-
-        }
-        else //Flip when die and SetActive Restart Button
+        if (dead) //Flip when die and SetActive Restart Button
         {
             gameObject.transform.rotation = new Quaternion(gameObject.transform.rotation.x + 10, gameObject.transform.rotation.y, gameObject.transform.rotation.z, gameObject.transform.rotation.w);
             timer += Time.deltaTime;
@@ -121,6 +177,48 @@ public class Player_Jump : MonoBehaviour
         
     }
 
+
+    void PrepareDash()
+    {
+        rb2D.velocity = Vector2.zero;
+
+        if (arrow_up)
+        {
+            rb2D.AddForce(Vector2.down * prepare_dash_force);
+        }
+        else if (arrow_down)
+        {
+            rb2D.AddForce(Vector2.up * prepare_dash_force);
+        }
+        else if (arrow_right)
+        {
+            rb2D.AddForce(Vector2.left * prepare_dash_force);
+            rb2D.constraints = RigidbodyConstraints2D.None;
+        }
+    }
+
+    void Dash()
+    {
+        if (arrow_up)
+        {
+            rb2D.AddForce(Vector2.up * dash_force);
+            arrow_up = false;
+        }
+
+        else if (arrow_down)
+        {
+            rb2D.AddForce(Vector2.down * dash_force);
+            arrow_down = false;
+        }
+
+        else if (arrow_right)
+        {
+            rb2D.AddForce(Vector2.right * dash_force);
+            arrow_right = false;
+        }
+
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Obstacle")
@@ -129,6 +227,7 @@ public class Player_Jump : MonoBehaviour
             dead = true;
             rb2D.AddForce(transform.right * -force);
             rb2D.AddForce(transform.up * force);
+            dashing = false;
 
         }
         if (collision.transform.tag == "DeathFloor")
@@ -137,11 +236,35 @@ public class Player_Jump : MonoBehaviour
             dead = true;
             rb2D.AddForce(transform.right * (force / 1.5f));
             rb2D.AddForce(transform.up * (force / 1.5f));
+            dashing = false;
+        }
+        if (collision.transform.tag == "Ceiling")
+        {
+            if(dashing)
+            {
+                cameraShake.Shake(0.2f, 0.2f);
+                dashing = false;
+            }
+            else
+                cameraShake.Shake(0.1f, 0.1f);
+
+
         }
         if (collision.transform.tag == "Score")
         {
             Score.score_value++;
 
+        }
+        if (collision.transform.tag == "Wall")
+        {
+            cameraShake.Shake(0.2f, 0.2f);
+
+            transform.rotation = Quaternion.identity;
+            rb2D.velocity = Vector2.zero;
+            rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+            rb2D.AddForce(Vector2.left * dash_force/5);
+            InitialPosition.SetActive(true);            
         }
     }
 
@@ -168,5 +291,13 @@ public class Player_Jump : MonoBehaviour
 
             Instantiate(MoneyParticle3, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
         }
+        
+        if (collision.transform.tag == "InitialPosition")
+        {
+            rb2D.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezePositionX;
+            InitialPosition.SetActive(false);
+            dashing = false;
+        }
+
     }
 }

@@ -40,9 +40,4 @@ public class CameraShake : MonoBehaviour
         MainCam.transform.localPosition = new Vector3(0,0,-10);
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKey("q"))
-    //        Shake(0.1f, 0.2f);
-    //}
 }

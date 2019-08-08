@@ -6,7 +6,6 @@ public class LevelGenerator : MonoBehaviour
 {
     public GameObject[] obj;
     public float time;
-    public float timer;
 
     // Start is called before the first frame update
     void Start()
