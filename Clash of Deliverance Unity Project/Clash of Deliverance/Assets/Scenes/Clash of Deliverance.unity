@@ -986,7 +986,7 @@ PrefabInstance:
     - target: {fileID: 6548972924123327926, guid: c571bac8b4159d54f917cdf7398b8760,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.4
+      value: -0.73
       objectReference: {fileID: 0}
     - target: {fileID: 6548972924123327926, guid: c571bac8b4159d54f917cdf7398b8760,
         type: 3}
@@ -1151,7 +1151,7 @@ PrefabInstance:
     - target: {fileID: 577816551492329403, guid: c571bac8b4159d54f917cdf7398b8760,
         type: 3}
       propertyPath: offset_wipe_width
-      value: 45
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4809111927833784123, guid: c571bac8b4159d54f917cdf7398b8760,
         type: 3}
@@ -1922,7 +1922,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2131591737}
   m_LocalRotation: {x: -0, y: -0, z: -0.70710677, w: 0.7071068}
-  m_LocalPosition: {x: -1.07, y: 0.4, z: 87.64633}
+  m_LocalPosition: {x: -1.32, y: 0.4, z: 87.64633}
   m_LocalScale: {x: 17.7111, y: 0.6811125, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

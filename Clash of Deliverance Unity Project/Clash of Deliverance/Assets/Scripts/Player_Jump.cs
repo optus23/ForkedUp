@@ -204,7 +204,7 @@ public class Player_Jump : MonoBehaviour
             transform.rotation = forwardRotation;
             Instantiate(Dust, new Vector2(transform.position.x, transform.position.y), dustRotation);
             Dust.transform.rotation = dustRotation;
-
+            
             timer_animation = 0f;
             smoothRotation = 1;
         }
