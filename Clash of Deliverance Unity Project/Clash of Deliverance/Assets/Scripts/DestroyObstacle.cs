@@ -10,8 +10,6 @@ public class DestroyObstacle : MonoBehaviour
         if(Obstacle.transform.position.x <= -40)
         {
             Destroy(gameObject);
-
-            Debug.Log("fuck");
         }
     }
 }

@@ -28,7 +28,7 @@ public class LevelGenerator : MonoBehaviour
     {
         if (!Player_Jump.dead)
         {
-            Instantiate(obj[0], new Vector3(transform.position.x, Random.Range(-2.2f, 3f), 0), Quaternion.identity);
+            Instantiate(obj[0], new Vector3(transform.position.x, Random.Range(-2.2f, 2.6f), 0), Quaternion.identity);
             Invoke("Generator", time); 
         }
          

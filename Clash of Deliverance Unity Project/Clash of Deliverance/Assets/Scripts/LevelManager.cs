@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(scene.name == "WaitingPlayer" && (Input.GetKey("space") || Input.touchCount > 0))
+        if (scene.name == "WaitingPlayer" && ((Input.GetKey("space") || Input.touchCount > 0)))
         {
             if (Input.touchCount > 0)
                 touch = Input.GetTouch(0);
@@ -48,6 +48,7 @@ public class LevelManager : MonoBehaviour
     public void ReturnWaitinfPlayer()
     {
         SceneManager.LoadScene("WaitingPlayer");
+        Player_Jump.dead = false;
     }
 
     

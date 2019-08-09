@@ -26,6 +26,11 @@ public class Player_Jump : MonoBehaviour
     private bool arrow_up;
     private bool arrow_right;
     private float initial_player_position_x;
+    Vector2 firstPressPos;
+    Vector2 secondPressPos;
+    Vector2 currentSwipe;
+    public float offset_wipe_width;
+    public float offset_wipe_high;
 
     public static bool dead;
     public CameraShake cameraShake;
@@ -52,6 +57,7 @@ public class Player_Jump : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        dead = false;
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         initial_player_position_x = gameObject.transform.position.x;
 
@@ -82,21 +88,83 @@ public class Player_Jump : MonoBehaviour
         //Dash
         if(dash)
         {
+            //Timer to prepare dash
             prepare_dash_timer += Time.deltaTime;
             PrepareDash();
             dashing = true;
 
             rb2D.gravityScale = 0;
+
             if (prepare_dash_timer >= time_preparing_dash)
             {
                 rb2D.gravityScale = 3;
                 Dash();
-                prepare_dash_timer = 0;
-                dash = false;
+                prepare_dash_timer = 0; //Reset timer
+                dash = false; //Dash Finished
             }
         }
 
-        if (Input.GetKeyDown("up"))
+
+        //Touch System Swipe UP DOWN RIGHT  from here-> https://forum.unity.com/threads/swipe-in-all-directions-touch-and-mouse.165416/
+        //=============================================================================================
+
+        if (Input.touches.Length > 0)
+        {
+            Touch t = Input.GetTouch(0);
+            if (t.phase == TouchPhase.Began)
+            {
+                //save began touch 2d point
+                firstPressPos = new Vector2(t.position.x, t.position.y);
+            }
+            if (t.phase == TouchPhase.Ended)
+            {
+                //save ended touch 2d point
+                secondPressPos = new Vector2(t.position.x, t.position.y);
+
+                //create vector from the two points
+                currentSwipe = new Vector3(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
+
+                //normalize the 2d vector
+                //currentSwipe.Normalize();
+
+                //swipe upwards
+                if (currentSwipe.y > offset_wipe_high && currentSwipe.x > -offset_wipe_width && currentSwipe.x < offset_wipe_width && !dead && !dashing)
+                {
+                    rb2D.velocity = Vector2.zero;
+                    transform.rotation = Quaternion.Lerp(transform.rotation, upDash, smoothDash * Time.deltaTime);
+
+                    arrow_up = true;
+                    dash = true;
+                }
+                //swipe down
+                if (currentSwipe.y < -offset_wipe_high && currentSwipe.x > -offset_wipe_width && currentSwipe.x < offset_wipe_width && !dead && !dashing)
+                {
+                    rb2D.velocity = Vector2.zero;
+                    transform.rotation = Quaternion.Lerp(transform.rotation, downDash, smoothDash * Time.deltaTime);
+
+                    arrow_down = true;
+                    dash = true;
+                }
+                //swipe right
+                if (currentSwipe.x > offset_wipe_high && currentSwipe.y > -offset_wipe_width && currentSwipe.y < offset_wipe_width && !dead && !dashing)
+                {
+                    rb2D.velocity = Vector2.zero;
+                    transform.rotation = rightDash;
+
+                    arrow_right = true;
+                    dash = true;
+                }
+                ////swipe left
+                //if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f && !dead && !dashing)
+                //{
+                //    Debug.Log("left swipe");
+                //}
+            }
+        }
+        //=============================================================================================
+
+
+        if (Input.GetKeyDown("up") && !dead && !dashing)
         {
             rb2D.velocity = Vector2.zero;
             transform.rotation = Quaternion.Lerp(transform.rotation, upDash, smoothDash * Time.deltaTime);
@@ -104,7 +172,7 @@ public class Player_Jump : MonoBehaviour
             arrow_up = true;
             dash = true;
         }
-        if (Input.GetKeyDown("down"))
+        if (Input.GetKeyDown("down") && !dead && !dashing)
         {
             rb2D.velocity = Vector2.zero;
             transform.rotation = Quaternion.Lerp(transform.rotation, downDash, smoothDash * Time.deltaTime);
@@ -112,7 +180,7 @@ public class Player_Jump : MonoBehaviour
             arrow_down = true;
             dash = true;
         }
-        if (Input.GetKeyDown("right"))
+        if (Input.GetKeyDown("right") && !dead && !dashing)
         {
             rb2D.velocity = Vector2.zero;
             transform.rotation = rightDash;
@@ -247,14 +315,8 @@ public class Player_Jump : MonoBehaviour
             }
             else
                 cameraShake.Shake(0.1f, 0.1f);
-
-
         }
-        if (collision.transform.tag == "Score")
-        {
-            Score.score_value++;
-
-        }
+        
         if (collision.transform.tag == "Wall")
         {
             cameraShake.Shake(0.2f, 0.2f);
@@ -263,13 +325,18 @@ public class Player_Jump : MonoBehaviour
             rb2D.velocity = Vector2.zero;
             rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-            rb2D.AddForce(Vector2.left * dash_force/5);
+            rb2D.AddForce(Vector2.left * dash_force/4);
             InitialPosition.SetActive(true);            
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.transform.tag == "Score")
+        {
+            Score.score_value++;
+
+        }
         if (collision.transform.tag == "Basic_Money")
         {
             Money.player_money_value ++;

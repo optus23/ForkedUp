@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645f03e2bb95d5f4c832e915041b437b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 0.05
+  velocity: 0.04
 --- !u!114 &4126906691725425958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ Transform:
   m_GameObject: {fileID: 3130710472357529851}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 17.903, y: 0.40358, z: -8.7435}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 3291445735474355158}
   - {fileID: 3291445736299041387}
@@ -253,7 +253,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 1.6780748, y: -0.015836477}
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645f03e2bb95d5f4c832e915041b437b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 0.05
+  velocity: 0.04
 --- !u!212 &6269363319526371753
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -494,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645f03e2bb95d5f4c832e915041b437b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 0.05
+  velocity: 0.04
 --- !u!1 &3291445736299041386
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,7 +637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645f03e2bb95d5f4c832e915041b437b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 0.05
+  velocity: 0.04
 --- !u!1 &5534996852849200413
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645f03e2bb95d5f4c832e915041b437b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 0.05
+  velocity: 0.04
 --- !u!114 &7193575498044849701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -931,7 +931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645f03e2bb95d5f4c832e915041b437b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 0.05
+  velocity: 0.04
 --- !u!114 &1219712111966370299
 MonoBehaviour:
   m_ObjectHideFlags: 0

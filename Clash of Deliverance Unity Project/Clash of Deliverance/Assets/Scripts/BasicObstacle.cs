@@ -22,10 +22,6 @@ public class BasicObstacle : MonoBehaviour
         {
             gameObject.transform.position = new Vector2(gameObject.transform.position.x - velocity * Time.deltaTime * 60, gameObject.transform.position.y);
         }
-
         sprite.sortingOrder = sorting_layer_order;
-
-       
     }
-
 }
