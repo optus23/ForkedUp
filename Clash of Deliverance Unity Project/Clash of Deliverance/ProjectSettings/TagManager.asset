@@ -67,6 +67,9 @@ TagManager:
   - name: New Layer
     uniqueID: 2653427031
     locked: 0
+  - name: Echo
+    uniqueID: 2982856827
+    locked: 0
   - name: Canvas
     uniqueID: 1503239077
     locked: 0
