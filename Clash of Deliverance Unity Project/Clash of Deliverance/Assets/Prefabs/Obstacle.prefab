@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &576691532972781886
 Transform:
   m_ObjectHideFlags: 0
@@ -34,7 +34,7 @@ Transform:
   m_LocalScale: {x: 0.21546926, y: 0.2154693, z: 0.2154693}
   m_Children: []
   m_Father: {fileID: 3130710472357529734}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4954062511485166137
 SpriteRenderer:
@@ -147,6 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f56ca79a95fba4fa0a6abb4e83f208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Money_1: {fileID: 459841535018726462}
+  Money_5: {fileID: 5980430147256990323}
+  Money_10: {fileID: 5534996852849200413}
 --- !u!114 &2717631076471291771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,8 +192,8 @@ Transform:
   m_Children:
   - {fileID: 3291445735474355158}
   - {fileID: 3291445736299041387}
-  - {fileID: 576691532972781886}
   - {fileID: 3291445734896616350}
+  - {fileID: 576691532972781886}
   - {fileID: 5825206854786054831}
   - {fileID: 4642891493210657090}
   m_Father: {fileID: 0}
@@ -241,7 +244,7 @@ Transform:
   m_LocalScale: {x: 0.85, y: 2.9835937, z: 1}
   m_Children: []
   m_Father: {fileID: 3130710472357529734}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3291445734896616351
 BoxCollider2D:
@@ -668,7 +671,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5534996852849200413}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.23, y: 6.65, z: 17.487}
+  m_LocalPosition: {x: -3.64, y: -0.21, z: 17.487}
   m_LocalScale: {x: 0.6280087, y: 0.6280088, z: 0.6280088}
   m_Children: []
   m_Father: {fileID: 3130710472357529734}
@@ -785,6 +788,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f56ca79a95fba4fa0a6abb4e83f208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Money_1: {fileID: 0}
+  Money_5: {fileID: 5980430147256990323}
+  Money_10: {fileID: 5534996852849200413}
 --- !u!114 &2856654819635311793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,7 +833,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5980430147256990323}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.75, y: -8.17, z: 17.487}
+  m_LocalPosition: {x: -3.67, y: -0.16, z: 17.487}
   m_LocalScale: {x: 0.46692652, y: 0.4669266, z: 0.4669266}
   m_Children: []
   m_Father: {fileID: 3130710472357529734}
@@ -944,6 +950,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f56ca79a95fba4fa0a6abb4e83f208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Money_1: {fileID: 459841535018726462}
+  Money_5: {fileID: 5980430147256990323}
+  Money_10: {fileID: 5534996852849200413}
 --- !u!114 &1311060077481610264
 MonoBehaviour:
   m_ObjectHideFlags: 0

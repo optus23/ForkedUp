@@ -103,6 +103,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5025827547954766264, guid: 1cadb8c43fc2f924b8a409092176213d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061731585941004699, guid: 1cadb8c43fc2f924b8a409092176213d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5025827547027931357, guid: 1cadb8c43fc2f924b8a409092176213d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5025827547162994485, guid: 1cadb8c43fc2f924b8a409092176213d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5025827547395577874, guid: 1cadb8c43fc2f924b8a409092176213d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5025827547027931355, guid: 1cadb8c43fc2f924b8a409092176213d,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5025827547162994483, guid: 1cadb8c43fc2f924b8a409092176213d,
         type: 3}
       propertyPath: m_SortingOrder
@@ -113,23 +143,20 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5025827547027931355, guid: 1cadb8c43fc2f924b8a409092176213d,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5025827547954766262, guid: 1cadb8c43fc2f924b8a409092176213d,
         type: 3}
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2061731585941004699, guid: 1cadb8c43fc2f924b8a409092176213d,
+    - target: {fileID: 5749706832727573308, guid: 1cadb8c43fc2f924b8a409092176213d,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5025827548159341348, guid: 1cadb8c43fc2f924b8a409092176213d, type: 3}
+    - {fileID: 3923480205196886771, guid: 1cadb8c43fc2f924b8a409092176213d, type: 3}
+    - {fileID: 5700289118316658682, guid: 1cadb8c43fc2f924b8a409092176213d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1cadb8c43fc2f924b8a409092176213d, type: 3}
 --- !u!1 &4409878913577091674 stripped
 GameObject:

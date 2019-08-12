@@ -11,6 +11,7 @@ public class Player_Jump : MonoBehaviour
     public float dash_force;
     public bool dash;
     public bool dashing;
+    public bool dashing_down;
     private Rigidbody2D rb2D;
     Quaternion upDash;
     Quaternion downDash;
@@ -52,7 +53,6 @@ public class Player_Jump : MonoBehaviour
     public GameObject MoneyParticle1;
     public GameObject MoneyParticle2;
     public GameObject MoneyParticle3;
-
 
     // Start is called before the first frame update
     private void Awake()
@@ -144,6 +144,7 @@ public class Player_Jump : MonoBehaviour
 
                     arrow_down = true;
                     dash = true;
+                    dashing_down = true;
                 }
                 //swipe right
                 if (currentSwipe.x > offset_wipe_high && currentSwipe.y > -offset_wipe_width && currentSwipe.y < offset_wipe_width && !dead && !dashing)
@@ -179,6 +180,7 @@ public class Player_Jump : MonoBehaviour
 
             arrow_down = true;
             dash = true;
+            dashing_down = true;
         }
         if (Input.GetKeyDown("right") && !dead && !dashing)
         {
@@ -306,6 +308,30 @@ public class Player_Jump : MonoBehaviour
             rb2D.AddForce(transform.up * (force / 1.5f));
             dashing = false;
         }
+        if (collision.transform.tag == "Enemy")
+        {
+            if (dashing)
+            {
+                cameraShake.Shake(0.2f, 0.2f);
+                dashing = false;
+
+                if(dashing_down)
+                {
+                    rb2D.AddForce(transform.up * -force*1.5f);
+                    dashing_down = false;
+                    Debug.Log("WWWW");
+                }
+            }
+            else
+            {
+                cameraShake.Shake(0.1f, 0.2f);
+                dead = true;
+                rb2D.AddForce(transform.right * (force / 1.5f));
+                rb2D.AddForce(transform.up * (force / 1.5f));
+                dashing = false;
+            }
+        }
+
         if (collision.transform.tag == "Ceiling")
         {
             if(dashing)
@@ -332,6 +358,23 @@ public class Player_Jump : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        if (collision.transform.tag == "Enemy") //  Enemy Shot
+        {
+            if (dashing || Enemy_1.dead)
+            {
+                cameraShake.Shake(0.2f, 0.2f);
+            }
+            else
+            {
+                cameraShake.Shake(0.1f, 0.2f);
+                dead = true;
+                rb2D.AddForce(transform.right * (force / 1.5f));
+                rb2D.AddForce(transform.up * (force / 1.5f));
+                dashing = false;
+            }
+        }
+
         if (collision.transform.tag == "Score")
         {
             Score.score_value++;

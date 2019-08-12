@@ -666,7 +666,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: -0.55, y: 0.4, z: 0}
+    m_Position: {x: 0.45, y: 0.45, z: 0}
     m_Rotation: {x: -43.8, y: 90.58, z: -18.82}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
@@ -1050,7 +1050,7 @@ ParticleSystem:
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 0.3243252
+          value: 0.62162244
           inSlope: -0.26667476
           outSlope: -0.26667476
           tangentMode: 0

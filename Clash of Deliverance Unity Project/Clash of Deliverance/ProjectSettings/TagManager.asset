@@ -15,6 +15,7 @@ TagManager:
   - Wall
   - InitialPosition
   - Ceiling
+  - Enemy
   layers:
   - Default
   - TransparentFX
