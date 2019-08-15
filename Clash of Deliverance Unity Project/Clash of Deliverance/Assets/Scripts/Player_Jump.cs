@@ -319,7 +319,6 @@ public class Player_Jump : MonoBehaviour
                 {
                     rb2D.AddForce(transform.up * -force*1.5f);
                     dashing_down = false;
-                    Debug.Log("WWWW");
                 }
             }
             else
@@ -353,6 +352,22 @@ public class Player_Jump : MonoBehaviour
 
             rb2D.AddForce(Vector2.left * dash_force/4);
             InitialPosition.SetActive(true);            
+        }
+
+        if (collision.transform.tag == "Enemy_Wall")
+        {
+            if (dashing)
+            {
+                cameraShake.Shake(0.2f, 0.2f);
+
+                transform.rotation = Quaternion.identity;
+                rb2D.velocity = Vector2.zero;
+                rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+                rb2D.AddForce(Vector2.left * dash_force / 4);
+                InitialPosition.SetActive(true);
+                dashing = false;
+            }
         }
     }
 

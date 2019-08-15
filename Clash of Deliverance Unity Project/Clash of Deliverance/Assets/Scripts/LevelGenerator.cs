@@ -5,7 +5,10 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     public GameObject[] obj;
+    //public GameObject[] Enemy1;
+    //public GameObject[] Enemy2;
     public float time;
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,4 +36,14 @@ public class LevelGenerator : MonoBehaviour
         }
          
     }
+
+    void Enemy1Generator()
+    {
+
+    }
+    void Enemy2Generator()
+    {
+
+    }
+    
 }

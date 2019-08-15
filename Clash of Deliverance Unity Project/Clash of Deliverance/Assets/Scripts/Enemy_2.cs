@@ -18,7 +18,6 @@ public class Enemy_2 : MonoBehaviour
     void Start()
     {
         bounce_number = Random.Range(1, 4);
-        Debug.Log(bounce_number);
 
     }
 
@@ -53,7 +52,6 @@ public class Enemy_2 : MonoBehaviour
                 else if (gameObject.transform.position.x >= Camera.main.transform.position.x - offset_camera_x / 3 && bounce >= bounce_number &&!MoveLeft())
                 {
                     static_direction = true;
-                    Debug.Log("Up");
                 }
                 break;
 
@@ -72,7 +70,6 @@ public class Enemy_2 : MonoBehaviour
                 else if (gameObject.transform.position.x >= Camera.main.transform.position.x - offset_camera_x / 3 && bounce >= bounce_number && !MoveLeft())
                 {
                     static_direction = true;
-                    Debug.Log("Up");
                 }
                 break;
             default:
