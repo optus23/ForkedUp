@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Player_Jump : MonoBehaviour
 {
-
+    Enemy_3 enemy_3;
     public float force;
     public float dash_force;
     public bool dash;
@@ -320,6 +320,7 @@ public class Player_Jump : MonoBehaviour
                     rb2D.AddForce(transform.up * -force*1.5f);
                     dashing_down = false;
                 }
+                Enemy_3.destroy_shot = true;
             }
             else
             {

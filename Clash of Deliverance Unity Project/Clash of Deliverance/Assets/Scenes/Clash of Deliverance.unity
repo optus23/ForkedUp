@@ -1427,9 +1427,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76cde21722e40f4e991b32adb3f60be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj:
-  - {fileID: 3130710472357529851, guid: 589233e35b10b7e4ca84eb4e7445e7b0, type: 3}
-  time: 2
+  pipe:
+  - {fileID: 2148557606567309499, guid: a8d8ada1905156c42bf94bfb58ca5ec4, type: 3}
+  enemy1:
+  - {fileID: 8596876608333891906, guid: 1cadb8c43fc2f924b8a409092176213d, type: 3}
+  time: 1.4
+  random_pipe_number: 0
+  random_enemy1_number: 0
+  random_enemy2_number: 0
+  random_enemy3_number: 0
 --- !u!4 &1002933269
 Transform:
   m_ObjectHideFlags: 0
@@ -1953,6 +1959,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3059110515585623266, guid: 076ef0ef6aaaa2c489b8d2160b02327b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 118679920063237752, guid: 076ef0ef6aaaa2c489b8d2160b02327b,
         type: 3}
       propertyPath: m_Name
@@ -2044,11 +2055,6 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 326f5106c4eb87d4fa53ec502d483417, type: 2}
-    - target: {fileID: 3059110515585623266, guid: 076ef0ef6aaaa2c489b8d2160b02327b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3059110515585623267, guid: 076ef0ef6aaaa2c489b8d2160b02327b,
         type: 3}
       propertyPath: m_RootOrder
@@ -2152,7 +2158,7 @@ PrefabInstance:
     - target: {fileID: 2148557606567309499, guid: a8d8ada1905156c42bf94bfb58ca5ec4,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2148557606567309495, guid: a8d8ada1905156c42bf94bfb58ca5ec4,
         type: 3}

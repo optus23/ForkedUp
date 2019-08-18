@@ -4,108 +4,114 @@ using UnityEngine;
 
 public class Enemy_1 : MonoBehaviour
 {
+    private bool exit_battlefield;
+
     public float velocity;
     public float offset_camera_x;
     private bool change_direction;
+    private bool stop;
+    private float stop_timer;
+    public float time_stopped;
     private int bounce = 1;
     public int bounce_number;
 
-    public GameObject Enemy_Shot;
-    public GameObject Mouth;
-
     public static bool dead;
+
+    private bool can_shot;
+    private float shot_position;
+    public GameObject Kamehameha_shot;
 
     void Start()
     {
         bounce_number = Random.Range(1, 4);
 
-        Shot();
     }
 
     void Update()
     {
-        switch (bounce_number)
+        if (gameObject.transform.position.x >= Camera.main.transform.position.x + offset_camera_x && !stop)
         {
-            case 1:
-                if (gameObject.transform.position.x <= Camera.main.transform.position.x - offset_camera_x && !MoveRight())
-                {
-                    ChangeDirection();
-                }
-                break;
-
-            case 2:
-                if (gameObject.transform.position.x <= Camera.main.transform.position.x - offset_camera_x && !MoveRight())
-                {
-                    ChangeDirection(); //  Go right
-
-                }
-                else if (gameObject.transform.position.x >= Camera.main.transform.position.x && !MoveLeft() && bounce < bounce_number)
-                {
-                    ChangeDirection();
-                    bounce++;
-
-                }
-                    break;
-
-            case 3:
-                if (gameObject.transform.position.x <= Camera.main.transform.position.x - offset_camera_x && !MoveRight())
-                {
-                    ChangeDirection(); //  Go right
-
-                }
-                else if (gameObject.transform.position.x >= Camera.main.transform.position.x && !MoveLeft() && bounce < bounce_number)
-                {
-                    ChangeDirection();
-                    bounce++;
-
-                }
-                break;
-            default:
-                break;
-        }
-        
-        //  Main Direction
-        if (change_direction)
-        {
-            MoveRight();
-        }
-        else
             MoveLeft();
-        
+            MoveDown();
+
+        }
+        else if (gameObject.transform.position.x < Camera.main.transform.position.x + offset_camera_x && !stop)
+        {
+            if (gameObject.transform.position.y <= Camera.main.transform.position.x - offset_camera_x * 2 && !stop)
+            {
+                change_direction = true;
+                can_shot = true;
+                shot_position = Random.Range(Camera.main.transform.position.x - offset_camera_x * 2, Camera.main.transform.position.x + offset_camera_x * 2);
+                Debug.Log("POSITION RANGE: " + shot_position);
+
+            }
+            else if (!change_direction && !stop)
+                MoveDown();
+
+        }
+        else if (gameObject.transform.position.y <= Camera.main.transform.position.x - offset_camera_x * 2)
+        {
+            MoveUp();
+        }
+        else if (can_shot)
+        {
+            can_shot = false;
+            shot_position = Random.Range(Camera.main.transform.position.x - offset_camera_x * 2, Camera.main.transform.position.x + offset_camera_x * 2);
+            Debug.Log("POSITION RANGE: " + shot_position);
+        }
+
+        //Main Direction
+        if(change_direction && !stop)
+        {
+            MoveUp();
+        }
+
+        // Kamehameha
+        if(gameObject.transform.position.y >= shot_position && can_shot)
+        {
+            Kamehameha();
+            can_shot = false;
+            stop = true;
+            stop_timer += Time.deltaTime;
+
+            
+        }
+
+        if(stop)  // Enemy_stopped
+        {
+            stop_timer += Time.deltaTime;
+            if (stop_timer >= time_stopped) //  2s stopped
+            {
+                stop = false;
+                stop_timer = 0;
+            }
+        }
+       
+
     }
 
 
-    bool MoveRight()
+    void MoveDown()
     {
-        if (change_direction)
-        {
-            gameObject.transform.position = new Vector2(transform.position.x + velocity * Time.deltaTime, transform.position.y);
-            return true;
-        }
-         return false;                 
+        gameObject.transform.position = new Vector2(transform.position.x, transform.position.y - velocity * Time.deltaTime);
     }
 
-    bool MoveLeft()
+    void MoveUp()
     {
-        if (change_direction)
-        {
-            return false;
-        }
-        else
-        {
-            gameObject.transform.position = new Vector2(transform.position.x - velocity * Time.deltaTime, transform.position.y);
-        }
-        return true;
+        gameObject.transform.position = new Vector2(transform.position.x, transform.position.y + velocity * Time.deltaTime);
     }
 
-    void ChangeDirection()
+    void MoveLeft()
     {
-        if (change_direction)
+        gameObject.transform.position = new Vector2(transform.position.x- velocity * Time.deltaTime, transform.position.y );
+    }
+
+    void Kamehameha()
+    {
+        if (!dead)
         {
-            change_direction = false;
+            Instantiate(Kamehameha_shot, gameObject.transform.position, Quaternion.identity);
         }
-        else
-            change_direction = true ;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -117,12 +123,5 @@ public class Enemy_1 : MonoBehaviour
         }
     }
 
-    void Shot()
-    {
-        if(!dead)
-        {
-            Invoke("Shot", 0.5f);
-            Instantiate(Enemy_Shot, gameObject.transform.position, Quaternion.identity);
-        }
-    }
+    
 }

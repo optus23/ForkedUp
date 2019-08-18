@@ -13,7 +13,10 @@ public class DestroyEnemyShot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Enemy_3.destroy_shot)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
