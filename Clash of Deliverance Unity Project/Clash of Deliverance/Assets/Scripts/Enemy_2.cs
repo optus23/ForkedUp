@@ -11,13 +11,13 @@ public class Enemy_2 : MonoBehaviour
     private int bounce = 1;
     public int bounce_number;
 
-    public static bool dead;
-
+    public bool dead;
+    private bool touch_first_wall;
 
     // Start is called before the first frame update
     void Start()
     {
-        bounce_number = Random.Range(1, 4);
+        bounce_number = Random.Range(1, 3);
 
     }
 
@@ -27,51 +27,36 @@ public class Enemy_2 : MonoBehaviour
         switch (bounce_number)
         {
             case 1:
-                if (gameObject.transform.position.x <= Camera.main.transform.position.x - offset_camera_x && !MoveRight() && !MoveUp())
+                if (gameObject.transform.position.x <= Camera.main.transform.position.x - offset_camera_x)
                 {
-                    ChangeDirection();
+                    change_direction = true;
                 }
-                else if (gameObject.transform.position.x >= Camera.main.transform.position.x - offset_camera_x/3 && !MoveLeft())
+                else if (gameObject.transform.position.x >= Camera.main.transform.position.x - offset_camera_x/3 && change_direction)
                 {
                     static_direction = true;
                 }
                 break;
 
             case 2:
-                if (gameObject.transform.position.x <= Camera.main.transform.position.x - offset_camera_x && !MoveRight())
+                if (gameObject.transform.position.x <= Camera.main.transform.position.x - offset_camera_x)
                 {
-                    ChangeDirection(); //  Go right
+                    change_direction = true;
+                    touch_first_wall = true;
 
                 }
-                else if (gameObject.transform.position.x >= Camera.main.transform.position.x && !MoveLeft() && bounce < bounce_number)
+                else if (gameObject.transform.position.x >= Camera.main.transform.position.x && bounce < bounce_number && touch_first_wall) 
                 {
-                    ChangeDirection();
+                    change_direction = false;
                     bounce++;
 
                 }
-                else if (gameObject.transform.position.x >= Camera.main.transform.position.x - offset_camera_x / 3 && bounce >= bounce_number &&!MoveLeft())
+                else if (gameObject.transform.position.x >= Camera.main.transform.position.x - offset_camera_x / 3 && bounce >= bounce_number && change_direction)
                 {
                     static_direction = true;
                 }
                 break;
 
-            case 3:
-                if (gameObject.transform.position.x <= Camera.main.transform.position.x - offset_camera_x && !MoveRight())
-                {
-                    ChangeDirection(); //  Go right
-
-                }
-                else if (gameObject.transform.position.x >= Camera.main.transform.position.x && !MoveLeft() && bounce < bounce_number)
-                {
-                    ChangeDirection();
-                    bounce++;
-
-                }
-                else if (gameObject.transform.position.x >= Camera.main.transform.position.x - offset_camera_x / 3 && bounce >= bounce_number && !MoveLeft())
-                {
-                    static_direction = true;
-                }
-                break;
+           
             default:
                 break;
         }
@@ -91,49 +76,19 @@ public class Enemy_2 : MonoBehaviour
 
     }
 
-    bool MoveUp()
+    void MoveUp()
     {
-        if(change_direction && static_direction)
-        {
-            gameObject.transform.position = new Vector2(transform.position.x, transform.position.y + velocity * Time.deltaTime);
-            return true;
-
-        }
-        else
-            return false;
+        gameObject.transform.position = new Vector2(transform.position.x, transform.position.y + velocity * Time.deltaTime);
     }
 
-    bool MoveRight()
+    void MoveRight()
     {
-        if (change_direction && !static_direction)
-        {
-            gameObject.transform.position = new Vector2(transform.position.x + velocity * Time.deltaTime, transform.position.y);
-            return true;
-        }
-        return false;
+        gameObject.transform.position = new Vector2(transform.position.x + velocity * Time.deltaTime, transform.position.y);       
     }
 
-    bool MoveLeft()
+    void MoveLeft()
     {
-        if (change_direction && !static_direction)
-        {
-            return false;
-        }
-        else
-        {
-            gameObject.transform.position = new Vector2(transform.position.x - velocity * Time.deltaTime, transform.position.y);
-        }
-        return true;
-    }
-
-    void ChangeDirection()
-    {
-        if (change_direction)
-        {
-            change_direction = false;
-        }
-        else
-            change_direction = true;
+        gameObject.transform.position = new Vector2(transform.position.x - velocity * Time.deltaTime, transform.position.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

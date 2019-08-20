@@ -15,98 +15,50 @@ public class Enemy_3 : MonoBehaviour
 
     public static bool destroy_shot;
 
+    public bool dead;
+
     void Start()
     {
-        bounce_number = Random.Range(1, 4);
+        bounce_number = Random.Range(2, 4);
         destroy_shot = false;
         Shot();
     }
 
     void Update()
     {
-        switch (bounce_number)
+        if (gameObject.transform.position.x <= Camera.main.transform.position.x - offset_camera_x)
         {
-            case 1:
-                if (gameObject.transform.position.x <= Camera.main.transform.position.x - offset_camera_x && !MoveRight())
-                {
-                    ChangeDirection();
-                }
-                break;
+            change_direction = true; //  Go right
 
-            case 2:
-                if (gameObject.transform.position.x <= Camera.main.transform.position.x - offset_camera_x && !MoveRight())
-                {
-                    ChangeDirection(); //  Go right
+        }
+        else if (gameObject.transform.position.x >= Camera.main.transform.position.x && bounce < bounce_number)
+        {
+            change_direction = false;
+            bounce++;
 
-                }
-                else if (gameObject.transform.position.x >= Camera.main.transform.position.x && !MoveLeft() && bounce < bounce_number)
-                {
-                    ChangeDirection();
-                    bounce++;
-
-                }
-                    break;
-
-            case 3:
-                if (gameObject.transform.position.x <= Camera.main.transform.position.x - offset_camera_x && !MoveRight())
-                {
-                    ChangeDirection(); //  Go right
-
-                }
-                else if (gameObject.transform.position.x >= Camera.main.transform.position.x && !MoveLeft() && bounce < bounce_number)
-                {
-                    ChangeDirection();
-                    bounce++;
-
-                }
-                break;
-            default:
-                break;
         }
         
-        //  Main Direction
+
+        //Main Direction
         if (change_direction)
         {
             MoveRight();
         }
         else
             MoveLeft();
-        
+
     }
 
 
-    bool MoveRight()
+    void MoveRight()
     {
-        if (change_direction)
-        {
-            gameObject.transform.position = new Vector2(transform.position.x + velocity * Time.deltaTime, transform.position.y);
-            return true;
-        }
-         return false;                 
+        gameObject.transform.position = new Vector2(gameObject.transform.position.x + velocity * Time.deltaTime, transform.position.y);
     }
 
-    bool MoveLeft()
+    void MoveLeft()
     {
-        if (change_direction)
-        {
-            return false;
-        }
-        else
-        {
-            gameObject.transform.position = new Vector2(transform.position.x - velocity * Time.deltaTime, transform.position.y);
-        }
-        return true;
-    }
+        gameObject.transform.position = new Vector2(gameObject.transform.position.x - velocity * Time.deltaTime, transform.position.y);
 
-    void ChangeDirection()
-    {
-        destroy_shot = false;
-        if (change_direction)
-        {
-            change_direction = false;
-        }
-        else
-            change_direction = true ;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -114,6 +66,7 @@ public class Enemy_3 : MonoBehaviour
         if (collision.transform.tag == "Player")
         {
             Destroy(gameObject);
+            dead = true;
         }
     }
 
@@ -121,6 +74,5 @@ public class Enemy_3 : MonoBehaviour
     {
         Invoke("Shot", 0.5f);
         Instantiate(Enemy_Shot, gameObject.transform.position, Quaternion.identity);
-
     }
 }

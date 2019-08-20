@@ -12,10 +12,9 @@ public class Enemy_1 : MonoBehaviour
     private bool stop;
     private float stop_timer;
     public float time_stopped;
-    private int bounce = 1;
     public int bounce_number;
 
-    public static bool dead;
+    public bool dead;
 
     private bool can_shot;
     private float shot_position;
@@ -37,7 +36,7 @@ public class Enemy_1 : MonoBehaviour
         }
         else if (gameObject.transform.position.x < Camera.main.transform.position.x + offset_camera_x && !stop)
         {
-            if (gameObject.transform.position.y <= Camera.main.transform.position.x - offset_camera_x * 2 && !stop)
+            if (gameObject.transform.position.y <= Camera.main.transform.position.x - offset_camera_x * 2)
             {
                 change_direction = true;
                 can_shot = true;
@@ -45,7 +44,7 @@ public class Enemy_1 : MonoBehaviour
                 Debug.Log("POSITION RANGE: " + shot_position);
 
             }
-            else if (!change_direction && !stop)
+            else if (!change_direction)
                 MoveDown();
 
         }
