@@ -13,7 +13,7 @@ public class Score : MonoBehaviour
     private int scale_text = 85;
     private int change_count;   
     public int change_cont_limit;   
-    public int animation_score_number = 0;   
+    public int animation_score_number;   
 
     // Start is called before the first frame update
     void Start()

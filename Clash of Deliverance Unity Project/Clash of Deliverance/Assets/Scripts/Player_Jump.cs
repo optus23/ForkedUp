@@ -88,8 +88,9 @@ public class Player_Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //Dash
-        if(dash)
+            if (dash)
         {
             //Timer to prepare dash
             prepare_dash_timer += Time.deltaTime;
@@ -292,117 +293,117 @@ public class Player_Jump : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.transform.tag == "Obstacle")
-        {
-            cameraShake.Shake(0.8f, 0.3f);
-            dead = true;
-            rb2D.AddForce(transform.right * -force);
-            rb2D.AddForce(transform.up * force);
-            dashing = false;
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.transform.tag == "Obstacle")
+    //    {
+    //        cameraShake.Shake(0.8f, 0.3f);
+    //        dead = true;
+    //        rb2D.AddForce(transform.right * -force);
+    //        rb2D.AddForce(transform.up * force);
+    //        dashing = false;
 
-        }
-        if (collision.transform.tag == "DeathFloor")
-        {
-            cameraShake.Shake(0.1f, 0.2f);
-            dead = true;
-            rb2D.AddForce(transform.right * (force / 1.5f));
-            rb2D.AddForce(transform.up * (force / 1.5f));
-            dashing = false;
-        }
-        if (collision.transform.tag == "Enemy")
-        {
-            Debug.Log("Dashing: " + dashing);
-            Debug.Log("DashingDOWN: " + dashing_down);
-            if (dashing)
-            {
+    //    }
+    //    if (collision.transform.tag == "DeathFloor")
+    //    {
+    //        cameraShake.Shake(0.1f, 0.2f);
+    //        dead = true;
+    //        rb2D.AddForce(transform.right * (force / 1.5f));
+    //        rb2D.AddForce(transform.up * (force / 1.5f));
+    //        dashing = false;
+    //    }
+    //    if (collision.transform.tag == "Enemy")
+    //    {
+    //        Debug.Log("Dashing: " + dashing);
+    //        Debug.Log("DashingDOWN: " + dashing_down);
+    //        if (dashing)
+    //        {
                 
-                if (dashing_down)
-                {
-                    transform.rotation = downDash;
-                    rb2D.AddForce(transform.up * -force * 1.3f);
-                    dashing_down = false;
-                }
-                cameraShake.Shake(0.2f, 0.2f);
-                dashing = false;
-                Score.score_value++;
-                Score.player_pickup_score = true;
+    //            if (dashing_down)
+    //            {
+    //                transform.rotation = downDash;
+    //                rb2D.AddForce(transform.up * -force * 1.3f);
+    //                dashing_down = false;
+    //            }
+    //            cameraShake.Shake(0.2f, 0.2f);
+    //            dashing = false;
+    //            Score.score_value++;
+    //            Score.player_pickup_score = true;
 
 
                 
-                Enemy_3.destroy_shot = true;
-            }
-            else
-            {
-                cameraShake.Shake(0.1f, 0.2f);
-                dead = true;
-                rb2D.AddForce(transform.right * (force / 1.5f));
-                rb2D.AddForce(transform.up * (force / 1.5f));
-                dashing = false;
-            }
-        }
+    //            Enemy_3.destroy_shot = true;
+    //        }
+    //        else
+    //        {
+    //            cameraShake.Shake(0.1f, 0.2f);
+    //            dead = true;
+    //            rb2D.AddForce(transform.right * (force / 1.5f));
+    //            rb2D.AddForce(transform.up * (force / 1.5f));
+    //            dashing = false;
+    //        }
+    //    }
 
-        if (collision.transform.tag == "Ceiling")
-        {
-            if (dashing)
-            {
-                cameraShake.Shake(0.2f, 0.2f);
+    //    if (collision.transform.tag == "Ceiling")
+    //    {
+    //        if (dashing)
+    //        {
+    //            cameraShake.Shake(0.2f, 0.2f);
 
-                dashing = false;
-            }
-            else
-                cameraShake.Shake(0.1f, 0.1f);
-        }
+    //            dashing = false;
+    //        }
+    //        else
+    //            cameraShake.Shake(0.1f, 0.1f);
+    //    }
 
-        if (collision.transform.tag == "Wall")
-        {
-            cameraShake.Shake(0.2f, 0.2f);
-            Score.score_value++;
-            Score.player_pickup_score = true;
-            transform.rotation = Quaternion.identity;
-            rb2D.velocity = Vector2.zero;
-            rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+    //    if (collision.transform.tag == "Wall")
+    //    {
+    //        cameraShake.Shake(0.2f, 0.2f);
+    //        Score.score_value++;
+    //        Score.player_pickup_score = true;
+    //        transform.rotation = Quaternion.identity;
+    //        rb2D.velocity = Vector2.zero;
+    //        rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-            rb2D.AddForce(Vector2.left * dash_force / 4);
-            InitialPosition.SetActive(true);
-        }
+    //        rb2D.AddForce(Vector2.left * dash_force / 4);
+    //        InitialPosition.SetActive(true);
+    //    }
 
-        if (collision.transform.tag == "Enemy_Wall")
-        {
-            if (dashing)
-            {
-                cameraShake.Shake(0.2f, 0.2f);
+    //    if (collision.transform.tag == "Enemy_Wall")
+    //    {
+    //        if (dashing)
+    //        {
+    //            cameraShake.Shake(0.2f, 0.2f);
 
-                transform.rotation = Quaternion.identity;
-                rb2D.velocity = Vector2.zero;
-                rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+    //            transform.rotation = Quaternion.identity;
+    //            rb2D.velocity = Vector2.zero;
+    //            rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-                rb2D.AddForce(Vector2.left * dash_force / 4);
-                InitialPosition.SetActive(true);
-                dashing = false;
-            }
-        }
-    }
+    //            rb2D.AddForce(Vector2.left * dash_force / 4);
+    //            InitialPosition.SetActive(true);
+    //            dashing = false;
+    //        }
+    //    }
+    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.transform.tag == "Enemy") //  Enemy Shot
-        {
-            if (dashing)
-            {
-                cameraShake.Shake(0.2f, 0.2f);
-            }
-            else
-            {
-                cameraShake.Shake(0.1f, 0.2f);
-                dead = true;
-                rb2D.AddForce(transform.right * (force / 1.5f));
-                rb2D.AddForce(transform.up * (force / 1.5f));
-                dashing = false;
-            }
-        }
+    //    if (collision.transform.tag == "Enemy") //  Enemy Shot
+    //    {
+    //        if (dashing)
+    //        {
+    //            cameraShake.Shake(0.2f, 0.2f);
+    //        }
+    //        else
+    //        {
+    //            cameraShake.Shake(0.1f, 0.2f);
+    //            dead = true;
+    //            rb2D.AddForce(transform.right * (force / 1.5f));
+    //            rb2D.AddForce(transform.up * (force / 1.5f));
+    //            dashing = false;
+    //        }
+    //    }
 
         if (collision.transform.tag == "Score")
         {
@@ -411,34 +412,34 @@ public class Player_Jump : MonoBehaviour
 
 
         }
-        if (collision.transform.tag == "Basic_Money")
-        {
-            Money.player_money_value++;
-            PlayerPrefs.SetInt("Money", Money.player_money_value);
+    //    if (collision.transform.tag == "Basic_Money")
+    //    {
+    //        Money.player_money_value++;
+    //        PlayerPrefs.SetInt("Money", Money.player_money_value);
 
-            Instantiate(MoneyParticle1, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
-        }
-        if (collision.transform.tag == "Normal_Money")
-        {
-            Money.player_money_value += 5;
-            PlayerPrefs.SetInt("Money", Money.player_money_value);
+    //        Instantiate(MoneyParticle1, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+    //    }
+    //    if (collision.transform.tag == "Normal_Money")
+    //    {
+    //        Money.player_money_value += 5;
+    //        PlayerPrefs.SetInt("Money", Money.player_money_value);
 
-            Instantiate(MoneyParticle2, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
-        }
-        if (collision.transform.tag == "Super_Money")
-        {
-            Money.player_money_value += 10;
-            PlayerPrefs.SetInt("Money", Money.player_money_value);
+    //        Instantiate(MoneyParticle2, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+    //    }
+    //    if (collision.transform.tag == "Super_Money")
+    //    {
+    //        Money.player_money_value += 10;
+    //        PlayerPrefs.SetInt("Money", Money.player_money_value);
 
-            Instantiate(MoneyParticle3, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
-        }
+    //        Instantiate(MoneyParticle3, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+    //    }
 
-        if (collision.transform.tag == "InitialPosition")
-        {
-            rb2D.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezePositionX;
-            InitialPosition.SetActive(false);
-            dashing = false;
-        }
+    //    if (collision.transform.tag == "InitialPosition")
+    //    {
+    //        rb2D.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezePositionX;
+    //        InitialPosition.SetActive(false);
+    //        dashing = false;
+    //    }
 
     }
 }
