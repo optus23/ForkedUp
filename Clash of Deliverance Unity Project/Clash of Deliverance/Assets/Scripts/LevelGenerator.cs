@@ -71,8 +71,7 @@ public class LevelGenerator : MonoBehaviour
         {
             if (random_pipe_number <= pipe_limit_generator) // Instantiate pipe     90% - 5% every time a pipe is repeated
             {
-                Enemy2Generator();
-                //PipeGenerator();
+                PipeGenerator();
                 pipe_limit_generator -= 5;
 
             }
@@ -80,7 +79,7 @@ public class LevelGenerator : MonoBehaviour
             {
                 pipe_limit_generator = pipe_limit_generator_var;
 
-                if (Score.score_value < 20)
+                if (Score.score_value > 20) //  DIFFICULTY: Medium
                 {
                     if (random_both_enemy_number <= 20)
                     {
@@ -122,21 +121,21 @@ public class LevelGenerator : MonoBehaviour
                     }
 
                 }
-                //else
-                //{
-                //    if (random_enemy3_number <= 50)
-                //    {
-                //        Enemy3Generator();
-                //        enemy_appear = true;
-                //    }
-                //    else
-                //    {
-                //        Enemy2Generator();
-                //        enemy_appear = true;
-                //    }
-                //}
+                else //  DIFFICULTY: Low
+                {
+                    if (random_enemy3_number <= 50)
+                    {
+                        Enemy3Generator();
+                        enemy_appear = true;
+                    }
+                    else
+                    {
+                        Enemy2Generator();
+                        enemy_appear = true;
+                    }
+                }
 
-               
+
             }
         }
         //  Random vars
@@ -155,7 +154,7 @@ public class LevelGenerator : MonoBehaviour
 
     void Enemy1Generator()
     {
-        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset, Random.Range(-2.2f, 2.6f), 0), Quaternion.identity);
+        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset - 2, Random.Range(-4f, 0f), 0), Quaternion.identity);
         Invoke("Generator", time);
     }
 
@@ -181,9 +180,9 @@ public class LevelGenerator : MonoBehaviour
 
     void MultipleEnemy2Generator()
     {
-        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset - 2, Random.Range(-4f, 0f), 0), Quaternion.identity);
-        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset, Random.Range(-4f, 0f), 0), Quaternion.identity);
-        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset + 2, Random.Range(-4f, 0f), 0), Quaternion.identity);
+        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset - 2, Random.Range(-3.5f, 0f), 0), Quaternion.identity);
+        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset, Random.Range(-3.5f, 0f), 0), Quaternion.identity);
+        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset + 2, Random.Range(-3.5f, 0f), 0), Quaternion.identity);
         Invoke("Generator", time);
     }
 
