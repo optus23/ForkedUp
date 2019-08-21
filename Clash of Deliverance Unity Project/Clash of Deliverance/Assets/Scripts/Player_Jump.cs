@@ -294,15 +294,15 @@ public class Player_Jump : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.transform.tag == "Obstacle")
-        //{
-        //    cameraShake.Shake(0.8f, 0.3f);
-        //    dead = true;
-        //    rb2D.AddForce(transform.right * -force);
-        //    rb2D.AddForce(transform.up * force);
-        //    dashing = false;
+        if (collision.transform.tag == "Obstacle")
+        {
+            cameraShake.Shake(0.8f, 0.3f);
+            dead = true;
+            rb2D.AddForce(transform.right * -force);
+            rb2D.AddForce(transform.up * force);
+            dashing = false;
 
-        //}
+        }
         if (collision.transform.tag == "DeathFloor")
         {
             cameraShake.Shake(0.1f, 0.2f);
