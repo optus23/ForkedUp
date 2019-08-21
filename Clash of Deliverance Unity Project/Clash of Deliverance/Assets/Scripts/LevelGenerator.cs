@@ -21,6 +21,7 @@ public class LevelGenerator : MonoBehaviour
     public int pipe_offset;
 
     private bool enemy_appear;
+    private bool multiple_enemy_appear;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +50,19 @@ public class LevelGenerator : MonoBehaviour
 
         if (time < 1.65f)
             time = 1.65f;
+
+
+        if (enemy_appear)
+        {
+            pipe_offset += 3;
+            enemy_appear = false;
+            
+        }
+        if(multiple_enemy_appear)
+        {
+            pipe_offset += 9;
+            multiple_enemy_appear = false;
+        }
     }
 
     void Generator()
@@ -57,14 +71,8 @@ public class LevelGenerator : MonoBehaviour
         {
             if (random_pipe_number <= pipe_limit_generator) // Instantiate pipe     90% - 5% every time a pipe is repeated
             {
-
-                if(enemy_appear)
-                {
-                    pipe_offset += 3;
-                    enemy_appear = false;
-                }
-
-                PipeGenerator();
+                Enemy2Generator();
+                //PipeGenerator();
                 pipe_limit_generator -= 5;
 
             }
@@ -72,61 +80,63 @@ public class LevelGenerator : MonoBehaviour
             {
                 pipe_limit_generator = pipe_limit_generator_var;
 
-                //if(Score.score_value > 20)
+                if (Score.score_value < 20)
+                {
+                    if (random_both_enemy_number <= 20)
+                    {
+                        Enemy2AndEnemy3Generator();
+                        random_both_enemy_number = Random.Range(1, 101);
+                        enemy_appear = true;
+                    }
+                    else if (random_multiple_enemy2_number <= 25)
+                    {
+                        MultipleEnemy2Generator();
+                        random_multiple_enemy2_number = Random.Range(1, 101);
+                        multiple_enemy_appear = true;
+
+                    }
+                    else
+                    {
+                        if (random_enemy3_number <= 33)
+                        {
+                            Enemy3Generator();
+                            random_enemy3_number = Random.Range(1, 101);
+                            enemy_appear = true;
+                        }
+                        else if (random_enemy2_number <= 33)
+                        {
+                            Enemy2Generator();
+                            random_enemy2_number = Random.Range(1, 101);
+                            enemy_appear = true;
+                        }
+                        else if (random_enemy1_number <= 33)
+                        {
+                            Enemy1Generator();
+                            random_enemy1_number = Random.Range(1, 101);
+                            enemy_appear = true;
+                        }
+                        else
+                        {
+                            PipeGenerator();
+                        }
+                    }
+
+                }
+                //else
                 //{
-                //    if(random_both_enemy_number <= 20)
+                //    if (random_enemy3_number <= 50)
                 //    {
-                //        Enemy2AndEnemy3Generator();
-                //        random_both_enemy_number = Random.Range(1, 101);
-                //    }
-                //    else if(random_multiple_enemy2_number <= 20) // TODO: Fix this
-                //    {
-                //        Enemy2Generator();
-                //        Enemy2Generator();
-                //        Enemy2Generator();
-                //        random_multiple_enemy2_number = Random.Range(1, 101);
+                //        Enemy3Generator();
+                //        enemy_appear = true;
                 //    }
                 //    else
                 //    {
-                //        if (random_enemy3_number <= 33)
-                //        {
-                //            Enemy3Generator();
-                //            random_enemy3_number = Random.Range(1, 101);
-                //        }
-                //        else if (random_enemy2_number <= 33)
-                //        {
-                //            Enemy2Generator();
-                //            random_enemy2_number = Random.Range(1, 101);
-                //        }
-                //        else if (random_enemy1_number <= 33)
-                //        {
-                //            Enemy1Generator();
-                //            random_enemy1_number = Random.Range(1, 101);
-                //        }
-                //        else
-                //        {
-                //            random_enemy3_number = Random.Range(1, 101);
-                //            random_enemy2_number = Random.Range(1, 101);
-                //            random_enemy1_number = Random.Range(1, 101);
-                //        }
+                //        Enemy2Generator();
+                //        enemy_appear = true;
                 //    }
-                    
-                //}
-                //else
-                //{
-                   
                 //}
 
-                if (random_enemy3_number <= 50)
-                {
-                    Enemy3Generator();
-                    enemy_appear = true;
-                }
-                else
-                {
-                    Enemy2Generator();
-                    enemy_appear = true;
-                }
+               
             }
         }
         //  Random vars
@@ -164,8 +174,16 @@ public class LevelGenerator : MonoBehaviour
 
     void Enemy2AndEnemy3Generator()
     {
-        Instantiate(enemy2[0], new Vector3(transform.position.x, Random.Range(-4f, 0f), 0), Quaternion.identity);
-        Instantiate(enemy3[0], new Vector3(transform.position.x, Random.Range(2f, 4f), 0), Quaternion.identity);
+        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset, Random.Range(-4f, -2f), 0), Quaternion.identity);
+        Instantiate(enemy3[0], new Vector3(transform.position.x + pipe_offset - 2, Random.Range(3f, 4f), 0), Quaternion.identity);
+        Invoke("Generator", time);
+    }
+
+    void MultipleEnemy2Generator()
+    {
+        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset - 2, Random.Range(-4f, 0f), 0), Quaternion.identity);
+        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset, Random.Range(-4f, 0f), 0), Quaternion.identity);
+        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset + 2, Random.Range(-4f, 0f), 0), Quaternion.identity);
         Invoke("Generator", time);
     }
 

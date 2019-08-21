@@ -13,6 +13,7 @@ public class Score : MonoBehaviour
     private int scale_text = 85;
     private int change_count;   
     public int change_cont_limit;   
+    public int animation_score_number = 20;   
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,7 @@ public class Score : MonoBehaviour
 
 
 
-        if (player_pickup_score && score_value > 20) //  Size effect
+        if (player_pickup_score && score_value > animation_score_number) //  Size effect
         {
             if (change_scale)
             {
@@ -50,8 +51,23 @@ public class Score : MonoBehaviour
             if(change_count >= change_cont_limit)
             {
                 player_pickup_score = false;
-                Debug.Log(change_count);
                 change_count = 0;
+
+                // Next Animation
+                if (score_value > 20)
+                {
+                    animation_score_number += 5;
+
+                }
+                else if(score_value > 50)
+                {
+                    animation_score_number += 2;
+                }
+                else if(score_value > 80)
+                {
+                    animation_score_number ++;
+                }
+                   
             }
         }
        

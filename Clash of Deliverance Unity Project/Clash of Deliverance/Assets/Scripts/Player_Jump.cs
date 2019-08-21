@@ -93,8 +93,8 @@ public class Player_Jump : MonoBehaviour
         {
             //Timer to prepare dash
             prepare_dash_timer += Time.deltaTime;
-            PrepareDash();
             dashing = true;
+            PrepareDash();
 
             rb2D.gravityScale = 0;
 
@@ -313,19 +313,24 @@ public class Player_Jump : MonoBehaviour
         }
         if (collision.transform.tag == "Enemy")
         {
+            Debug.Log("Dashing: " + dashing);
+            Debug.Log("DashingDOWN: " + dashing_down);
             if (dashing)
             {
+                
+                if (dashing_down)
+                {
+                    transform.rotation = downDash;
+                    rb2D.AddForce(transform.up * -force * 1.3f);
+                    dashing_down = false;
+                }
                 cameraShake.Shake(0.2f, 0.2f);
                 dashing = false;
                 Score.score_value++;
                 Score.player_pickup_score = true;
 
 
-                if (dashing_down)
-                {
-                    rb2D.AddForce(transform.up * -force * 1.5f);
-                    dashing_down = false;
-                }
+                
                 Enemy_3.destroy_shot = true;
             }
             else
@@ -343,6 +348,7 @@ public class Player_Jump : MonoBehaviour
             if (dashing)
             {
                 cameraShake.Shake(0.2f, 0.2f);
+
                 dashing = false;
             }
             else
