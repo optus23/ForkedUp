@@ -792,7 +792,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759f930ccf47ea14ca02f5f8a2dcd7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  change_cont_limit: 3
+  change_cont_limit: 2
+  animation_score_number: 20
 --- !u!114 &425395803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1339,8 +1340,12 @@ MonoBehaviour:
   random_enemy3_number: 0
   random_both_enemy_number: 0
   random_multiple_enemy2_number: 0
+  random_multiple_enemy3_number: 0
+  random_multiple_enemy1_number: 0
+  random_boss_enemy_number: 0
   pipe_limit_generator_var: 90
   pipe_offset: 0
+  boss_enemy_defeat: 0
 --- !u!4 &1002933269
 Transform:
   m_ObjectHideFlags: 0
