@@ -21,6 +21,7 @@ public class Player_Jump : MonoBehaviour
     Quaternion rightDash;
     public float smoothDash;
     private float prepare_dash_timer;
+    private float prepare_enemy_2_inmune_timer;
     public float prepare_dash_force;
     public float time_preparing_dash;
     public GameObject InitialPosition;
@@ -57,6 +58,9 @@ public class Player_Jump : MonoBehaviour
     public GameObject MoneyParticle2;
     public GameObject MoneyParticle3;
 
+    public bool enemy2_shot_inmune;
+
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -89,8 +93,8 @@ public class Player_Jump : MonoBehaviour
     void Update()
     {
 
-        //Dash
-            if (dash)
+        //  Dash
+        if (dash)
         {
             //Timer to prepare dash
             prepare_dash_timer += Time.deltaTime;
@@ -107,12 +111,24 @@ public class Player_Jump : MonoBehaviour
                 dash = false; //Dash Finished
             }
         }
+            //  Enemy 2 inmune timer
+            if (enemy2_shot_inmune)
+            {
+                //  Timer enmy 2 shot inmune
+                prepare_enemy_2_inmune_timer += Time.deltaTime;
 
+                if (prepare_enemy_2_inmune_timer >= 2)
+                {
+                    enemy2_shot_inmune = false;
+                    prepare_enemy_2_inmune_timer = 0; //Reset timer
 
-        //Touch System Swipe UP DOWN RIGHT  from here-> https://forum.unity.com/threads/swipe-in-all-directions-touch-and-mouse.165416/
-        //=============================================================================================
+                }
+            }
 
-        if (Input.touches.Length > 0)
+            //Touch System Swipe UP DOWN RIGHT  from here-> https://forum.unity.com/threads/swipe-in-all-directions-touch-and-mouse.165416/
+            //=============================================================================================
+
+            if (Input.touches.Length > 0)
         {
             Touch t = Input.GetTouch(0);
             if (t.phase == TouchPhase.Began)
@@ -162,7 +178,7 @@ public class Player_Jump : MonoBehaviour
                 ////swipe left
                 //if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f && !dead && !dashing)
                 //{
-                //    Debug.Log("left swipe");
+                //    
                 //}
             }
         }
@@ -176,6 +192,7 @@ public class Player_Jump : MonoBehaviour
 
             arrow_up = true;
             dash = true;
+
         }
         if (Input.GetKeyDown("down") && !dead && !dashing)
         {
@@ -293,8 +310,8 @@ public class Player_Jump : MonoBehaviour
 
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
     //    if (collision.transform.tag == "Obstacle")
     //    {
     //        cameraShake.Shake(0.8f, 0.3f);
@@ -312,13 +329,32 @@ public class Player_Jump : MonoBehaviour
     //        rb2D.AddForce(transform.up * (force / 1.5f));
     //        dashing = false;
     //    }
-    //    if (collision.transform.tag == "Enemy")
+    //    if (collision.transform.tag == "Enemy_Up")
+    //    {           
+    //        if (dashing)
+    //        {               
+    //            cameraShake.Shake(0.2f, 0.2f);
+    //            dashing = false;
+    //            Score.score_value++;
+    //            Score.player_pickup_score = true;
+    //            enemy2_shot_inmune = true;
+
+    //            if(enemy_3 != null)
+    //                enemy_3.destroy_shot = true;
+    //        }
+    //        else
+    //        {
+    //            cameraShake.Shake(0.1f, 0.2f);
+    //            dead = true;
+    //            rb2D.AddForce(transform.right * (force / 1.5f));
+    //            rb2D.AddForce(transform.up * (force / 1.5f));
+    //            dashing = false;
+    //        }
+    //    }
+    //    if (collision.transform.tag == "Enemy_Down")
     //    {
-    //        Debug.Log("Dashing: " + dashing);
-    //        Debug.Log("DashingDOWN: " + dashing_down);
     //        if (dashing)
     //        {
-                
     //            if (dashing_down)
     //            {
     //                transform.rotation = downDash;
@@ -331,8 +367,8 @@ public class Player_Jump : MonoBehaviour
     //            Score.player_pickup_score = true;
 
 
-                
-    //            Enemy_3.destroy_shot = true;
+    //            if (enemy_3 != null)
+    //                enemy_3.destroy_shot = true;
     //        }
     //        else
     //        {
@@ -343,7 +379,6 @@ public class Player_Jump : MonoBehaviour
     //            dashing = false;
     //        }
     //    }
-
     //    if (collision.transform.tag == "Ceiling")
     //    {
     //        if (dashing)
@@ -384,26 +419,29 @@ public class Player_Jump : MonoBehaviour
     //            dashing = false;
     //        }
     //    }
-    //}
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-    //    if (collision.transform.tag == "Enemy") //  Enemy Shot
-    //    {
-    //        if (dashing)
-    //        {
-    //            cameraShake.Shake(0.2f, 0.2f);
-    //        }
-    //        else
-    //        {
-    //            cameraShake.Shake(0.1f, 0.2f);
-    //            dead = true;
-    //            rb2D.AddForce(transform.right * (force / 1.5f));
-    //            rb2D.AddForce(transform.up * (force / 1.5f));
-    //            dashing = false;
-    //        }
-    //    }
+        //if (collision.transform.tag == "Enemy_Shot") //  Enemy Shot
+        //{
+
+
+        //    if (dashing || enemy2_shot_inmune)
+        //    {
+        //        cameraShake.Shake(0.2f, 0.2f);
+        //        enemy2_shot_inmune = false;
+        //    }
+        //    else
+        //    {
+        //        cameraShake.Shake(0.1f, 0.2f);
+        //        dead = true;
+        //        rb2D.AddForce(transform.right * (force / 1.5f));
+        //        rb2D.AddForce(transform.up * (force / 1.5f));
+        //        dashing = false;
+        //    }
+        //}
 
         if (collision.transform.tag == "Score")
         {
@@ -412,34 +450,34 @@ public class Player_Jump : MonoBehaviour
 
 
         }
-    //    if (collision.transform.tag == "Basic_Money")
-    //    {
-    //        Money.player_money_value++;
-    //        PlayerPrefs.SetInt("Money", Money.player_money_value);
+        if (collision.transform.tag == "Basic_Money")
+        {
+            Money.player_money_value++;
+            PlayerPrefs.SetInt("Money", Money.player_money_value);
 
-    //        Instantiate(MoneyParticle1, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
-    //    }
-    //    if (collision.transform.tag == "Normal_Money")
-    //    {
-    //        Money.player_money_value += 5;
-    //        PlayerPrefs.SetInt("Money", Money.player_money_value);
+            Instantiate(MoneyParticle1, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+        }
+        if (collision.transform.tag == "Normal_Money")
+        {
+            Money.player_money_value += 5;
+            PlayerPrefs.SetInt("Money", Money.player_money_value);
 
-    //        Instantiate(MoneyParticle2, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
-    //    }
-    //    if (collision.transform.tag == "Super_Money")
-    //    {
-    //        Money.player_money_value += 10;
-    //        PlayerPrefs.SetInt("Money", Money.player_money_value);
+            Instantiate(MoneyParticle2, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+        }
+        if (collision.transform.tag == "Super_Money")
+        {
+            Money.player_money_value += 10;
+            PlayerPrefs.SetInt("Money", Money.player_money_value);
 
-    //        Instantiate(MoneyParticle3, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
-    //    }
+            Instantiate(MoneyParticle3, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+        }
 
-    //    if (collision.transform.tag == "InitialPosition")
-    //    {
-    //        rb2D.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezePositionX;
-    //        InitialPosition.SetActive(false);
-    //        dashing = false;
-    //    }
+        if (collision.transform.tag == "InitialPosition")
+        {
+            rb2D.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezePositionX;
+            InitialPosition.SetActive(false);
+            dashing = false;
+        }
 
     }
 }

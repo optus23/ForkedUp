@@ -17,6 +17,9 @@ TagManager:
   - Ceiling
   - Enemy
   - Enemy_Wall
+  - Enemy_Shot
+  - Enemy_Up
+  - Enemy_Down
   layers:
   - Default
   - TransparentFX

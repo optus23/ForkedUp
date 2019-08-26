@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Enemy_2 : MonoBehaviour
 {
     public float velocity;
@@ -18,13 +19,13 @@ public class Enemy_2 : MonoBehaviour
     void Start()
     {
         bounce_number = Random.Range(1, 3);
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (bounce_number)
+      
+            switch (bounce_number)
         {
             case 1:
                 if (gameObject.transform.position.x <= Camera.main.transform.position.x - offset_camera_x)
@@ -62,17 +63,21 @@ public class Enemy_2 : MonoBehaviour
         }
 
         //  Main Direction
-       
-        if (change_direction && !static_direction)
+
+        if (!Player_Jump.dead)
         {
-            MoveRight();
+            if (change_direction && !static_direction)
+            {
+                MoveRight();
+            }
+            else if (static_direction)
+            {
+                MoveUp();
+            }
+            else
+                MoveLeft();
         }
-        else if(static_direction)
-        {
-            MoveUp();
-        }
-        else
-            MoveLeft();
+        
 
     }
 
@@ -97,6 +102,11 @@ public class Enemy_2 : MonoBehaviour
         {
             Destroy(gameObject);
             dead = true;
+
+            for (int x = 0; x < transform.childCount; x++)
+            {
+                //transform.GetChild(9).parent = New_Money.transform;
+            }
         }
     }
 }

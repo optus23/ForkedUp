@@ -8,4 +8,5 @@ public class RotateMoney : MonoBehaviour
     {
         gameObject.transform.Rotate(0, 6, 0);
     }
+
 }

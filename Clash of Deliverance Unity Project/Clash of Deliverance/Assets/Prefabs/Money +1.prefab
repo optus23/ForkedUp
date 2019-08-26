@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5248564598211717870}
   - component: {fileID: 3427606236684244679}
   - component: {fileID: 7667693371918208485}
-  - component: {fileID: 2506828133176755001}
   - component: {fileID: 3842502798151742961}
   - component: {fileID: 2999414095064381356}
   m_Layer: 0
@@ -122,19 +121,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2506828133176755001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 754167508729887977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 645f03e2bb95d5f4c832e915041b437b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: 2.4
 --- !u!114 &3842502798151742961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,10 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f56ca79a95fba4fa0a6abb4e83f208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Money_1: {fileID: 754167508729887977}
-  Money_5: {fileID: 6315604877301134429, guid: 193b9ca6017b0b34c821448eaee0b792, type: 3}
-  Money_10: {fileID: 4552477049967143707, guid: 93cd11b08b8ddd341a153660e5624d72,
-    type: 3}
 --- !u!114 &2999414095064381356
 MonoBehaviour:
   m_ObjectHideFlags: 0

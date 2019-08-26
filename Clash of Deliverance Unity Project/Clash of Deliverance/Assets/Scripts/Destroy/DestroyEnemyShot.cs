@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DestroyEnemyShot : MonoBehaviour
 {
+    Enemy_3 enemy_3;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,10 +14,14 @@ public class DestroyEnemyShot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Enemy_3.destroy_shot)
+        if(enemy_3 != null)
         {
-            Destroy(gameObject);
+            if (enemy_3.destroy_shot)
+            {
+                Destroy(gameObject);
+            }
         }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

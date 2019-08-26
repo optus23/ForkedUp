@@ -147,10 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f56ca79a95fba4fa0a6abb4e83f208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Money_1: {fileID: 754167508729887977, guid: 97ddc3d8483669649b00e20cd9eee4fb, type: 3}
-  Money_5: {fileID: 6315604877301134429}
-  Money_10: {fileID: 4552477049967143707, guid: 93cd11b08b8ddd341a153660e5624d72,
-    type: 3}
 --- !u!114 &1687330977618379318
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy_3 : MonoBehaviour
 {
+    Player_Jump player;
     public float velocity;
     public float offset_camera_x;
     private bool change_direction;
@@ -13,7 +14,7 @@ public class Enemy_3 : MonoBehaviour
     public GameObject Enemy_Shot;
     public GameObject Mouth;
 
-    public static bool destroy_shot;
+    public bool destroy_shot;
 
     public bool dead;
 
@@ -37,16 +38,19 @@ public class Enemy_3 : MonoBehaviour
             bounce++;
 
         }
-        
+
 
         //Main Direction
-        if (change_direction)
-        {
-            MoveRight();
-        }
-        else
-            MoveLeft();
 
+        if (!Player_Jump.dead)
+        {
+            if (change_direction)
+            {
+                MoveRight();
+            }
+            else
+                MoveLeft();
+        }          
     }
 
 
@@ -72,7 +76,7 @@ public class Enemy_3 : MonoBehaviour
 
     void Shot()
     {
-        Invoke("Shot", 0.5f);
         Instantiate(Enemy_Shot, gameObject.transform.position, Quaternion.identity);
+        Invoke("Shot", 0.5f);
     }
 }

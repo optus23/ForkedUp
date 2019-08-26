@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7400720635382527931}
   m_Layer: 0
   m_Name: Monster_3
-  m_TagString: Enemy
+  m_TagString: Enemy_Up
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,6 +156,7 @@ MonoBehaviour:
   Enemy_Shot: {fileID: 3299476723517290360, guid: 9dc9eeccb2b09a645ae0fa754c584cff,
     type: 3}
   Mouth: {fileID: 8596876608589450752}
+  destroy_shot: 0
   dead: 0
 --- !u!70 &8596876608333891909
 CapsuleCollider2D:

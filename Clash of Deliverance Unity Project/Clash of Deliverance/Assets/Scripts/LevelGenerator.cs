@@ -74,6 +74,7 @@ public class LevelGenerator : MonoBehaviour
 
     void Generator()
     {
+        Debug.Log(pipe_offset);
         if (!Player_Jump.dead)
         {
             if (Score.score_value >= 100) // FINAL BOSS
@@ -90,7 +91,7 @@ public class LevelGenerator : MonoBehaviour
                 }
                 
             }
-            else if(Score.score_value > 75) //  DIFFICULTY: High   (no pipes)
+            else if(Score.score_value >= 75) //  DIFFICULTY: High   (no pipes)
             {
                 if (random_both_enemy_number <= 20)
                 {
@@ -112,7 +113,7 @@ public class LevelGenerator : MonoBehaviour
                     multiple_enemy_appear = true;
 
                 }
-                else if (random_multiple_enemy3_number <= 50)
+                if (random_multiple_enemy3_number <= 50) 
                 {
                     MultipleEnemy3Generator();
                     random_multiple_enemy3_number = Random.Range(1, 101);
@@ -150,10 +151,19 @@ public class LevelGenerator : MonoBehaviour
             }
             else
             {
-                if (random_pipe_number <= pipe_limit_generator) // Instantiate pipe     90% - 5% every time a pipe is repeated
+                if (random_pipe_number <= 0 /*pipe_limit_generator*/) // Instantiate pipe     90% - 5% every time a pipe is repeated
                 {
                     PipeGenerator();
-                    pipe_limit_generator -= 5;
+                    if(Score.score_value >= 50)
+                    {
+                        pipe_limit_generator -= 15;
+                    }
+                    else if (Score.score_value >= 20)
+                    {
+                        pipe_limit_generator -= 10;
+                    }
+                    else
+                        pipe_limit_generator -= 5;
 
                 }
                 else // Instantiate Enemies
@@ -212,13 +222,14 @@ public class LevelGenerator : MonoBehaviour
 
                     if (Score.score_value > 50) //  DIFFICULTY: Medium
                     {
-                        if (random_both_enemy_number <= 20)
+                        
+                        if (random_both_enemy_number <= 30)
                         {
                             Enemy2AndEnemy3AndEnemy1Generator();
                             random_both_enemy_number = Random.Range(1, 101);
                             enemy_appear = true;
                         }
-                        else if (random_multiple_enemy2_number <= 10)
+                        else if (random_multiple_enemy2_number <= 20)
                         {
                             MultipleEnemy2Generator();
                             random_multiple_enemy2_number = Random.Range(1, 101);
@@ -317,17 +328,17 @@ public class LevelGenerator : MonoBehaviour
 
     void MultipleEnemy2Generator()
     {
-        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset - 2, Random.Range(-3.5f, 0f), 0), Quaternion.identity);
-        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset, Random.Range(-3.5f, 0f), 0), Quaternion.identity);
         Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset + 2, Random.Range(-3.5f, 0f), 0), Quaternion.identity);
+        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset, Random.Range(-3.5f, 0f), 0), Quaternion.identity);
+        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset - 2, Random.Range(-3.5f, 0f), 0), Quaternion.identity);
         Invoke("Generator", time);
     }
 
     void MultipleEnemy1Generator() // TODO: Change enemy 2 to 1
     {
-        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset - 2, Random.Range(-3.5f, 0f), 0), Quaternion.identity);
-        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset, Random.Range(-3.5f, 0f), 0), Quaternion.identity);
         Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset + 2, Random.Range(-3.5f, 0f), 0), Quaternion.identity);
+        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset, Random.Range(-3.5f, 0f), 0), Quaternion.identity);
+        Instantiate(enemy2[0], new Vector3(transform.position.x + pipe_offset - 2, Random.Range(-3.5f, 0f), 0), Quaternion.identity);
         Invoke("Generator", time);
     }
 
@@ -341,8 +352,8 @@ public class LevelGenerator : MonoBehaviour
 
     void MultipleEnemy3Generator()
     {
-        Instantiate(enemy3[0], new Vector3(transform.position.x + pipe_offset - 2, Random.Range(2f, 4f), 0), Quaternion.identity);
-        Instantiate(enemy3[0], new Vector3(transform.position.x + pipe_offset - 2, Random.Range(2f, 4f), 0), Quaternion.identity);
+        Instantiate(enemy3[0], new Vector3(transform.position.x + pipe_offset + 2, Random.Range(2f, 4f), 0), Quaternion.identity);
+        Instantiate(enemy3[0], new Vector3(transform.position.x + pipe_offset, Random.Range(2f, 4f), 0), Quaternion.identity);
         Instantiate(enemy3[0], new Vector3(transform.position.x + pipe_offset - 2, Random.Range(2f, 4f), 0), Quaternion.identity);
         Invoke("Generator", time);
     }

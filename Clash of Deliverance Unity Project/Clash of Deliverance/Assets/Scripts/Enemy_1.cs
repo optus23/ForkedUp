@@ -28,6 +28,7 @@ public class Enemy_1 : MonoBehaviour
 
     void Update()
     {
+         
         if (gameObject.transform.position.x >= Camera.main.transform.position.x + offset_camera_x && !stop)
         {
             MoveLeft();
