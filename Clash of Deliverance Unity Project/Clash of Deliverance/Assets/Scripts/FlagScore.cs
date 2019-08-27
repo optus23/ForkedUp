@@ -17,6 +17,8 @@ public class FlagScore : MonoBehaviour
     private Quaternion initial_player_rotation;
     public GameObject Dust;
 
+    private float timer_player_respawn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,9 @@ public class FlagScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        TimerPlayerRespawn();
+
+
         //
         //  1  MIN = -2.54 min    
         //  100 MAX = 2.54 max
@@ -40,15 +45,29 @@ public class FlagScore : MonoBehaviour
         player.transform.position = new Vector2(player_position_x, player.transform.position.y);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.transform.tag == "DanceFloor")
         {
-            rb2D.AddForce(transform.up * force);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            //transform.position = new Vector2(transform.position.x, 0.4f);
+
+            rb2D.AddForce(transform.up * 2 * force);
+            //rb2D.AddForceAtPosition(transform.up * 2 * force, new Vector2(transform.position.x, 0.4f));
             Instantiate(Dust, new Vector2(transform.position.x, transform.position.y), Dust.transform.rotation);
-
-
+            
         }
+    }
+
+    void TimerPlayerRespawn()
+    {
+        timer_player_respawn += Time.deltaTime;
+
+        if (timer_player_respawn >= 2.65)
+        {
+            timer_player_respawn = 0; //Reset timer
+            gameObject.SetActive(false);
+        }
+        gameObject.SetActive(true);
     }
 }

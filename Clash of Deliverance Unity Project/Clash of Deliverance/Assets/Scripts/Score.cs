@@ -19,7 +19,7 @@ public class Score : MonoBehaviour
     void Start()
     {
         score = GetComponent<Text>();
-        score_value = 0;
+        score_value = 34;
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class Score : MonoBehaviour
         score.text = "" + score_value;
 
 
-
+        
         if (player_pickup_score && score_value > animation_score_number) //  Size effect
         {
             if (change_scale)

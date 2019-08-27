@@ -72,7 +72,8 @@ public class Player_Jump : MonoBehaviour
         downRotation = Quaternion.Euler(0, 0, -70);
 
         upDash = Quaternion.identity;
-        downDash = Quaternion.Euler(0, 0, 180);
+        downDash = Quaternion.Euler(0, 0, 180); 
+
         rightDash = Quaternion.Euler(0, 0, -90);
 
         dustRotation = Quaternion.Euler(0, 0, 45);
