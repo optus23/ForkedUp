@@ -429,6 +429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759f930ccf47ea14ca02f5f8a2dcd7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  change_cont_limit: 0
+  animation_score_number: 0
 --- !u!114 &425395803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,7 +809,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1503239077
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a7892776830bdc842aaa66278388ad03, type: 3}
   m_Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
@@ -1233,9 +1235,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76cde21722e40f4e991b32adb3f60be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj:
-  - {fileID: 3130710472357529851, guid: 589233e35b10b7e4ca84eb4e7445e7b0, type: 3}
+  pipe: []
+  enemy3: []
+  enemy2: []
   time: 2
+  random_pipe_number: 0
+  random_enemy1_number: 0
+  random_enemy2_number: 0
+  random_enemy3_number: 0
+  random_both_enemy_number: 0
+  random_multiple_enemy2_number: 0
+  random_multiple_enemy3_number: 0
+  random_multiple_enemy1_number: 0
+  random_boss_enemy_number: 0
+  pipe_limit_generator_var: 0
+  pipe_offset: 0
+  boss_enemy_defeat: 0
 --- !u!4 &1002933269
 Transform:
   m_ObjectHideFlags: 0
@@ -1732,6 +1747,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e570947f1cfe504cb44607c27e06da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panel: {fileID: 0}
+  velocity_panel: 0
+  offset_panel_shop: 0
+  offset_panel_play: 0
+  offset_panel_credits: 0
 --- !u!4 &1355799870
 Transform:
   m_ObjectHideFlags: 0
@@ -1903,7 +1923,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1503239077
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a7892776830bdc842aaa66278388ad03, type: 3}
   m_Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
@@ -1983,7 +2003,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1503239077
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a7892776830bdc842aaa66278388ad03, type: 3}
   m_Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}

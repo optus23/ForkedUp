@@ -74,7 +74,6 @@ public class LevelGenerator : MonoBehaviour
 
     void Generator()
     {
-        Debug.Log(pipe_offset);
         if (!Player_Jump.dead)
         {
             if (Score.score_value >= 100) // FINAL BOSS
@@ -151,7 +150,7 @@ public class LevelGenerator : MonoBehaviour
             }
             else
             {
-                if (random_pipe_number <= 0 /*pipe_limit_generator*/) // Instantiate pipe     90% - 5% every time a pipe is repeated
+                if (random_pipe_number <= pipe_limit_generator /*pipe_limit_generator*/) // Instantiate pipe     90% - 5% every time a pipe is repeated
                 {
                     PipeGenerator();
                     if(Score.score_value >= 50)

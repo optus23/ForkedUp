@@ -43,7 +43,7 @@ public class RandomMoney : MonoBehaviour
             {
                 Money_5.SetActive(true);
             }
-            if (spawn_ratio_10 <= 102) //  2%
+            if (spawn_ratio_10 <= 2) //  2%
             {
                 Money_10.SetActive(true);
 

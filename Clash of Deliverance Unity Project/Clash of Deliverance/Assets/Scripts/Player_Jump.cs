@@ -38,6 +38,7 @@ public class Player_Jump : MonoBehaviour
     public float offset_wipe_high;
 
     public static bool dead;
+    private bool restart_shake;
     public CameraShake cameraShake;
     private float time_death = 1.5f;
     private float timer;
@@ -64,7 +65,6 @@ public class Player_Jump : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        dead = false;
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         initial_player_position_x = gameObject.transform.position.x;
 
@@ -85,7 +85,7 @@ public class Player_Jump : MonoBehaviour
         rb2D.AddForce(Vector2.up * force);
         dead = false;
         transform.rotation = Quaternion.Lerp(forwardRotation, transform.rotation, 2 * Time.deltaTime);
-
+        restart_shake = true;
 
     }
 
@@ -260,9 +260,11 @@ public class Player_Jump : MonoBehaviour
         {
             gameObject.transform.rotation = new Quaternion(gameObject.transform.rotation.x + 10, gameObject.transform.rotation.y, gameObject.transform.rotation.z, gameObject.transform.rotation.w);
             timer += Time.deltaTime;
-            if (timer > time_death)
+            if (timer > time_death && restart_shake)
             {
                 Restart.gameObject.SetActive(true);
+                cameraShake.Shake(0.1f, 0.3f);
+                restart_shake = false;
             }
         }
         
@@ -312,136 +314,136 @@ public class Player_Jump : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-    //    if (collision.transform.tag == "Obstacle")
-    //    {
-    //        cameraShake.Shake(0.8f, 0.3f);
-    //        dead = true;
-    //        rb2D.AddForce(transform.right * -force);
-    //        rb2D.AddForce(transform.up * force);
-    //        dashing = false;
+        if (collision.transform.tag == "Obstacle")
+        {
+            cameraShake.Shake(0.8f, 0.3f);
+            dead = true;
+            rb2D.AddForce(transform.right * -force);
+            rb2D.AddForce(transform.up * force);
+            dashing = false;
 
-    //    }
-    //    if (collision.transform.tag == "DeathFloor")
-    //    {
-    //        cameraShake.Shake(0.1f, 0.2f);
-    //        dead = true;
-    //        rb2D.AddForce(transform.right * (force / 1.5f));
-    //        rb2D.AddForce(transform.up * (force / 1.5f));
-    //        dashing = false;
-    //    }
-    //    if (collision.transform.tag == "Enemy_Up")
-    //    {           
-    //        if (dashing)
-    //        {               
-    //            cameraShake.Shake(0.2f, 0.2f);
-    //            dashing = false;
-    //            Score.score_value++;
-    //            Score.player_pickup_score = true;
-    //            enemy2_shot_inmune = true;
+        }
+        if (collision.transform.tag == "DeathFloor")
+        {
+            cameraShake.Shake(0.1f, 0.2f);
+            dead = true;
+            rb2D.AddForce(transform.right * (force / 1.5f));
+            rb2D.AddForce(transform.up * (force / 1.5f));
+            dashing = false;
+        }
+        if (collision.transform.tag == "Enemy_Up")
+        {           
+            if (dashing)
+            {               
+                cameraShake.Shake(0.2f, 0.2f);
+                dashing = false;
+                Score.score_value++;
+                Score.player_pickup_score = true;
+                enemy2_shot_inmune = true;
 
-    //            if(enemy_3 != null)
-    //                enemy_3.destroy_shot = true;
-    //        }
-    //        else
-    //        {
-    //            cameraShake.Shake(0.1f, 0.2f);
-    //            dead = true;
-    //            rb2D.AddForce(transform.right * (force / 1.5f));
-    //            rb2D.AddForce(transform.up * (force / 1.5f));
-    //            dashing = false;
-    //        }
-    //    }
-    //    if (collision.transform.tag == "Enemy_Down")
-    //    {
-    //        if (dashing)
-    //        {
-    //            if (dashing_down)
-    //            {
-    //                transform.rotation = downDash;
-    //                rb2D.AddForce(transform.up * -force * 1.3f);
-    //                dashing_down = false;
-    //            }
-    //            cameraShake.Shake(0.2f, 0.2f);
-    //            dashing = false;
-    //            Score.score_value++;
-    //            Score.player_pickup_score = true;
+                if(enemy_3 != null)
+                    enemy_3.destroy_shot = true;
+            }
+            else
+            {
+                cameraShake.Shake(0.1f, 0.2f);
+                dead = true;
+                rb2D.AddForce(transform.right * (force / 1.5f));
+                rb2D.AddForce(transform.up * (force / 1.5f));
+                dashing = false;
+            }
+        }
+        if (collision.transform.tag == "Enemy_Down")
+        {
+            if (dashing)
+            {
+                if (dashing_down)
+                {
+                    transform.rotation = downDash;
+                    rb2D.AddForce(transform.up * -force * 1.3f);
+                    dashing_down = false;
+                }
+                cameraShake.Shake(0.2f, 0.2f);
+                dashing = false;
+                Score.score_value++;
+                Score.player_pickup_score = true;
 
 
-    //            if (enemy_3 != null)
-    //                enemy_3.destroy_shot = true;
-    //        }
-    //        else
-    //        {
-    //            cameraShake.Shake(0.1f, 0.2f);
-    //            dead = true;
-    //            rb2D.AddForce(transform.right * (force / 1.5f));
-    //            rb2D.AddForce(transform.up * (force / 1.5f));
-    //            dashing = false;
-    //        }
-    //    }
-    //    if (collision.transform.tag == "Ceiling")
-    //    {
-    //        if (dashing)
-    //        {
-    //            cameraShake.Shake(0.2f, 0.2f);
+                if (enemy_3 != null)
+                    enemy_3.destroy_shot = true;
+            }
+            else
+            {
+                cameraShake.Shake(0.1f, 0.2f);
+                dead = true;
+                rb2D.AddForce(transform.right * (force / 1.5f));
+                rb2D.AddForce(transform.up * (force / 1.5f));
+                dashing = false;
+            }
+        }
+        if (collision.transform.tag == "Ceiling")
+        {
+            if (dashing)
+            {
+                cameraShake.Shake(0.2f, 0.2f);
 
-    //            dashing = false;
-    //        }
-    //        else
-    //            cameraShake.Shake(0.1f, 0.1f);
-    //    }
+                dashing = false;
+            }
+            else
+                cameraShake.Shake(0.1f, 0.1f);
+        }
 
-    //    if (collision.transform.tag == "Wall")
-    //    {
-    //        cameraShake.Shake(0.2f, 0.2f);
-    //        Score.score_value++;
-    //        Score.player_pickup_score = true;
-    //        transform.rotation = Quaternion.identity;
-    //        rb2D.velocity = Vector2.zero;
-    //        rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+        if (collision.transform.tag == "Wall")
+        {
+            cameraShake.Shake(0.2f, 0.2f);
+            Score.score_value++;
+            Score.player_pickup_score = true;
+            transform.rotation = Quaternion.identity;
+            rb2D.velocity = Vector2.zero;
+            rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-    //        rb2D.AddForce(Vector2.left * dash_force / 4);
-    //        InitialPosition.SetActive(true);
-    //    }
+            rb2D.AddForce(Vector2.left * dash_force / 4);
+            InitialPosition.SetActive(true);
+        }
 
-    //    if (collision.transform.tag == "Enemy_Wall")
-    //    {
-    //        if (dashing)
-    //        {
-    //            cameraShake.Shake(0.2f, 0.2f);
+        if (collision.transform.tag == "Enemy_Wall")
+        {
+            if (dashing)
+            {
+                cameraShake.Shake(0.2f, 0.2f);
 
-    //            transform.rotation = Quaternion.identity;
-    //            rb2D.velocity = Vector2.zero;
-    //            rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+                transform.rotation = Quaternion.identity;
+                rb2D.velocity = Vector2.zero;
+                rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-    //            rb2D.AddForce(Vector2.left * dash_force / 4);
-    //            InitialPosition.SetActive(true);
-    //            dashing = false;
-    //        }
-    //    }
+                rb2D.AddForce(Vector2.left * dash_force / 4);
+                InitialPosition.SetActive(true);
+                dashing = false;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        //if (collision.transform.tag == "Enemy_Shot") //  Enemy Shot
-        //{
+        if (collision.transform.tag == "Enemy_Shot") //  Enemy Shot
+        {
 
 
-        //    if (dashing || enemy2_shot_inmune)
-        //    {
-        //        cameraShake.Shake(0.2f, 0.2f);
-        //        enemy2_shot_inmune = false;
-        //    }
-        //    else
-        //    {
-        //        cameraShake.Shake(0.1f, 0.2f);
-        //        dead = true;
-        //        rb2D.AddForce(transform.right * (force / 1.5f));
-        //        rb2D.AddForce(transform.up * (force / 1.5f));
-        //        dashing = false;
-        //    }
-        //}
+            if (dashing || enemy2_shot_inmune)
+            {
+                cameraShake.Shake(0.2f, 0.2f);
+                enemy2_shot_inmune = false;
+            }
+            else
+            {
+                cameraShake.Shake(0.1f, 0.2f);
+                dead = true;
+                rb2D.AddForce(transform.right * (force / 1.5f));
+                rb2D.AddForce(transform.up * (force / 1.5f));
+                dashing = false;
+            }
+        }
 
         if (collision.transform.tag == "Score")
         {
