@@ -9,6 +9,11 @@ public class Player_Jump : MonoBehaviour
     Enemy_1 enemy_1;
     Enemy_2 enemy_2;
     Enemy_3 enemy_3;
+
+    public GameObject enemy1;
+    public GameObject enemy2;
+    public GameObject enemy3;
+
     Score score;
     public float force;
     public float dash_force;
@@ -66,6 +71,11 @@ public class Player_Jump : MonoBehaviour
     private void Awake()
     {
         rb2D = gameObject.GetComponent<Rigidbody2D>();
+        enemy_3 = enemy3.GetComponent<Enemy_3>();
+        enemy_2 = enemy2.GetComponent<Enemy_2>();
+        enemy_1 = enemy1.GetComponent<Enemy_1>();
+
+
         initial_player_position_x = gameObject.transform.position.x;
 
         forwardRotation = Quaternion.Euler(0, 0, 30);
@@ -420,6 +430,9 @@ public class Player_Jump : MonoBehaviour
                 rb2D.AddForce(Vector2.left * dash_force / 4);
                 InitialPosition.SetActive(true);
                 dashing = false;
+
+                enemy_1.life--;
+                Debug.Log(enemy_1.life);
             }
         }
     }
@@ -440,8 +453,9 @@ public class Player_Jump : MonoBehaviour
             {
                 cameraShake.Shake(0.1f, 0.2f);
                 dead = true;
-                rb2D.AddForce(transform.right * (force / 1.5f));
-                rb2D.AddForce(transform.up * (force / 1.5f));
+                rb2D.AddForce(transform.right * (force * 1.5f));
+                transform.rotation = downDash;
+                rb2D.AddForce(transform.up * (-force *1.5f));
                 dashing = false;
             }
         }

@@ -78,7 +78,8 @@ public class LevelGenerator : MonoBehaviour
         {
             if (Score.score_value >= 100) // FINAL BOSS
             {
-                if(!boss_enemy_defeat)
+                Debug.Log("4");
+                if (!boss_enemy_defeat)
                 {
                     BossEnemyGenerator();
                     random_boss_enemy_number = Random.Range(1, 101);
@@ -92,6 +93,7 @@ public class LevelGenerator : MonoBehaviour
             }
             else if(Score.score_value >= 75) //  DIFFICULTY: High   (no pipes)
             {
+                Debug.Log("3");
                 if (random_both_enemy_number <= 20)
                 {
                     Enemy2AndEnemy3AndEnemy1Generator();
@@ -112,7 +114,7 @@ public class LevelGenerator : MonoBehaviour
                     multiple_enemy_appear = true;
 
                 }
-                if (random_multiple_enemy3_number <= 50) 
+                else if (random_multiple_enemy3_number <= 50) 
                 {
                     MultipleEnemy3Generator();
                     random_multiple_enemy3_number = Random.Range(1, 101);
@@ -150,7 +152,7 @@ public class LevelGenerator : MonoBehaviour
             }
             else
             {
-                if (random_pipe_number <= pipe_limit_generator /*pipe_limit_generator*/) // Instantiate pipe     90% - 5% every time a pipe is repeated
+                if (random_pipe_number <= pipe_limit_generator) // Instantiate pipe     90% - 5% every time a pipe is repeated
                 {
                     PipeGenerator();
                     if(Score.score_value >= 50)
@@ -176,21 +178,22 @@ public class LevelGenerator : MonoBehaviour
                             Enemy2AndEnemy3Generator();
                             random_both_enemy_number = Random.Range(1, 101);
                             enemy_appear = true;
+                            Debug.Log("random_both_enemy_number");
                         }
                         else if (random_multiple_enemy2_number <= 25)
                         {
                             MultipleEnemy2Generator();
                             random_multiple_enemy2_number = Random.Range(1, 101);
                             multiple_enemy_appear = true;
-
+                            Debug.Log("random_multiple_enemy2_number");
                         }
-                        else if (random_boss_enemy_number <= 5)
-                        {
-                            BossEnemyGenerator();
-                            random_boss_enemy_number = Random.Range(1, 101);
-                            boss_enemy_appear = true;
+                        //else if (random_boss_enemy_number <= 5)
+                        //{
+                        //    BossEnemyGenerator();
+                        //    random_boss_enemy_number = Random.Range(1, 101);
+                        //    boss_enemy_appear = true;
 
-                        }
+                        //}
                         else
                         {
                             if (random_enemy3_number <= 33)
@@ -198,30 +201,35 @@ public class LevelGenerator : MonoBehaviour
                                 Enemy3Generator();
                                 random_enemy3_number = Random.Range(1, 101);
                                 enemy_appear = true;
+                                Debug.Log("random_enemy3_number");
                             }
                             else if (random_enemy2_number <= 33)
                             {
                                 Enemy2Generator();
                                 random_enemy2_number = Random.Range(1, 101);
                                 enemy_appear = true;
+                                Debug.Log("random_enemy2_number");
                             }
                             else if (random_enemy1_number <= 33)
                             {
                                 Enemy1Generator();
                                 random_enemy1_number = Random.Range(1, 101);
                                 enemy_appear = true;
+                                Debug.Log("random_enemy1_number");
                             }
                             else
                             {
                                 PipeGenerator();
+                                Debug.Log("pipe else");
                             }
                         }
 
                     }
 
-                    if (Score.score_value > 50) //  DIFFICULTY: Medium
+                    else if (Score.score_value > 50) //  DIFFICULTY: Medium
                     {
-                        
+                        Debug.Log("2");
+
                         if (random_both_enemy_number <= 30)
                         {
                             Enemy2AndEnemy3AndEnemy1Generator();
@@ -256,12 +264,12 @@ public class LevelGenerator : MonoBehaviour
                                 random_enemy2_number = Random.Range(1, 101);
                                 enemy_appear = true;
                             }
-                            else if (random_enemy1_number <= 33)
-                            {
-                                Enemy1Generator();
-                                random_enemy1_number = Random.Range(1, 101);
-                                enemy_appear = true;
-                            }
+                            //else if (random_enemy1_number <= 33)
+                            //{
+                            //    Enemy1Generator();
+                            //    random_enemy1_number = Random.Range(1, 101);
+                            //    enemy_appear = true;
+                            //}
                             else
                             {
                                 PipeGenerator();
@@ -270,6 +278,7 @@ public class LevelGenerator : MonoBehaviour
                     }
                     else //  DIFFICULTY: Low
                     {
+                        Debug.Log("1");
                         if (random_enemy3_number <= 50)
                         {
                             Enemy3Generator();

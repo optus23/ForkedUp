@@ -121,12 +121,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd7511f95ad6cca4caab724f4afe3d6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy1: {fileID: 3059110515585623266, guid: 076ef0ef6aaaa2c489b8d2160b02327b, type: 3}
+  enemy2: {fileID: 2148557606567309499, guid: a8d8ada1905156c42bf94bfb58ca5ec4, type: 3}
+  enemy3: {fileID: 8596876608333891906, guid: 1cadb8c43fc2f924b8a409092176213d, type: 3}
   force: 1000
+  dash_force: 0
+  dash: 0
+  dashing: 0
+  dashing_down: 0
+  smoothDash: 0
+  prepare_dash_force: 0
+  time_preparing_dash: 0
+  InitialPosition: {fileID: 0}
+  offset_wipe_width: 0
+  offset_wipe_high: 0
   cameraShake: {fileID: 0}
   Restart: {fileID: 0}
   smoothRotation: 1
   start_rotating: 0.1
   Dust: {fileID: 1683300373093542404, guid: f82f6c8696df9e8458813aba07853620, type: 3}
+  MoneyParticle1: {fileID: 0}
+  MoneyParticle2: {fileID: 0}
+  MoneyParticle3: {fileID: 0}
+  enemy2_shot_inmune: 0
 --- !u!50 &5691972500309482652
 Rigidbody2D:
   serializedVersion: 4

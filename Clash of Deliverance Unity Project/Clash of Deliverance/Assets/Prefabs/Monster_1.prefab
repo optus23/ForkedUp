@@ -615,9 +615,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 3
   offset_camera_x: 2
+  time_stopped: 1.5
   bounce_number: 0
-  Kamehameha_shot: {fileID: 2148557606567309499, guid: a8d8ada1905156c42bf94bfb58ca5ec4,
+  dead: 0
+  Kamehameha_shot: {fileID: 8939532206334638131, guid: f5be06a174dc4324fa0831f7b1a9a9a4,
     type: 3}
+  life: 2
 --- !u!114 &3059110515585623268
 MonoBehaviour:
   m_ObjectHideFlags: 0

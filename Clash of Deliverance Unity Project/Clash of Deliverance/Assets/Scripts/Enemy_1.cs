@@ -16,13 +16,20 @@ public class Enemy_1 : MonoBehaviour
 
     public bool dead;
 
-    private bool can_shot;
-    private float shot_position;
+    private bool can_first_shot;
+    private bool shot_once;
+    private bool can_second_shot;
+    private bool first_shot = true;
+    private float first_shot_position;
+    private float second_shot_position;
     public GameObject Kamehameha_shot;
+
+    public int life;
 
     void Start()
     {
-        bounce_number = Random.Range(1, 4);
+        bounce_number = Random.Range(1, 3);
+        Debug.Log(life);
 
     }
 
@@ -34,56 +41,70 @@ public class Enemy_1 : MonoBehaviour
             MoveLeft();
             MoveDown();
 
+            if(first_shot)
+            {
+                first_shot_position = Random.Range(Camera.main.transform.position.x - offset_camera_x*2, Camera.main.transform.position.x + offset_camera_x);
+                can_first_shot = true;
+                first_shot = false;
+
+            }
         }
         else if (gameObject.transform.position.x < Camera.main.transform.position.x + offset_camera_x && !stop)
         {
             if (gameObject.transform.position.y <= Camera.main.transform.position.x - offset_camera_x * 2)
             {
                 change_direction = true;
-                can_shot = true;
-                shot_position = Random.Range(Camera.main.transform.position.x - offset_camera_x * 2, Camera.main.transform.position.x + offset_camera_x * 2);
-                Debug.Log("POSITION RANGE: " + shot_position);
+                can_second_shot = true;
+                second_shot_position = Random.Range(Camera.main.transform.position.x - offset_camera_x , Camera.main.transform.position.x + offset_camera_x*2);
 
             }
             else if (!change_direction)
                 MoveDown();
 
         }
-        else if (gameObject.transform.position.y <= Camera.main.transform.position.x - offset_camera_x * 2)
-        {
-            MoveUp();
-        }
-        else if (can_shot)
-        {
-            can_shot = false;
-            shot_position = Random.Range(Camera.main.transform.position.x - offset_camera_x * 2, Camera.main.transform.position.x + offset_camera_x * 2);
-            Debug.Log("POSITION RANGE: " + shot_position);
-        }
-
+       
         //Main Direction
         if(change_direction && !stop)
         {
             MoveUp();
         }
 
-        // Kamehameha
-        if(gameObject.transform.position.y >= shot_position && can_shot)
-        {
-            Kamehameha();
-            can_shot = false;
-            stop = true;
-            stop_timer += Time.deltaTime;
 
-            
+        // First Kamehameha
+        if (gameObject.transform.position.y <= first_shot_position && can_first_shot)
+        {
+            can_first_shot = false;
+            stop = true;
+            shot_once = true;
+
         }
 
-        if(stop)  // Enemy_stopped
+        // Second Kamehameha
+        if (gameObject.transform.position.y >= second_shot_position && can_second_shot)
+        {
+            can_second_shot = false;
+            stop = true;
+            shot_once = true;
+
+        }
+
+        // Enemy_stopped
+        if (stop) 
         {
             stop_timer += Time.deltaTime;
-            if (stop_timer >= time_stopped) //  2s stopped
+            if (stop_timer >= time_stopped/8)
             {
-                stop = false;
-                stop_timer = 0;
+                if(shot_once)
+                {
+                    Kamehameha();
+                    shot_once = false;
+                }
+                if (stop_timer >= time_stopped)
+                {
+                    stop = false;
+                    stop_timer = 0;
+                }
+
             }
         }
        
@@ -110,7 +131,7 @@ public class Enemy_1 : MonoBehaviour
     {
         if (!dead)
         {
-            Instantiate(Kamehameha_shot, gameObject.transform.position, Quaternion.identity);
+            Instantiate(Kamehameha_shot, new Vector3 (gameObject.transform.position.x - 3, gameObject.transform.position.y, gameObject.transform.position.z), Kamehameha_shot.transform.rotation);
         }
     }
 
@@ -118,8 +139,11 @@ public class Enemy_1 : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
-            Destroy(gameObject);
-            dead = true;
+            if(life <= 0)
+            {
+                Destroy(gameObject);
+                dead = true;
+            }          
         }
     }
 
