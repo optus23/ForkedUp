@@ -14,17 +14,20 @@ public class DestroyKamehameha : MonoBehaviour
     private bool opening;
     private bool closing;
 
+    BoxCollider2D collider;
+
     // Start is called before the first frame update
     void Start()
-    {
-        Destroy(gameObject, 2.5f);
+    {  
         shotOpen = Quaternion.Euler(0, 90, 90);
         shotClose = Quaternion.Euler(90, 0, 90);
         shotNormal = Quaternion.Euler(0, 0, 90);
 
-
+        collider = gameObject.GetComponent<BoxCollider2D>();
         transform.rotation = shotOpen;
 
+        Destroy(gameObject, 2.5f);
+        Destroy(collider, 1.75f);
     }
 
     // Update is called once per frame

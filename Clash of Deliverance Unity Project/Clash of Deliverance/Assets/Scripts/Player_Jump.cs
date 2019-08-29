@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Player_Jump : MonoBehaviour
 {
-    Enemy_1 enemy_1;
+    public Enemy_1 enemy_1 { get; set; }
     Enemy_2 enemy_2;
     Enemy_3 enemy_3;
 
@@ -71,9 +71,10 @@ public class Player_Jump : MonoBehaviour
     private void Awake()
     {
         rb2D = gameObject.GetComponent<Rigidbody2D>();
-        enemy_3 = enemy3.GetComponent<Enemy_3>();
-        enemy_2 = enemy2.GetComponent<Enemy_2>();
+        //enemy_3 = enemy3.GetComponent<Enemy_3>();
+        //enemy_2 = enemy2.GetComponent<Enemy_2>();
         enemy_1 = enemy1.GetComponent<Enemy_1>();
+        //Debug.Log(enemy_1.life);
 
 
         initial_player_position_x = gameObject.transform.position.x;
@@ -430,9 +431,8 @@ public class Player_Jump : MonoBehaviour
                 rb2D.AddForce(Vector2.left * dash_force / 4);
                 InitialPosition.SetActive(true);
                 dashing = false;
-
                 enemy_1.life--;
-                Debug.Log(enemy_1.life);
+
             }
         }
     }

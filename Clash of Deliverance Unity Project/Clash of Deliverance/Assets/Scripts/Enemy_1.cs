@@ -6,6 +6,14 @@ public class Enemy_1 : MonoBehaviour
 {
     private bool exit_battlefield;
 
+    public GameObject eyes;
+    private bool eyes_changed;
+    private float eye_scale;
+    private float eye_position;
+
+    private bool can_prepare_particle = true;
+    public GameObject ParticlePrepareKamehameha;
+
     public float velocity;
     public float offset_camera_x;
     private bool change_direction;
@@ -29,7 +37,6 @@ public class Enemy_1 : MonoBehaviour
     void Start()
     {
         bounce_number = Random.Range(1, 3);
-        Debug.Log(life);
 
     }
 
@@ -43,23 +50,38 @@ public class Enemy_1 : MonoBehaviour
 
             if(first_shot)
             {
-                first_shot_position = Random.Range(Camera.main.transform.position.x - offset_camera_x*2, Camera.main.transform.position.x + offset_camera_x);
+                first_shot_position = Random.Range(Camera.main.transform.position.x - offset_camera_x*2, Camera.main.transform.position.x + offset_camera_x*1.5f);
                 can_first_shot = true;
                 first_shot = false;
-
+                eyes_changed = false;
+                
             }
         }
         else if (gameObject.transform.position.x < Camera.main.transform.position.x + offset_camera_x && !stop)
         {
             if (gameObject.transform.position.y <= Camera.main.transform.position.x - offset_camera_x * 2)
             {
+                second_shot_position = Random.Range(Camera.main.transform.position.x - offset_camera_x, Camera.main.transform.position.x + offset_camera_x * 2);
                 change_direction = true;
                 can_second_shot = true;
-                second_shot_position = Random.Range(Camera.main.transform.position.x - offset_camera_x , Camera.main.transform.position.x + offset_camera_x*2);
+                eyes_changed = false;
 
             }
             else if (!change_direction)
                 MoveDown();
+            else if(gameObject.transform.position.y >= Camera.main.transform.position.x + offset_camera_x * 2)
+            {
+                change_direction = false;
+                if (first_shot)
+                {
+                    first_shot_position = Random.Range(Camera.main.transform.position.x - offset_camera_x * 2, Camera.main.transform.position.x + offset_camera_x * 1.5f);
+                    can_first_shot = true;
+                    first_shot = false;
+                    eyes_changed = false;
+
+
+                }
+            }
 
         }
        
@@ -87,6 +109,34 @@ public class Enemy_1 : MonoBehaviour
             shot_once = true;
 
         }
+        // Enemy prepare shot
+        if((gameObject.transform.position.y <= first_shot_position +3 && can_first_shot) || (gameObject.transform.position.y >= second_shot_position - 3 && can_second_shot) && !eyes_changed)
+        {
+            if(can_prepare_particle)
+            {
+                ParticlePrepareKamehameha.SetActive(true);
+                can_prepare_particle = false;
+            }
+
+            if (eye_scale <= 2.5f)
+            {
+                eye_scale += 0.1f;
+                eyes.transform.localScale = new Vector3(1, eye_scale, 1);
+
+            }
+            if(eye_position <= 0.2f)
+            {
+                eye_position += 0.01f;
+                eyes.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + eye_position);
+
+            }
+            if(eye_scale > 2.5f && eye_position > 0.2f)
+            {
+                eyes_changed = true;
+
+            }
+        }
+        
 
         // Enemy_stopped
         if (stop) 
@@ -97,18 +147,24 @@ public class Enemy_1 : MonoBehaviour
                 if(shot_once)
                 {
                     Kamehameha();
+                    ParticlePrepareKamehameha.SetActive(false);
                     shot_once = false;
+                    first_shot = true;
                 }
                 if (stop_timer >= time_stopped)
                 {
-                    stop = false;
+                   
+                    eye_scale = 1;
+                    eye_position = 0;
+                    eyes.transform.localScale = new Vector3(1, eye_scale, 1);
+                    eyes.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                    can_prepare_particle = true;
+
                     stop_timer = 0;
+                    stop = false;
                 }
-
             }
-        }
-       
-
+        }    
     }
 
 
@@ -139,7 +195,7 @@ public class Enemy_1 : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
-            if(life <= 0)
+            if (life <= 1) 
             {
                 Destroy(gameObject);
                 dead = true;
