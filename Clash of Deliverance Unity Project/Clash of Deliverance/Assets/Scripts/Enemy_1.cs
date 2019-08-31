@@ -32,6 +32,10 @@ public class Enemy_1 : MonoBehaviour
     private float second_shot_position;
     public GameObject Kamehameha_shot;
 
+    private float get_hit_timer;
+    public bool get_hit;
+    public GameObject Body;
+
     public int life;
 
     void Start()
@@ -165,6 +169,12 @@ public class Enemy_1 : MonoBehaviour
                 }
             }
         }    
+
+
+        if(get_hit)
+        {
+            EnemyGetHit();
+        }
     }
 
 
@@ -191,6 +201,31 @@ public class Enemy_1 : MonoBehaviour
         }
     }
 
+
+    void EnemyGetHit()
+    {
+        get_hit_timer += Time.deltaTime;
+
+        if(get_hit_timer < 1.2f)
+        {
+            if (get_hit_timer < 0.2f)
+                Body.SetActive(false);
+            else if (get_hit_timer < 0.4f)
+                Body.SetActive(true);
+            else if (get_hit_timer < 0.6f)
+                Body.SetActive(false);
+            else if (get_hit_timer < 0.8f)
+                Body.SetActive(true);
+            else if (get_hit_timer < 1)
+                Body.SetActive(false);
+            else
+            {
+                Body .SetActive(true);
+                get_hit = false;
+                get_hit_timer = 0;
+            }
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Player")

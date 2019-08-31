@@ -74,7 +74,6 @@ public class Player_Jump : MonoBehaviour
         //enemy_3 = enemy3.GetComponent<Enemy_3>();
         //enemy_2 = enemy2.GetComponent<Enemy_2>();
         enemy_1 = enemy1.GetComponent<Enemy_1>();
-        //Debug.Log(enemy_1.life);
 
 
         initial_player_position_x = gameObject.transform.position.x;
@@ -432,6 +431,7 @@ public class Player_Jump : MonoBehaviour
                 InitialPosition.SetActive(true);
                 dashing = false;
                 enemy_1.life--;
+                enemy_1.get_hit = true;
 
             }
         }
