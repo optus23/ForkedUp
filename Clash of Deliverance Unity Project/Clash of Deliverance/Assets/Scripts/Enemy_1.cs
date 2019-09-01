@@ -35,13 +35,16 @@ public class Enemy_1 : MonoBehaviour
     private float get_hit_timer;
     public bool get_hit;
     public GameObject Body;
-
+    public GameObject Ears;
+    public GameObject Eyes;
+    public GameObject Mouth;
+    public GameObject death;
     public int life;
 
+    public bool start_fading;
     void Start()
     {
         bounce_number = Random.Range(1, 3);
-
     }
 
     void Update()
@@ -208,6 +211,7 @@ public class Enemy_1 : MonoBehaviour
 
         if(get_hit_timer < 1.2f)
         {
+
             if (get_hit_timer < 0.2f)
                 Body.SetActive(false);
             else if (get_hit_timer < 0.4f)
@@ -224,6 +228,9 @@ public class Enemy_1 : MonoBehaviour
                 get_hit = false;
                 get_hit_timer = 0;
             }
+
+
+
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -232,7 +239,14 @@ public class Enemy_1 : MonoBehaviour
         {
             if (life <= 1) 
             {
-                Destroy(gameObject);
+                Ears.SetActive(false);
+                Eyes.SetActive(false);
+                Mouth.SetActive(false);
+                Destroy(ParticlePrepareKamehameha);
+                death.SetActive(true);
+                GetComponent<EchoEffect>().enabled = false;
+                start_fading = true;
+                Destroy(gameObject, 1.4f);
                 dead = true;
             }          
         }

@@ -431,7 +431,8 @@ public class Player_Jump : MonoBehaviour
                 InitialPosition.SetActive(true);
                 dashing = false;
                 enemy_1.life--;
-                enemy_1.get_hit = true;
+                if(enemy_1.life >= 1)
+                    enemy_1.get_hit = true;
 
             }
         }
