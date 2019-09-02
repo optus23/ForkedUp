@@ -42,9 +42,16 @@ public class Enemy_1 : MonoBehaviour
     public int life;
 
     public bool start_fading;
+
+    Rigidbody2D rb;
+
     void Start()
     {
         bounce_number = Random.Range(1, 3);
+        rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = true;
+        
+        
     }
 
     void Update()
@@ -239,6 +246,9 @@ public class Enemy_1 : MonoBehaviour
         {
             if (life <= 1) 
             {
+                rb.isKinematic = false;
+                rb.AddForce(transform.right * -5000 * Time.deltaTime);
+                transform.Rotate(0, 0, 90);
                 Ears.SetActive(false);
                 Eyes.SetActive(false);
                 Mouth.SetActive(false);
@@ -246,7 +256,7 @@ public class Enemy_1 : MonoBehaviour
                 death.SetActive(true);
                 GetComponent<EchoEffect>().enabled = false;
                 start_fading = true;
-                Destroy(gameObject, 1.4f);
+                Destroy(gameObject, 0.5f);
                 dead = true;
             }          
         }

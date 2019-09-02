@@ -9,9 +9,9 @@ public class RandomMoney : MonoBehaviour
     public GameObject Money_5;
     public GameObject Money_10;
 
-    public int spawn_ratio_1;
-    public int spawn_ratio_5;
-    public int spawn_ratio_10;
+    int spawn_ratio_1;
+    int spawn_ratio_5;
+    int spawn_ratio_10;
 
     private void Start()
     {

@@ -17,12 +17,27 @@ public class Enemy_3 : MonoBehaviour
     public bool destroy_shot;
 
     public bool dead;
+    public bool start_fading;
+    Rigidbody2D rb;
+    BoxCollider2D collider;
+    public GameObject Right_eye;
+    public GameObject Left_eye;
+    public GameObject Enemy_mouth;
+
+    public GameObject Money;
+
 
     void Start()
     {
         bounce_number = Random.Range(2, 4);
         destroy_shot = false;
         Shot();
+
+        rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = true;
+
+        collider = GetComponent<BoxCollider2D>();
+
     }
 
     void Update()
@@ -69,8 +84,20 @@ public class Enemy_3 : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
-            Destroy(gameObject);
+            Destroy(gameObject, 1f);
+
+            rb.AddForce(transform.right * 10000 * Time.deltaTime);
+            start_fading = true;
+            GetComponent<EchoEffect>().enabled = false;
+            rb.isKinematic = false;
             dead = true;
+            Enemy_Shot.SetActive(false);
+            Right_eye.SetActive(false);
+            Left_eye.SetActive(false);
+            Enemy_mouth.SetActive(false);
+            collider.enabled = false;
+
+            Destroy(Money);
         }
     }
 

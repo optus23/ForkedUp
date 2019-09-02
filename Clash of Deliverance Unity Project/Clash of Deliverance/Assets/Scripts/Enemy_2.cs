@@ -11,14 +11,29 @@ public class Enemy_2 : MonoBehaviour
     private bool static_direction;
     private int bounce = 1;
     public int bounce_number;
-
+    public bool start_fading;
     public bool dead;
     private bool touch_first_wall;
+
+    Rigidbody2D rb;
+    public GameObject Right_korn;
+    public GameObject Left_korn;
+    public GameObject Right_Eye;
+    public GameObject Left_Eye;
+    public GameObject Mouth;
+    BoxCollider2D collider;
+
+    public GameObject Money;
+
 
     // Start is called before the first frame update
     void Start()
     {
         bounce_number = Random.Range(1, 3);
+        rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = true;
+
+        collider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -100,13 +115,24 @@ public class Enemy_2 : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
-            Destroy(gameObject);
-            dead = true;
+            Destroy(gameObject, 1f);
 
-            for (int x = 0; x < transform.childCount; x++)
-            {
-                //transform.GetChild(9).parent = New_Money.transform;
-            }
+            rb.isKinematic = false;
+            rb.AddForce(transform.right * 10000 * Time.deltaTime);
+            rb.AddForce(transform.up * 500 * Time.deltaTime);
+            start_fading = true;
+            GetComponent<EchoEffect>().enabled = false;
+            dead = true;
+            Left_Eye.SetActive(false);
+            Right_Eye.SetActive(false);
+            Right_korn.SetActive(false);
+            Left_korn.SetActive(false);
+            Mouth.SetActive(false);
+
+            collider.enabled = false;
+
+            Destroy(Money);
+            
         }
     }
 }

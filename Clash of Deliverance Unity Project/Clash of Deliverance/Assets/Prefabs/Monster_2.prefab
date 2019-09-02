@@ -90,6 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2148557605708753257}
   - component: {fileID: 2148557605708753256}
+  - component: {fileID: 5850423793662334450}
   m_Layer: 0
   m_Name: korn_right
   m_TagString: Untagged
@@ -160,6 +161,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5850423793662334450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2148557605708753258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 637b38bce8e97994ca687dec913ac2b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Body: {fileID: 2148557606567309499}
+  start: 0
 --- !u!1 &2148557605859093941
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,6 +185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2148557605859093940}
   - component: {fileID: 2148557605859093939}
+  - component: {fileID: 9154031740183995778}
   m_Layer: 0
   m_Name: head
   m_TagString: Untagged
@@ -240,6 +256,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9154031740183995778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2148557605859093941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 637b38bce8e97994ca687dec913ac2b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Body: {fileID: 2148557606567309499}
+  start: 0
 --- !u!1 &2148557606022276278
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,6 +523,7 @@ GameObject:
   - component: {fileID: 2148557606567309497}
   - component: {fileID: 2148557606567309498}
   - component: {fileID: 7283059385422547255}
+  - component: {fileID: 8216174312096873973}
   m_Layer: 0
   m_Name: Monster_2
   m_TagString: Enemy_Down
@@ -536,7 +567,14 @@ MonoBehaviour:
   velocity: 2.4
   offset_camera_x: 2
   bounce_number: 0
+  start_fading: 0
   dead: 0
+  Right_korn: {fileID: 2148557605708753258}
+  Left_korn: {fileID: 2148557605109552372}
+  Right_Eye: {fileID: 2148557606022276278}
+  Left_Eye: {fileID: 2148557606280183354}
+  Mouth: {fileID: 2148557606471269053}
+  Money: {fileID: 2645231956661440081}
 --- !u!114 &2148557606567309497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,6 +634,27 @@ MonoBehaviour:
   spawn_ratio_1: 0
   spawn_ratio_5: 0
   spawn_ratio_10: 0
+--- !u!50 &8216174312096873973
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2148557606567309499}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2645231956661440081
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,7 +745,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf1bc8c9efe2b44e96a13553304d0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money_deatached: 0
 --- !u!1001 &1491111616818383516
 PrefabInstance:
   m_ObjectHideFlags: 0
