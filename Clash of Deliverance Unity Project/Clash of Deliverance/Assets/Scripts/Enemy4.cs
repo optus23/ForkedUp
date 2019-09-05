@@ -76,31 +76,23 @@ public class Enemy4 : MonoBehaviour
                         //MoveRight();
                         detect_player_position = false;
                         Vector2 _vec2;
-                        _vec2 = Vector2.MoveTowards(transform.position, Player_pos_right, velocity * Time.deltaTime);
+                        _vec2 = Vector2.MoveTowards(transform.position, new Vector2(3.8f, Player_pos_right.y), velocity * Time.deltaTime);
                         this.transform.position = _vec2;
                     }
                     else
                     {
-                        Player_pos_right = new Vector3(Player_pos.x + 3.75f, Player_pos.y, Player_pos.z);
+                        Player_pos_right = new Vector3(Player_pos.x + 3.8f, Player_pos.y, Player_pos.z);
 
                         timer_rotate_right += Time.deltaTime;
-                        //  TODO: Find Trigonometric Functions to find the correct degree
-                        //Vector2 return_distance = Player_pos_right - transform.position;                         
-                        //return_degree = Mathf.Rad2Deg * Mathf.Atan2(return_distance.x, return_distance.y) - 90;
-
+                        
                         Vector2 return_distance = Player_pos_right - transform.position;
-                        return_degree = -1 * (Mathf.Rad2Deg * Mathf.Atan(return_distance.x / return_distance.y));
+                        return_degree = -1 * (Mathf.Rad2Deg * Mathf.Atan(3.8f / return_distance.y));
                         if(return_degree >= 0)
                         {
-                            return_degree = -1 * (Mathf.Rad2Deg * Mathf.Atan(return_distance.x / return_distance.y) + 180);
+                            return_degree = -1 * (Mathf.Rad2Deg * Mathf.Atan(3.8f / return_distance.y) + 180);
                         }
-
-                        float my_degree = -1 * (Mathf.Rad2Deg * Mathf.Atan(return_distance.x / return_distance.y));
-                        Debug.Log(my_degree);
-                        Debug.Log(return_distance);
-                        Debug.Log("SOLUTION" + Player_pos_right + " - " + transform.position);
-
-                        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, return_degree/*270.5f*/), 6 * Time.deltaTime);
+                       
+                        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, return_degree), 6 * Time.deltaTime);
                         detect_player_position = true;
 
                     }
@@ -110,7 +102,6 @@ public class Enemy4 : MonoBehaviour
                     }
                     else
                         velocity = half_velocity * 4;
-
 
                 }
                 else if(!stop)
@@ -131,7 +122,7 @@ public class Enemy4 : MonoBehaviour
         if (finish_rotation)
         {          
             Vector2 vec2;
-            vec2 = Vector2.MoveTowards(transform.position, Player_pos, velocity * Time.deltaTime);
+            vec2 = Vector2.MoveTowards(transform.position, new Vector2(-3.8f, Player_pos.y), velocity * Time.deltaTime);
             this.transform.position = vec2;
 
         }
@@ -139,7 +130,6 @@ public class Enemy4 : MonoBehaviour
             StartCoroutine("Rotate");
 
     }
-
 
     private void MoveLeft()
     {
@@ -158,14 +148,7 @@ public class Enemy4 : MonoBehaviour
         {
             stop = true;
             Vector2 distance = Player_pos - transform.position;
-            //degree = 180 - 90 - (Mathf.Rad2Deg* Mathf.Atan(distance.x / distance.y)) + 90;
-            degree = Mathf.Rad2Deg* Mathf.Atan(distance.y / distance.x) + 90;
-            
-
-            //float my_degree = Mathf.Rad2Deg * Mathf.Atan(distance.x/distance.y);
-            //Debug.Log(my_degree);
-            //Debug.Log(distance);
-
+            degree = Mathf.Rad2Deg* Mathf.Atan(distance.y / -3.8f) + 90;                     
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, degree), 7 * Time.deltaTime);
 
             yield return new WaitForSeconds(0.1f);
