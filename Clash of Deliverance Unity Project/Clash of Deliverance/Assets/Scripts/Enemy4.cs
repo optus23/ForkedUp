@@ -21,7 +21,8 @@ public class Enemy4 : MonoBehaviour
     private float timer_rotate_right;
     private float half_velocity;
     private float degree;
-
+    private float return_degree;
+    Vector3 Player_pos_right;
 
     // Start is called before the first frame update
     void Start()
@@ -44,13 +45,13 @@ public class Enemy4 : MonoBehaviour
         else
         {
             has_entered = true;
-            velocity = half_velocity * 4;
 
             //  Guide Enemy Attack
             if (detect_player_position)
             {
                 Player_pos = new Vector3 (Goal.position.x - offset_camera_x/2, Goal.position.y, Goal.position.z);
                 detect_player_position = false;
+                velocity = half_velocity * 4;
 
             }
 
@@ -72,12 +73,36 @@ public class Enemy4 : MonoBehaviour
                 {
                     if(timer_rotate_right > 1f)
                     {
-                        MoveRight();
+                        //MoveRight();
+                        detect_player_position = false;
+                        Vector2 _vec2;
+                        _vec2 = Vector2.MoveTowards(transform.position, Player_pos_right, velocity * Time.deltaTime);
+                        this.transform.position = _vec2;
                     }
                     else
                     {
+                        Player_pos_right = new Vector3(Player_pos.x + 3.75f, Player_pos.y, Player_pos.z);
+
                         timer_rotate_right += Time.deltaTime;
-                        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 270.5f), 6 * Time.deltaTime);
+                        //  TODO: Find Trigonometric Functions to find the correct degree
+                        //Vector2 return_distance = Player_pos_right - transform.position;                         
+                        //return_degree = Mathf.Rad2Deg * Mathf.Atan2(return_distance.x, return_distance.y) - 90;
+
+                        Vector2 return_distance = Player_pos_right - transform.position;
+                        return_degree = -1 * (Mathf.Rad2Deg * Mathf.Atan(return_distance.x / return_distance.y));
+                        if(return_degree >= 0)
+                        {
+                            return_degree = -1 * (Mathf.Rad2Deg * Mathf.Atan(return_distance.x / return_distance.y) + 180);
+                        }
+
+                        float my_degree = -1 * (Mathf.Rad2Deg * Mathf.Atan(return_distance.x / return_distance.y));
+                        Debug.Log(my_degree);
+                        Debug.Log(return_distance);
+                        Debug.Log("SOLUTION" + Player_pos_right + " - " + transform.position);
+
+                        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, return_degree/*270.5f*/), 6 * Time.deltaTime);
+                        detect_player_position = true;
+
                     }
                     if (gameObject.transform.position.x >= Camera.main.transform.position.x + offset_camera_x/2)
                     {
@@ -129,20 +154,27 @@ public class Enemy4 : MonoBehaviour
 
     IEnumerator Rotate()
     {
-        for (float f = 1f; f > 0; f -= 0.1f)
+        for (float f = 0.5f; f > 0; f -= 0.1f)
         {
             stop = true;
             Vector2 distance = Player_pos - transform.position;
-            degree = Mathf.Rad2Deg* Mathf.Atan2(distance.y, distance.x) - 90;
+            //degree = 180 - 90 - (Mathf.Rad2Deg* Mathf.Atan(distance.x / distance.y)) + 90;
+            degree = Mathf.Rad2Deg* Mathf.Atan(distance.y / distance.x) + 90;
+            
+
+            //float my_degree = Mathf.Rad2Deg * Mathf.Atan(distance.x/distance.y);
+            //Debug.Log(my_degree);
+            //Debug.Log(distance);
 
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, degree), 7 * Time.deltaTime);
+
             yield return new WaitForSeconds(0.1f);
         }
         finish_rotation = true;
         stop = false;
         StopCoroutine("Rotate");
 
-            
+
     }
 
 }
