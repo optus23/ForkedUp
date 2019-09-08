@@ -66,7 +66,7 @@ public class Player_Jump : MonoBehaviour
 
     public bool enemy2_shot_inmune;
 
-
+    private Vector3 simulated_position_player;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -83,10 +83,11 @@ public class Player_Jump : MonoBehaviour
 
         upDash = Quaternion.identity;
         downDash = Quaternion.Euler(0, 0, 180); 
-
         rightDash = Quaternion.Euler(0, 0, -90);
-
         dustRotation = Quaternion.Euler(0, 0, 45);
+
+
+        simulated_position_player = transform.position;
     }
 
     void Start()
@@ -97,6 +98,7 @@ public class Player_Jump : MonoBehaviour
         dead = false;
         transform.rotation = Quaternion.Lerp(forwardRotation, transform.rotation, 2 * Time.deltaTime);
         restart_shake = true;
+
 
     }
 
@@ -122,19 +124,24 @@ public class Player_Jump : MonoBehaviour
                 dash = false; //Dash Finished
             }
         }
-            //  Enemy 2 inmune timer
-            if (enemy2_shot_inmune)
+        else if(!dashing)
+        {
+            transform.position = new Vector3(simulated_position_player.x, transform.position.y, transform.position.z);
+
+        }
+        //  Enemy 2 inmune timer
+        if (enemy2_shot_inmune)
+        {
+            //  Timer enmy 2 shot inmune
+            prepare_enemy_2_inmune_timer += Time.deltaTime;
+
+            if (prepare_enemy_2_inmune_timer >= 2)
             {
-                //  Timer enmy 2 shot inmune
-                prepare_enemy_2_inmune_timer += Time.deltaTime;
+                enemy2_shot_inmune = false;
+                prepare_enemy_2_inmune_timer = 0; //Reset timer
 
-                if (prepare_enemy_2_inmune_timer >= 2)
-                {
-                    enemy2_shot_inmune = false;
-                    prepare_enemy_2_inmune_timer = 0; //Reset timer
-
-                }
             }
+        }
 
             //Touch System Swipe UP DOWN RIGHT  from here-> https://forum.unity.com/threads/swipe-in-all-directions-touch-and-mouse.165416/
             //=============================================================================================
@@ -402,6 +409,9 @@ public class Player_Jump : MonoBehaviour
             }
             else
                 cameraShake.Shake(0.1f, 0.1f);
+
+            transform.position = new Vector3(simulated_position_player.x, transform.position.y, transform.position.z);
+
         }
 
         if (collision.transform.tag == "Wall")
