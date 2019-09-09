@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3962164854120764302}
   - component: {fileID: 6300238103766457338}
   m_Layer: 0
-  m_Name: Kamehameha
+  m_Name: BigKamehameha
   m_TagString: Enemy_Shot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8939532206334638131}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -0.95, y: -0.32, z: 178.34}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
