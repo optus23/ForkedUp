@@ -2324,6 +2324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type1_state: 0
+  type2_state: 0
   type3_state: 0
   phases: 0
   Shot: {fileID: 3831726135534955130, guid: 48939d95458b2184097520c1f33cd638, type: 3}

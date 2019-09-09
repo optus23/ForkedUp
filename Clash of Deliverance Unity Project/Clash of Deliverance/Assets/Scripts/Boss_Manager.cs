@@ -21,6 +21,13 @@ public class Boss_Manager : MonoBehaviour
         FINISH_SHOT,
         NONE
     }
+    public enum Type2State
+    {
+        PREPARE_SHOT,
+        SHOT,
+        FINISH_SHOT,
+        NONE
+    }
     public enum Type3State
     {
         PREPARE_SHOT,
@@ -31,6 +38,7 @@ public class Boss_Manager : MonoBehaviour
 
 
     public Type1State type1_state;
+    public Type2State type2_state;
     public Type3State type3_state;
     public Phases phases;
 
@@ -44,6 +52,9 @@ public class Boss_Manager : MonoBehaviour
     public Transform Goal;
     public Transform Boss;
 
+    //private Boss_Projectile projectile;
+    //public GameObject projectile_obj;
+
     private float timer_next_phase;
     private float time_limit_next_phase;
     private bool is_changing_phase;
@@ -52,7 +63,11 @@ public class Boss_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        phases = Phases.TYPE_3;
+        phases = Phases.TYPE_2;
+
+        type1_state = Type1State.NONE;
+        //type2_state = Type2State.NONE;
+        type3_state = Type3State.NONE;
 
     }
 
@@ -65,7 +80,7 @@ public class Boss_Manager : MonoBehaviour
                 switch(type1_state)
                 {
                     case Type1State.PREPARE_SHOT:
-                        InvokeShot();
+                        InvokeFollowShot();
                         type1_state = Type1State.SHOT;
                         break;
 
@@ -82,6 +97,23 @@ public class Boss_Manager : MonoBehaviour
 
                     default:
                         type1_state = Type1State.NONE;
+                        break;
+                }
+                break;
+            case Phases.TYPE_2:
+                switch(type2_state)
+                {
+                    case Type2State.PREPARE_SHOT:
+                        InvokeDirectionalShot();
+                        type2_state = Type2State.SHOT;
+                        break;
+
+                    case Type2State.SHOT:
+                        //projectile = projectile_obj.GetComponentInChildren<Boss_Projectile>();
+                        //projectile.StartCoroutine("DirectionalProjectiles");
+                        break;
+
+                    case Type2State.FINISH_SHOT:
                         break;
                 }
                 break;
@@ -118,23 +150,28 @@ public class Boss_Manager : MonoBehaviour
             case Phases.STATIC:
                 CalculatePhases();
 
-                //  TO DO: Open Eye 
+                //  TO DO: Open Eye
 
                 break;
 
             case Phases.GETHIT:
 
-                //  TO DO: Close eye, gethit animation, next phase
+                //  TO DO: Close eye, gethit animation, next phase (use the enemy1 code)
 
                 break;
         }
     }
 
-    void InvokeShot()
+    void InvokeFollowShot()
     {
         Instantiate(Shot, Boss);
         number_of_shots++;
         Invoke("InvokeShot", 1f);
+    }
+    void InvokeDirectionalShot()
+    {
+        Instantiate(Shot, Boss);
+        Invoke("InvokeDirectionalShot", 0.1f);
     }
 
     void CalculatePhases()
@@ -145,6 +182,13 @@ public class Boss_Manager : MonoBehaviour
             time_limit_next_phase = Random.Range(8, 14);
             is_changing_phase = true;
             Debug.Log("End Phase 1: " + time_limit_next_phase);
+        }
+        if (type2_state == Type2State.FINISH_SHOT && phases != Phases.STATIC)
+        {
+            phases = Phases.STATIC;
+            time_limit_next_phase = Random.Range(8, 14);
+            is_changing_phase = true;
+            Debug.Log("End Phase 2: " + time_limit_next_phase);
         }
         if (type3_state == Type3State.FINISH_SHOT && phases != Phases.STATIC)
         {
@@ -166,6 +210,12 @@ public class Boss_Manager : MonoBehaviour
             if(type1_state != Type1State.NONE)
             {
                 type1_state = Type1State.NONE;
+                type3_state = Type3State.PREPARE_SHOT;
+                phases = Phases.TYPE_3;
+            }
+            if (type2_state != Type2State.NONE)
+            {
+                type2_state = Type2State.NONE;
                 type3_state = Type3State.PREPARE_SHOT;
                 phases = Phases.TYPE_3;
             }
