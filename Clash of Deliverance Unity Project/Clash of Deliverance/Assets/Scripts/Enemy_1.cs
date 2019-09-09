@@ -50,8 +50,10 @@ public class Enemy_1 : MonoBehaviour
         bounce_number = Random.Range(1, 3);
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
-        
-        
+        get_hit = false;
+
+
+
     }
 
     void Update()
@@ -248,7 +250,6 @@ public class Enemy_1 : MonoBehaviour
             {
                 rb.isKinematic = false;
                 rb.AddForce(transform.right * -5000 * Time.deltaTime);
-                transform.Rotate(0, 0, 90);
                 Ears.SetActive(false);
                 Eyes.SetActive(false);
                 Mouth.SetActive(false);

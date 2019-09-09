@@ -1610,8 +1610,7 @@ PrefabInstance:
         type: 3}
       propertyPath: enemy1
       value: 
-      objectReference: {fileID: 3425553203449639391, guid: 076ef0ef6aaaa2c489b8d2160b02327b,
-        type: 3}
+      objectReference: {fileID: 911125599}
     - target: {fileID: 577816551492329403, guid: c571bac8b4159d54f917cdf7398b8760,
         type: 3}
       propertyPath: enemy2
@@ -1850,6 +1849,12 @@ CanvasRenderer:
 --- !u!1 &826823976 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1144579450697473225, guid: 076ef0ef6aaaa2c489b8d2160b02327b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3425553202560343951}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &911125599 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3425553203449639391, guid: 076ef0ef6aaaa2c489b8d2160b02327b,
     type: 3}
   m_PrefabInstance: {fileID: 3425553202560343951}
   m_PrefabAsset: {fileID: 0}
