@@ -6,6 +6,7 @@ public class Boss_Manager : MonoBehaviour
 {
     public enum Phases
     {
+        ENTER_BATTLEFIELD,
         TYPE_1,
         TYPE_2,
         TYPE_3,
@@ -46,6 +47,14 @@ public class Boss_Manager : MonoBehaviour
     public Phases last_attack_phase;
     public Phases last_fake_phase;
 
+    [SerializeField]
+    private float offset_camera_x;
+    [SerializeField]
+    private float velocity;
+    private float timer_enter_battelfield;
+
+    public Eye_Boss eye;
+    public GameObject Body;
     public GameObject Shot;
     private int number_of_shots;
     [SerializeField]
@@ -58,6 +67,9 @@ public class Boss_Manager : MonoBehaviour
 
     public Transform Goal;
     public Transform Boss;
+
+    public GameObject Eye;
+    private CircleCollider2D Eye_collider;
 
     private float timer_next_phase;
     private float timer_fake_static;
@@ -74,30 +86,53 @@ public class Boss_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetTypesNONE();
+        eye = GetComponentInChildren<Eye_Boss>();
 
-        rand_type = Random.Range(1, 3);
-        if(rand_type == 1)
-        {
-            phases = Phases.TYPE_1;
-            type1_state = Type1State.PREPARE_SHOT;
-        }
-        else if(rand_type == 2)
-        {
-            phases = Phases.TYPE_2;
-            type2_state = Type2State.PREPARE_SHOT;
-        }
+        Eye_collider = GetComponentInChildren<CircleCollider2D>();
+        Eye_collider.enabled = false;
+
+        SetTypesNONE();        
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch(phases)
+       
+        switch (phases)
         {
+            case Phases.ENTER_BATTLEFIELD:
+                if (gameObject.transform.position.x >= Camera.main.transform.position.x + offset_camera_x)
+                {
+                    MoveLeft();
+                }
+                else
+                {
+                    if(timer_enter_battelfield > 1.5f)
+                    {
+                        rand_type = Random.Range(1, 3);
+                        if (rand_type == 1)
+                        {
+                            phases = Phases.TYPE_1;
+                            type1_state = Type1State.PREPARE_SHOT;
+                        }
+                        else if (rand_type == 2)
+                        {
+                            phases = Phases.TYPE_2;
+                            type2_state = Type2State.PREPARE_SHOT;
+                        }
+                    }
+                   else
+                    {
+                        timer_enter_battelfield += Time.deltaTime;
+                    }
+                }
+                    break;
+
             case Phases.TYPE_1:
                 switch(type1_state)
                 {
                     case Type1State.PREPARE_SHOT:
+                        Eye_collider.enabled = false;
                         InvokeFollowShot();
                         type1_state = Type1State.SHOT;
                         break;
@@ -123,6 +158,7 @@ public class Boss_Manager : MonoBehaviour
                 switch(type2_state)
                 {
                     case Type2State.PREPARE_SHOT:
+                        Eye_collider.enabled = false;
                         type2_max_repeat_number = Random.Range(2, 5);
                         int random_number = Random.Range(0,2);
 
@@ -187,24 +223,24 @@ public class Boss_Manager : MonoBehaviour
                 }
                 break;          
 
-            case Phases.FAKE_STATIC:              
-                CalculatePhases();
-               
-                //  TO DO: Open Eye
+            case Phases.FAKE_STATIC:
+                CheckEye();
                 break;
 
             case Phases.STATIC:
-                CalculatePhases();
-
-                //  TO DO: Open Eye
+                CheckEye();
                 break;
 
             case Phases.GETHIT:
-
-                //  TO DO: Close eye, gethit animation, next phase (use the enemy1 code)
-
+                StartCoroutine("GetHit");
+                Eye_collider.enabled = false;
                 break;
-        }
+        }     
+    }
+
+    void MoveLeft()
+    {
+        gameObject.transform.position = new Vector2(transform.position.x - velocity * Time.deltaTime, transform.position.y);
     }
 
     void InvokeFollowShot()
@@ -249,15 +285,33 @@ public class Boss_Manager : MonoBehaviour
 
         if (phases == Phases.FAKE_STATIC)
         {
-            DoFakeStaticPhase();
+            FakeStaticPhase();
         }
         if(phases == Phases.STATIC)
         {
-            DoStaticPhase();
+            StaticPhase();
         }       
     }
 
-    void DoFakeStaticPhase()
+    void CheckEye()
+    {
+        Eye_collider.enabled = true;
+        if (eye.IsDead())
+        {
+            Destroy(gameObject, 5f);
+        }
+        else if (eye.get_hit)
+        {
+            phases = Phases.GETHIT;
+            eye.get_hit = false;
+        }
+        else
+        {
+            CalculatePhases();
+        }
+    }
+
+    void FakeStaticPhase()
     {
         last_fake_phase = Phases.FAKE_STATIC;
 
@@ -283,7 +337,7 @@ public class Boss_Manager : MonoBehaviour
         }
     }
 
-    void DoStaticPhase()
+    void StaticPhase()
     {
 
         if (timer_next_phase >= 12)
@@ -382,5 +436,31 @@ public class Boss_Manager : MonoBehaviour
         type1_state = Type1State.NONE;
         type2_state = Type2State.NONE;
         type3_state = Type3State.NONE;
+    }
+
+    IEnumerator GetHit()
+    {
+        for(int i=0; i < 6; ++i)
+        {
+            Body.SetActive(false);
+            yield return new WaitForSeconds(0.2f);
+            Body.SetActive(true);
+            yield return new WaitForSeconds(0.2f);
+        }     
+       
+        if (last_fake_phase == Phases.FAKE_STATIC)
+        {
+            can_kamehameha = true;
+            last_fake_phase = Phases.NONE;
+            phases = Phases.STATIC;
+            timer_next_phase = 0;
+        }
+        else
+        {
+            phases = Phases.FAKE_STATIC;
+            timer_fake_static = 0;
+        }
+
+        StopCoroutine("GetHit");
     }
 }

@@ -27,13 +27,13 @@ public class Boss_Projectile : MonoBehaviour
     void LateUpdate()
     {
 
-        if (Boss.type1_state != Boss_Manager.Type1State.NONE)  //Follow bulets
+        if (Boss.type1_state != Boss_Manager.Type1State.NONE)  //Following bulets
         {
             //Calculates trigonometric angle with player and move fordward
             float angle = Mathf.Atan(distance.y / distance.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, angle);
 
-            transform.Translate(new Vector3(-velocity * Time.deltaTime, 0, 0));
+            transform.Translate(new Vector3(-velocity /** 1.3f*/ * Time.deltaTime, 0, 0));
         }
 
         if (Boss.type2_state != Boss_Manager.Type2State.NONE) //Directional bulets
@@ -42,13 +42,12 @@ public class Boss_Projectile : MonoBehaviour
             {
                 if(Boss.type2_state == Boss_Manager.Type2State.PHASE_1)
                 {
-                    directional_angle = 280 + (Boss.number_of_directional_shots * 10);
+                    directional_angle = 290 + (Boss.number_of_directional_shots * 10); //  Up - Down
                 }
                 else if (Boss.type2_state == Boss_Manager.Type2State.PHASE_2)
                 {
-                    directional_angle = 75 - (Boss.number_of_directional_shots * 10);
+                    directional_angle = 65 - (Boss.number_of_directional_shots * 10); //  Down - Up
                 }
-
                 calculate_directional_angle = false;
             }
             transform.rotation = Quaternion.Euler(0, 0,  directional_angle);
