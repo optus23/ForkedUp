@@ -20,6 +20,7 @@ TagManager:
   - Enemy_Shot
   - Enemy_Up
   - Enemy_Down
+  - Boss
   layers:
   - Default
   - TransparentFX

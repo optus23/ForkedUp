@@ -1469,7 +1469,7 @@ PrefabInstance:
         type: 3}
       propertyPath: enemy1
       value: 
-      objectReference: {fileID: 911125599}
+      objectReference: {fileID: 0}
     - target: {fileID: 577816551492329403, guid: c571bac8b4159d54f917cdf7398b8760,
         type: 3}
       propertyPath: enemy2
@@ -2102,6 +2102,53 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5921161028398058676, guid: 51f28352bd2b1b947a903e8d251e8efd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 51f28352bd2b1b947a903e8d251e8efd, type: 3}
+--- !u!1 &1309385255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1309385256}
+  - component: {fileID: 1309385257}
+  m_Layer: 0
+  m_Name: Eye
+  m_TagString: Boss
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1309385256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309385255}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.12, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1682684422}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1309385257
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309385255}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1358375631
 GameObject:
   m_ObjectHideFlags: 0
@@ -2346,9 +2393,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1682684422}
   - component: {fileID: 1682684421}
+  - component: {fileID: 1682684423}
   m_Layer: 0
   m_Name: Monster_5
-  m_TagString: Untagged
+  m_TagString: Enemy_Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2369,12 +2417,17 @@ MonoBehaviour:
   type2_state: 0
   type3_state: 0
   phases: 0
+  last_attack_phase: 0
+  last_fake_phase: 0
   Shot: {fileID: 3831726135534955130, guid: 48939d95458b2184097520c1f33cd638, type: 3}
+  number_max_of_shots: 15
+  number_of_directional_shots: 0
   Kamehameha: {fileID: 8939532206334638131, guid: c4fb93aa84b03a144af74077e4f925ed,
     type: 3}
   Prepare_Kamehameha: {fileID: 966548114}
   Goal: {fileID: 1676678315}
   Boss: {fileID: 1682684422}
+  type2_max_repeat_number: 3
 --- !u!4 &1682684422
 Transform:
   m_ObjectHideFlags: 0
@@ -2387,9 +2440,36 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 966548117}
+  - {fileID: 1309385256}
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1682684423
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682684420}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.93, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.86, y: 10.16}
+  m_EdgeRadius: 0
 --- !u!1 &1839576004
 GameObject:
   m_ObjectHideFlags: 0
