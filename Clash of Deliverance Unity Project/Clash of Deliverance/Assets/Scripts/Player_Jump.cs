@@ -440,10 +440,19 @@ public class Player_Jump : MonoBehaviour
                 rb2D.AddForce(Vector2.left * dash_force / 4);
                 InitialPosition.SetActive(true);
                 dashing = false;
+
                 enemy_1.life--;
                 if(enemy_1.life >= 1)
                     enemy_1.get_hit = true;
 
+            }
+            else
+            {
+                cameraShake.Shake(0.1f, 0.2f);
+                dead = true;
+                rb2D.AddForce(transform.right * (force / 1.5f));
+                rb2D.AddForce(transform.up * (force / 1.5f));
+                dashing = false;
             }
         }
     }

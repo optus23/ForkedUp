@@ -9,9 +9,9 @@ public class Fade : MonoBehaviour
     Enemy_1 enemy_1;
     Enemy_2 enemy_2;
     Enemy_3 enemy_3;
+    Enemy_4 enemy_4;
     public GameObject Body;
 
-    public bool start;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +20,7 @@ public class Fade : MonoBehaviour
         enemy_1 = Body.GetComponentInParent<Enemy_1>();
         enemy_2 = GetComponentInParent<Enemy_2>();
         enemy_3 = GetComponentInParent<Enemy_3>();
+        enemy_4 = GetComponent<Enemy_4>();
     }
 
     private void Update()
@@ -51,6 +52,16 @@ public class Fade : MonoBehaviour
                 StartCoroutine("Fading");
                 
                 enemy_3.start_fading = false;
+            }
+        }
+
+        if (enemy_4 != null)
+        {
+            if (enemy_4.start_fading)
+            {
+                StartCoroutine("Fading");
+                
+                enemy_4.start_fading = false;
             }
         }
 
