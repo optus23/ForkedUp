@@ -37,7 +37,8 @@ public class Enemy4 : MonoBehaviour
     SpriteRenderer renderer;
     SpriteRenderer happy_renderer;
     SpriteRenderer angry_renderer;
-    TrailRenderer trial;
+    TrailRenderer trail;
+    BoxCollider2D box_collider;
 
     public bool dead;
     public bool start_fading;
@@ -50,7 +51,8 @@ public class Enemy4 : MonoBehaviour
         renderer = Body.GetComponent<SpriteRenderer>();
         happy_renderer = HappyMouth.GetComponentInParent<SpriteRenderer>();
         angry_renderer = AngryMouth.GetComponent<SpriteRenderer>();
-        trial = GetComponent<TrailRenderer>();
+        trail = GetComponent<TrailRenderer>();
+        box_collider = GetComponent<BoxCollider2D>();
 
         player = GameObject.FindGameObjectWithTag("Player");
         
@@ -64,12 +66,10 @@ public class Enemy4 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Player_pos);
-
         if (get_hit)
         {
             StartCoroutine("GetHit");
-            trial.enabled = false;
+            trail.enabled = false;
             transform.Rotate(0, 0, 10);
         }
         else
@@ -132,8 +132,11 @@ public class Enemy4 : MonoBehaviour
                             }
 
                             detect_player_position = false;
-                            AngryMouth.SetActive(true);
-                            HappyMouth.SetActive(false);
+
+                            if (AngryMouth != null)
+                                AngryMouth.SetActive(true);
+                            if (HappyMouth != null)
+                                HappyMouth.SetActive(false);
 
                             Vector2 _vec2;
                             _vec2 = Vector2.MoveTowards(transform.position, new Vector2(3.8f, Player_pos_right.y), velocity * Time.deltaTime);
@@ -161,8 +164,11 @@ public class Enemy4 : MonoBehaviour
 
                             Vector2 return_distance = Player_pos_right - transform.position;
                             return_degree = -1 * (Mathf.Rad2Deg * Mathf.Atan(3.8f / return_distance.y));
-                            AngryMouth.SetActive(false);
-                            HappyMouth.SetActive(true);
+
+                            if (AngryMouth != null)
+                                AngryMouth.SetActive(false);
+                            if (HappyMouth != null)
+                                HappyMouth.SetActive(true);
                             if (return_degree >= 0)
                             {
                                 return_degree = -1 * (Mathf.Rad2Deg * Mathf.Atan(3.8f / return_distance.y) + 180);
@@ -172,8 +178,12 @@ public class Enemy4 : MonoBehaviour
 
                             //  Flip X effect 
                             renderer.flipX = true;
-                            happy_renderer.flipX = true;
-                            angry_renderer.flipX = true;
+
+                            if (happy_renderer != null)
+                                happy_renderer.flipX = true;
+                            if (angry_renderer != null)
+                                angry_renderer.flipX = true;
+
                             detect_player_position = true;
                             calculate_velocity2 = false;
 
@@ -213,11 +223,13 @@ public class Enemy4 : MonoBehaviour
                 calcule_velocity = true;
             }
 
-            AngryMouth.SetActive(true);
-            HappyMouth.SetActive(false);
+            if(AngryMouth != null)
+                AngryMouth.SetActive(true);
+            if (HappyMouth != null)
+                HappyMouth.SetActive(false);
+
             Vector2 vec2;
             vec2 = Vector2.MoveTowards(transform.position, new Vector2(Player_pos.x, Player_pos.y), velocity * Time.deltaTime);
-            Debug.Log("MOVE: " + Player_pos);
             this.transform.position = vec2;
 
         }
@@ -231,8 +243,11 @@ public class Enemy4 : MonoBehaviour
 
             //  Flip X effect 
             renderer.flipX = false;
-            happy_renderer.flipX = false;
-            angry_renderer.flipX = false;
+
+            if (happy_renderer != null)
+                happy_renderer.flipX = false;
+            if (angry_renderer != null)
+                angry_renderer.flipX = false;
 
             StartCoroutine("Rotate");
         }
@@ -256,13 +271,13 @@ public class Enemy4 : MonoBehaviour
         {
            
             stop = true;
-            AngryMouth.SetActive(false);
-            HappyMouth.SetActive(true);
+
+            if (AngryMouth != null)
+                AngryMouth.SetActive(false);
+            if (HappyMouth != null)
+                HappyMouth.SetActive(true);
             yield return new WaitForSeconds(0.1f);
-        }
-        //renderer.flipX = true;
-        //happy_renderer.flipX = true;
-        //angry_renderer.flipX = true;
+        }       
         finish_rotation = true;
         stop = false;
         StopCoroutine("Rotate");
@@ -273,16 +288,22 @@ public class Enemy4 : MonoBehaviour
     {
         if(collision.transform.tag == "Player")
         {
-            dead = true;
-            start_fading = true;
-
-            
             life--;
-            get_hit = true;
+            
             if(life <= 0)
-            {
-                Destroy(gameObject);
-            }          
+            {              
+                dead = true;
+                trail.enabled = false;
+                
+                box_collider.enabled = false;
+                start_fading = true;
+                Destroy(gameObject, 1f);
+                Destroy(AngryMouth);
+                Destroy(HappyMouth);
+            }
+            else
+                get_hit = true;
+
         }
     }
 
@@ -297,6 +318,6 @@ public class Enemy4 : MonoBehaviour
         }
         StopCoroutine("GetHit");
         get_hit = false;
-        trial.enabled = true;
+        trail.enabled = true;
     }
 }

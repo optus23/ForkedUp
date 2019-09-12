@@ -1200,6 +1200,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster4
       objectReference: {fileID: 0}
+    - target: {fileID: 4420378381393128068, guid: a8f6556bcf544084cb77fa59f3e86a3b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy_4
+      objectReference: {fileID: 0}
     - target: {fileID: 4420378381393128064, guid: a8f6556bcf544084cb77fa59f3e86a3b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2950,6 +2955,12 @@ PrefabInstance:
       propertyPath: Restart
       value: 
       objectReference: {fileID: 345512593}
+    - target: {fileID: 18259986932364846, guid: b192f2c574ec2454093e5108b996c580,
+        type: 3}
+      propertyPath: enemy4
+      value: 
+      objectReference: {fileID: 4420378381393128068, guid: a8f6556bcf544084cb77fa59f3e86a3b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b192f2c574ec2454093e5108b996c580, type: 3}
 --- !u!1001 &1375340226372419820

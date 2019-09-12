@@ -210,6 +210,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8596876608333891906, guid: 1cadb8c43fc2f924b8a409092176213d,
         type: 3}
+    - target: {fileID: 577816551492329403, guid: c571bac8b4159d54f917cdf7398b8760,
+        type: 3}
+      propertyPath: enemy4
+      value: 
+      objectReference: {fileID: 4420378381393128068, guid: a8f6556bcf544084cb77fa59f3e86a3b,
+        type: 3}
     - target: {fileID: 4809111927833784123, guid: c571bac8b4159d54f917cdf7398b8760,
         type: 3}
       propertyPath: m_SortingLayerID

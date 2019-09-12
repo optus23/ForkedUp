@@ -9,7 +9,7 @@ public class Fade : MonoBehaviour
     Enemy_1 enemy_1;
     Enemy_2 enemy_2;
     Enemy_3 enemy_3;
-    Enemy_4 enemy_4;
+    Enemy4 enemy_4;
     
     public GameObject Body;
 
@@ -21,7 +21,7 @@ public class Fade : MonoBehaviour
         enemy_1 = Body.GetComponentInParent<Enemy_1>();
         enemy_2 = GetComponentInParent<Enemy_2>();
         enemy_3 = GetComponentInParent<Enemy_3>();
-        enemy_4 = GetComponentInParent<Enemy_4>();
+        enemy_4 = GetComponentInParent<Enemy4>();
 
     }
 

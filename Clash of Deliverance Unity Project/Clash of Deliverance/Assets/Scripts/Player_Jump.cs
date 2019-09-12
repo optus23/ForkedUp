@@ -6,13 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class Player_Jump : MonoBehaviour
 {
-    public Enemy_1 enemy_1 { get; set; }
+    Enemy_1 enemy_1;
     Enemy_2 enemy_2;
     Enemy_3 enemy_3;
+    Enemy4 enemy_4;
 
     public GameObject enemy1;
     public GameObject enemy2;
     public GameObject enemy3;
+    public GameObject enemy4;
 
     Score score;
     public float force;
@@ -74,6 +76,7 @@ public class Player_Jump : MonoBehaviour
         //enemy_3 = enemy3.GetComponent<Enemy_3>();
         //enemy_2 = enemy2.GetComponent<Enemy_2>();
         enemy_1 = enemy1.GetComponent<Enemy_1>();
+        enemy_4 = enemy4.GetComponent<Enemy4>();
 
 
         initial_player_position_x = gameObject.transform.position.x;
@@ -460,9 +463,18 @@ public class Player_Jump : MonoBehaviour
         {
             if (dashing)
             {
+                transform.rotation = Quaternion.identity;
+                if (dashing_down)
+                {
+                    transform.rotation = downDash;
+                    rb2D.AddForce(transform.up * -force * 1.3f);
+                    dashing_down = false;
+                }
+                dashing = false;
+                Score.score_value++;
+                Score.player_pickup_score = true;
                 cameraShake.Shake(0.2f, 0.2f);
 
-                transform.rotation = Quaternion.identity;
                 rb2D.velocity = Vector2.zero;
                 rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
 
@@ -473,11 +485,16 @@ public class Player_Jump : MonoBehaviour
             }
             else
             {
-                cameraShake.Shake(0.1f, 0.2f);
-                dead = true;
-                rb2D.AddForce(transform.right * (force / 1.5f));
-                rb2D.AddForce(transform.up * (force / 1.5f));
-                dashing = false;
+                if(!enemy_4.get_hit)
+                {
+                    cameraShake.Shake(0.1f, 0.2f);
+                    dead = true;
+                    rb2D.AddForce(transform.right * (force / 1.5f));
+                    rb2D.AddForce(transform.up * (force / 1.5f));
+                    dashing = false;
+                }
+               
+                
             }
         }
     }
