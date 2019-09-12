@@ -68,7 +68,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1312110469
   m_SortingLayer: 6
-  m_SortingOrder: 4
+  m_SortingOrder: 24
   m_Sprite: {fileID: 21300004, guid: dc9bfe06090a1224d882f4525739aa84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -149,7 +149,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1312110469
   m_SortingLayer: 6
-  m_SortingOrder: 4
+  m_SortingOrder: 26
   m_Sprite: {fileID: 21300000, guid: dc9bfe06090a1224d882f4525739aa84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -244,7 +244,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1312110469
   m_SortingLayer: 6
-  m_SortingOrder: 4
+  m_SortingOrder: 27
   m_Sprite: {fileID: 21300002, guid: dc9bfe06090a1224d882f4525739aa84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -338,7 +338,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1312110469
   m_SortingLayer: 6
-  m_SortingOrder: 4
+  m_SortingOrder: 33
   m_Sprite: {fileID: 21300006, guid: dc9bfe06090a1224d882f4525739aa84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -418,7 +418,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1312110469
   m_SortingLayer: 6
-  m_SortingOrder: 4
+  m_SortingOrder: 36
   m_Sprite: {fileID: 21300008, guid: dc9bfe06090a1224d882f4525739aa84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -498,7 +498,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1312110469
   m_SortingLayer: 6
-  m_SortingOrder: 4
+  m_SortingOrder: 58
   m_Sprite: {fileID: 21300010, guid: dc9bfe06090a1224d882f4525739aa84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -631,9 +631,6 @@ MonoBehaviour:
   Money_1: {fileID: 1498928418579202211}
   Money_5: {fileID: 4833760090532691649}
   Money_10: {fileID: 8184096100789797793}
-  spawn_ratio_1: 0
-  spawn_ratio_5: 0
-  spawn_ratio_10: 0
 --- !u!50 &8216174312096873973
 Rigidbody2D:
   serializedVersion: 4

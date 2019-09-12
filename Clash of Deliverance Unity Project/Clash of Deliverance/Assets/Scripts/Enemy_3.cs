@@ -23,6 +23,7 @@ public class Enemy_3 : MonoBehaviour
     public GameObject Right_eye;
     public GameObject Left_eye;
     public GameObject Enemy_mouth;
+    public GameObject Wings;
 
     public GameObject Money;
 
@@ -93,6 +94,7 @@ public class Enemy_3 : MonoBehaviour
             dead = true;
             Enemy_Shot.SetActive(false);
             Right_eye.SetActive(false);
+            Wings.SetActive(false);
             Left_eye.SetActive(false);
             Enemy_mouth.SetActive(false);
             collider.enabled = false;
