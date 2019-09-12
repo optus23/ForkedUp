@@ -9,7 +9,9 @@ public class Enemy4 : MonoBehaviour
     [SerializeField]
     private float velocity;
     [SerializeField]
-    private Transform Goal;
+    public GameObject Body;
+
+    GameObject player;
 
     private bool detect_player_position;
     private Vector3 Player_pos;
@@ -35,16 +37,23 @@ public class Enemy4 : MonoBehaviour
     SpriteRenderer renderer;
     SpriteRenderer happy_renderer;
     SpriteRenderer angry_renderer;
+    TrailRenderer trial;
 
     public bool dead;
     public bool start_fading;
+    public int life;
+    public bool get_hit;
 
     // Start is called before the first frame update
     void Start()
     {
-        renderer = GetComponent<SpriteRenderer>();
-        happy_renderer = HappyMouth.GetComponent<SpriteRenderer>();
+        renderer = Body.GetComponent<SpriteRenderer>();
+        happy_renderer = HappyMouth.GetComponentInParent<SpriteRenderer>();
         angry_renderer = AngryMouth.GetComponent<SpriteRenderer>();
+        trial = GetComponent<TrailRenderer>();
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        
 
         detect_player_position = true;
         half_velocity = velocity / 4;
@@ -54,128 +63,161 @@ public class Enemy4 : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {              
+    {
+        Debug.Log(Player_pos);
 
-        //  Move Left
-        if (gameObject.transform.position.x >= Camera.main.transform.position.x + offset_camera_x && !has_entered && !stop)
+        if (get_hit)
         {
-            MoveLeft();
-            velocity = half_velocity;
+            StartCoroutine("GetHit");
+            trial.enabled = false;
+            transform.Rotate(0, 0, 10);
         }
         else
         {
-            has_entered = true;
-
-            //  Guide Enemy Attack
-            if (detect_player_position)
+            //  Move Left
+            if (gameObject.transform.position.x >= Camera.main.transform.position.x + offset_camera_x && !has_entered && !stop)
             {
-                Player_pos = new Vector3 (Goal.position.x - offset_camera_x/2, Goal.position.y, Goal.position.z);
-                velocity = double_velocity;
-
-                detect_player_position = false;
-            }
-
-            if (transform.position.x > Player_pos.x && !return_initial_pos)
-            {
-                DetectWayPoint();
-                if (gameObject.transform.position.x <= Camera.main.transform.position.x - offset_camera_x/2)
-                {
-                    velocity = half_velocity;
-                    
-                }
+                MoveLeft();
+                velocity = half_velocity;
             }
             else
             {
-                return_initial_pos = true;
-                finish_rotation = false;            
-                calcule_velocity = false;
+                has_entered = true;
 
-
-                if (gameObject.transform.position.x <= Camera.main.transform.position.x + offset_camera_x && !stop)
+                //  Guide Enemy Attack
+                if (detect_player_position)
                 {
-                    if(timer_rotate_right > 1f)
+                    if (player.transform.position.y < 0)
                     {
-                        //MoveRight();
-
-                        if (!calculate_velocity2)
-                        {
-                            Vector2 distance_vector = Player_pos_right - transform.position;
-                            displacement = Mathf.Sqrt(Mathf.Pow(distance_vector.x, 2) + Mathf.Pow(distance_vector.y, 2));
-                            velocity = displacement / 0.35f;
-                            calculate_velocity2 = true;
-                            
-
-                        }
-
-                        detect_player_position = false;
-                        AngryMouth.SetActive(true);
-                        HappyMouth.SetActive(false);
-
-                        Vector2 _vec2;
-                        _vec2 = Vector2.MoveTowards(transform.position, new Vector2(3.8f, Player_pos_right.y), velocity * Time.deltaTime);
-                        this.transform.position = _vec2;
-                    }                  
-                    else
-                    {
-                        Player_pos_right = new Vector3(Player_pos.x + 3.8f, Player_pos.y, Player_pos.z);
-                        timer_rotate_right += Time.deltaTime;
-                        
-                        Vector2 return_distance = Player_pos_right - transform.position;
-                        return_degree = -1 * (Mathf.Rad2Deg * Mathf.Atan(3.8f / return_distance.y));
-                        AngryMouth.SetActive(false);
-                        HappyMouth.SetActive(true);
-                        if (return_degree >= 0)
-                        {
-                            return_degree = -1 * (Mathf.Rad2Deg * Mathf.Atan(3.8f / return_distance.y) + 180);
-                        }
-                       
-                        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, return_degree), 6 * Time.deltaTime);
-
-                        //  Flip X effect 
-                        renderer.flipX = true;
-                        happy_renderer.flipX = true;
-                        angry_renderer.flipX = true;
-                        detect_player_position = true;
-                        calculate_velocity2 = false;                     
-
-                    }
-                    if (gameObject.transform.position.x >= Camera.main.transform.position.x + offset_camera_x/2)
-                    {
-                        velocity = half_velocity;                      
+                        Player_pos = new Vector3(player.transform.position.x - offset_camera_x / 2, player.transform.position.y - offset_camera_x / 3f, player.transform.position.z);
                     }
                     else
-                        velocity = double_velocity;
+                    {
+                        Player_pos = new Vector3(player.transform.position.x - offset_camera_x / 2, player.transform.position.y + offset_camera_x / 3f, player.transform.position.z);
+                    }
 
-                }
-                else if(!stop)
-                {
-                    transform.position = new Vector2(offset_camera_x, transform.position.y);
-                    return_initial_pos = false;
-                    detect_player_position = true;
-                    timer_rotate_right = 0;
                     velocity = double_velocity;
-                }              
+
+                    detect_player_position = false;
+                }
+
+                if (transform.position.x > Player_pos.x && !return_initial_pos)
+                {
+                    DetectWayPoint();
+                    if (gameObject.transform.position.x <= Camera.main.transform.position.x - offset_camera_x / 2)
+                    {
+                        velocity = half_velocity;
+                    }
+                }
+                else
+                {
+                    return_initial_pos = true;
+                    finish_rotation = false;
+                    calcule_velocity = false;
+
+                    if (gameObject.transform.position.x <= Camera.main.transform.position.x + offset_camera_x && !stop)
+                    {
+                        if (timer_rotate_right > 1f) //  GO RIGHT
+                        {
+                            //MoveRight();
+
+                            if (!calculate_velocity2)
+                            {
+                                Vector2 distance_vector = Player_pos_right - transform.position;
+                                displacement = Mathf.Sqrt(Mathf.Pow(distance_vector.x, 2) + Mathf.Pow(distance_vector.y, 2));
+                                velocity = displacement / 0.4f;
+                                calculate_velocity2 = true;
+
+
+                            }
+
+                            detect_player_position = false;
+                            AngryMouth.SetActive(true);
+                            HappyMouth.SetActive(false);
+
+                            Vector2 _vec2;
+                            _vec2 = Vector2.MoveTowards(transform.position, new Vector2(3.8f, Player_pos_right.y), velocity * Time.deltaTime);
+                            this.transform.position = _vec2;
+                        }
+                        else
+                        {
+                            //if (Player_pos.y < 0)
+                            //{
+                            //    Player_pos_right = new Vector3(Player_pos.x + 3.8f, Player_pos.y - 3.8f, Player_pos.z);
+                            //}
+                            //else
+                            //{
+                            //    Player_pos_right = new Vector3(Player_pos.x + 3.8f, Player_pos.y + 3.8f, Player_pos.z);
+                            //}
+                            Vector2 _distance = Player_pos - transform.position;
+
+                            if(_distance.y < 0)
+                                Player_pos_right = new Vector3(Player_pos.x + 3.8f, Player_pos.y - 3.2f, Player_pos.z);
+                            else
+                                Player_pos_right = new Vector3(Player_pos.x + 3.8f, Player_pos.y + 3.2f, Player_pos.z);
+
+
+                            timer_rotate_right += Time.deltaTime;
+
+                            Vector2 return_distance = Player_pos_right - transform.position;
+                            return_degree = -1 * (Mathf.Rad2Deg * Mathf.Atan(3.8f / return_distance.y));
+                            AngryMouth.SetActive(false);
+                            HappyMouth.SetActive(true);
+                            if (return_degree >= 0)
+                            {
+                                return_degree = -1 * (Mathf.Rad2Deg * Mathf.Atan(3.8f / return_distance.y) + 180);
+                            }
+
+                            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, return_degree), 6 * Time.deltaTime);
+
+                            //  Flip X effect 
+                            renderer.flipX = true;
+                            happy_renderer.flipX = true;
+                            angry_renderer.flipX = true;
+                            detect_player_position = true;
+                            calculate_velocity2 = false;
+
+                        }
+                        if (gameObject.transform.position.x >= Camera.main.transform.position.x + offset_camera_x / 2)
+                        {
+                            velocity = half_velocity;
+                        }
+                        else
+                            velocity = double_velocity;
+
+                    }
+                    else if (!stop)
+                    {
+                        transform.position = new Vector2(offset_camera_x, transform.position.y);
+                        return_initial_pos = false;
+                        detect_player_position = true;
+                        timer_rotate_right = 0;
+                        velocity = double_velocity;
+                    }
+                }
             }
         }
+
     }
 
     private void DetectWayPoint()
     {
         
-        if (finish_rotation)
+        if (finish_rotation)  //  GO LEFT
         {          
             if(!calcule_velocity)
             {
                 Vector2 distance_vector = Player_pos - transform.position;
                 displacement = Mathf.Sqrt(Mathf.Pow(distance_vector.x, 2) + Mathf.Pow(distance_vector.y, 2));
-                velocity = displacement / 0.35f;            
+                velocity = displacement / 0.6f;            
                 calcule_velocity = true;
             }
 
             AngryMouth.SetActive(true);
             HappyMouth.SetActive(false);
             Vector2 vec2;
-            vec2 = Vector2.MoveTowards(transform.position, new Vector2(-3.8f, Player_pos.y), velocity * Time.deltaTime);
+            vec2 = Vector2.MoveTowards(transform.position, new Vector2(Player_pos.x, Player_pos.y), velocity * Time.deltaTime);
+            Debug.Log("MOVE: " + Player_pos);
             this.transform.position = vec2;
 
         }
@@ -184,7 +226,7 @@ public class Enemy4 : MonoBehaviour
             detect_player_position = true;
 
             Vector2 distance = Player_pos - transform.position;
-            degree = Mathf.Rad2Deg * Mathf.Atan(distance.y / -3.8f) + 90;
+            degree = Mathf.Rad2Deg * Mathf.Atan(distance.y / distance.x) + 90;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, degree), 7 * Time.deltaTime);
 
             //  Flip X effect 
@@ -233,7 +275,28 @@ public class Enemy4 : MonoBehaviour
         {
             dead = true;
             start_fading = true;
-            Destroy(gameObject, 2);
+
+            
+            life--;
+            get_hit = true;
+            if(life <= 0)
+            {
+                Destroy(gameObject);
+            }          
         }
+    }
+
+    IEnumerator GetHit()
+    {
+        for (int i = 0; i < 3; ++i)
+        {
+            Body.SetActive(false);
+            yield return new WaitForSeconds(0.2f);
+            Body.SetActive(true);
+            yield return new WaitForSeconds(0.2f);
+        }
+        StopCoroutine("GetHit");
+        get_hit = false;
+        trial.enabled = true;
     }
 }

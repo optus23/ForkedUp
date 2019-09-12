@@ -455,6 +455,31 @@ public class Player_Jump : MonoBehaviour
                 dashing = false;
             }
         }
+
+        if (collision.transform.tag == "Enemy_4")
+        {
+            if (dashing)
+            {
+                cameraShake.Shake(0.2f, 0.2f);
+
+                transform.rotation = Quaternion.identity;
+                rb2D.velocity = Vector2.zero;
+                rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+                rb2D.AddForce(Vector2.left * dash_force / 4);
+                InitialPosition.SetActive(true);
+                dashing = false;            
+
+            }
+            else
+            {
+                cameraShake.Shake(0.1f, 0.2f);
+                dead = true;
+                rb2D.AddForce(transform.right * (force / 1.5f));
+                rb2D.AddForce(transform.up * (force / 1.5f));
+                dashing = false;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

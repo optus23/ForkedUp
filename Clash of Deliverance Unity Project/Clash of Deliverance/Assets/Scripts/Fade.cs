@@ -10,6 +10,7 @@ public class Fade : MonoBehaviour
     Enemy_2 enemy_2;
     Enemy_3 enemy_3;
     Enemy_4 enemy_4;
+    
     public GameObject Body;
 
     // Start is called before the first frame update
@@ -20,7 +21,8 @@ public class Fade : MonoBehaviour
         enemy_1 = Body.GetComponentInParent<Enemy_1>();
         enemy_2 = GetComponentInParent<Enemy_2>();
         enemy_3 = GetComponentInParent<Enemy_3>();
-        enemy_4 = GetComponent<Enemy_4>();
+        enemy_4 = GetComponentInParent<Enemy_4>();
+
     }
 
     private void Update()

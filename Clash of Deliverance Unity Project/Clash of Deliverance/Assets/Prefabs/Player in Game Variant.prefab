@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2034939430670154495, guid: c571bac8b4159d54f917cdf7398b8760,
         type: 3}
       propertyPath: m_Name
-      value: Player in Game
+      value: Player in Game Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2034939430670154495, guid: c571bac8b4159d54f917cdf7398b8760,
         type: 3}
@@ -196,7 +196,8 @@ PrefabInstance:
         type: 3}
       propertyPath: enemy1
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3425553203449639391, guid: 076ef0ef6aaaa2c489b8d2160b02327b,
+        type: 3}
     - target: {fileID: 577816551492329403, guid: c571bac8b4159d54f917cdf7398b8760,
         type: 3}
       propertyPath: enemy2
