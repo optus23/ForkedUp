@@ -42,11 +42,11 @@ public class Boss_Projectile : MonoBehaviour
             {
                 if(Boss.type2_state == Boss_Manager.Type2State.PHASE_1)
                 {
-                    directional_angle = 290 + (Boss.number_of_directional_shots * 10); //  Up - Down
+                    directional_angle = 280 + (Boss.number_of_directional_shots * 10); //  Up - Down
                 }
                 else if (Boss.type2_state == Boss_Manager.Type2State.PHASE_2)
                 {
-                    directional_angle = 65 - (Boss.number_of_directional_shots * 10); //  Down - Up
+                    directional_angle = 55 - (Boss.number_of_directional_shots * 10); //  Down - Up
                 }
                 calculate_directional_angle = false;
             }

@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4420378381393128065}
   m_Layer: 0
   m_Name: Monster4
-  m_TagString: Enemy_Wall
+  m_TagString: Enemy_4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

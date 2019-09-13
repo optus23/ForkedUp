@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Boss_Manager : MonoBehaviour
 {
+   
     public enum Phases
     {
-        ENTER_BATTLEFIELD,
         TYPE_1,
         TYPE_2,
         TYPE_3,
         STATIC,
         FAKE_STATIC,
-        GETHIT,
         NONE
     }
 
@@ -38,8 +37,15 @@ public class Boss_Manager : MonoBehaviour
         FINISH_SHOT,
         NONE
     }
+    public enum StaticState
+    {
+        FIRST_EXIT_BATTLEFIELD,
+        ENTER_BATTLEFIELD,
+        EXIT_BATTLEFIELD,
+        NONE
+    }
 
-
+    public StaticState static_state;
     public Type1State type1_state;
     public Type2State type2_state;
     public Type3State type3_state;
@@ -48,10 +54,13 @@ public class Boss_Manager : MonoBehaviour
     public Phases last_fake_phase;
 
     [SerializeField]
-    private float offset_camera_x;
+    private float offset_enter_battelfield;
     [SerializeField]
     private float velocity;
     private float timer_enter_battelfield;
+    [SerializeField]
+    private bool first_exit_battelfield;
+    private bool exit_battelfield;
 
     public Eye_Boss eye;
     public GameObject Body;
@@ -82,16 +91,24 @@ public class Boss_Manager : MonoBehaviour
     private int rand_type;
 
     private bool can_kamehameha;
+    private bool first_kamehameha;
+    private bool phase1_repeated;
+    private bool phase2_repeated;
+
+    private bool get_hit;
 
     // Start is called before the first frame update
     void Start()
     {
         eye = GetComponentInChildren<Eye_Boss>();
-
         Eye_collider = GetComponentInChildren<CircleCollider2D>();
         Eye_collider.enabled = false;
 
-        SetTypesNONE();        
+
+        SetTypesNONE();
+        phases = Phases.STATIC;
+        static_state = StaticState.ENTER_BATTLEFIELD;
+        first_kamehameha = true;
     }
 
     // Update is called once per frame
@@ -100,35 +117,7 @@ public class Boss_Manager : MonoBehaviour
        
         switch (phases)
         {
-            case Phases.ENTER_BATTLEFIELD:
-                if (gameObject.transform.position.x >= Camera.main.transform.position.x + offset_camera_x)
-                {
-                    MoveLeft();
-                }
-                else
-                {
-                    if(timer_enter_battelfield > 1.5f)
-                    {
-                        rand_type = Random.Range(1, 3);
-                        if (rand_type == 1)
-                        {
-                            phases = Phases.TYPE_1;
-                            type1_state = Type1State.PREPARE_SHOT;
-                        }
-                        else if (rand_type == 2)
-                        {
-                            phases = Phases.TYPE_2;
-                            type2_state = Type2State.PREPARE_SHOT;
-                        }
-                    }
-                   else
-                    {
-                        timer_enter_battelfield += Time.deltaTime;
-                    }
-                }
-                    break;
-
-            case Phases.TYPE_1:
+            case Phases.TYPE_1:  //  Following Shots
                 switch(type1_state)
                 {
                     case Type1State.PREPARE_SHOT:
@@ -154,7 +143,8 @@ public class Boss_Manager : MonoBehaviour
                         break;
                 }
                 break;
-            case Phases.TYPE_2:
+
+            case Phases.TYPE_2:  //  Directional Shots
                 switch(type2_state)
                 {
                     case Type2State.PREPARE_SHOT:
@@ -174,7 +164,7 @@ public class Boss_Manager : MonoBehaviour
                         ChangeType2Direction();
                         break;
 
-                    case Type2State.PHASE_2:
+                    case Type2State.PHASE_2: 
                         ChangeType2Direction();
                         break;
 
@@ -204,7 +194,7 @@ public class Boss_Manager : MonoBehaviour
                         if (timer_kamehameha >= 1.25f)
                         {
                             Prepare_Kamehameha.SetActive(false);
-                            Instantiate(Kamehameha, new Vector3(transform.position.x - 5.5f, transform.position.y, Kamehameha.transform.position.z), Kamehameha.transform.rotation, Boss);
+                            Instantiate(Kamehameha, new Vector3(transform.position.x - 8.5f, transform.position.y, Kamehameha.transform.position.z), Kamehameha.transform.rotation, Boss);
                             Kamehameha.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
                             timer_kamehameha = 0;
                             type3_state = Type3State.FINISH_SHOT;                          
@@ -215,7 +205,6 @@ public class Boss_Manager : MonoBehaviour
 
                     case Type3State.FINISH_SHOT:
                         CalculatePhases();
-                        last_attack_phase = Phases.TYPE_3;
                         break;
                     default:
                         type3_state = Type3State.NONE;
@@ -225,22 +214,33 @@ public class Boss_Manager : MonoBehaviour
 
             case Phases.FAKE_STATIC:
                 CheckEye();
+                CalculatePhases();
+                BattlefieldMovement();
                 break;
 
             case Phases.STATIC:
+                //Attack growl = true;
                 CheckEye();
-                break;
-
-            case Phases.GETHIT:
-                StartCoroutine("GetHit");
-                Eye_collider.enabled = false;
-                break;
+                CalculatePhases();
+                BattlefieldMovement();        
+                break;        
         }     
+
+        if(get_hit)
+        {
+            StartCoroutine("GetHit");
+            Eye_collider.enabled = false;
+            get_hit = false;
+        }
     }
 
     void MoveLeft()
     {
         gameObject.transform.position = new Vector2(transform.position.x - velocity * Time.deltaTime, transform.position.y);
+    }
+    void MoveRight()
+    {
+        gameObject.transform.position = new Vector2(transform.position.x + velocity/2 * Time.deltaTime, transform.position.y);
     }
 
     void InvokeFollowShot()
@@ -268,19 +268,25 @@ public class Boss_Manager : MonoBehaviour
                 can_kamehameha = true;
                 last_fake_phase = Phases.NONE;
                 phases = Phases.STATIC;
+                static_state = StaticState.ENTER_BATTLEFIELD;
                 timer_next_phase = 0;
             }
             else
             {
                 phases = Phases.FAKE_STATIC;
+                static_state = StaticState.ENTER_BATTLEFIELD;
                 timer_fake_static = 0;              
             }
         }
 
         if (type3_state == Type3State.FINISH_SHOT && phases != Phases.STATIC && phases != Phases.FAKE_STATIC)
         {
-            phases = Phases.STATIC;
-            timer_next_phase = 0;
+            if (first_exit_battelfield)
+            {
+                first_kamehameha = false;
+            }
+                phases = Phases.STATIC;
+                timer_next_phase = 0;                   
         }
 
         if (phases == Phases.FAKE_STATIC)
@@ -302,12 +308,12 @@ public class Boss_Manager : MonoBehaviour
         }
         else if (eye.get_hit)
         {
-            phases = Phases.GETHIT;
+            get_hit = true;
             eye.get_hit = false;
         }
         else
         {
-            CalculatePhases();
+            //CalculatePhases();
         }
     }
 
@@ -315,21 +321,35 @@ public class Boss_Manager : MonoBehaviour
     {
         last_fake_phase = Phases.FAKE_STATIC;
 
-        if (timer_fake_static > 5)
+        if (timer_fake_static > 2)
         {
+            static_state = StaticState.EXIT_BATTLEFIELD;
             rand_type = Random.Range(1, 101);
             number_max_of_shots = Random.Range(10, 19);
             type2_max_repeat_number = Random.Range(2, 5);
 
-            if (rand_type <= 50)
+            if (exit_battelfield)
             {
-                ChangeAttackPhase();
+                if(!CheckRepeatedPhases())              
+                {
+                    if (rand_type <= 50)
+                    {
+                        ChangeAttackPhase();
+                    }
+                    else
+                    {
+                        phases = last_attack_phase;
+                        ResetType(phases);
+
+                        if (phases == Phases.TYPE_1)
+                            phase1_repeated = true;
+                        else if (phases == Phases.TYPE_2)
+                            phase2_repeated = true;
+                    }
+                }
+                
             }
-            else
-            {
-                phases = last_attack_phase;
-                ResetType(phases);
-            }
+           
         }
         else
         {
@@ -340,24 +360,36 @@ public class Boss_Manager : MonoBehaviour
     void StaticPhase()
     {
 
-        if (timer_next_phase >= 12)
+        if (timer_next_phase >= 3.5f)
         {
             rand_type = Random.Range(1, 101);
+            static_state = StaticState.EXIT_BATTLEFIELD;
 
-            if (rand_type <= 50)
+            if(exit_battelfield)
             {
-                phases = Phases.TYPE_1;
-                ResetType(phases);
+                if (!CheckRepeatedPhases())
+                {
+                    if (rand_type <= 50)
+                    {
+                        ChangeAttackPhase();
+                    }
+                    else
+                    {
+                        phases = last_attack_phase;
+                        ResetType(phases);
+
+                        if (phases == Phases.TYPE_1)
+                            phase1_repeated = true;
+                        else if (phases == Phases.TYPE_2)
+                            phase2_repeated = true;
+                    }
+                }                  
             }
-            else
-            {
-                phases = Phases.TYPE_2;
-                ResetType(phases);
-            }
+            
         }
         else
         {
-            if(timer_next_phase >= 4 && can_kamehameha)
+            if(timer_next_phase >= 3 && can_kamehameha)
             {
                 can_kamehameha = false;
 
@@ -365,6 +397,99 @@ public class Boss_Manager : MonoBehaviour
                 ResetType(phases);
             }
             timer_next_phase += Time.deltaTime;
+        }
+    }
+
+    bool CheckRepeatedPhases()
+    {
+        if (phase1_repeated)
+        {
+            phases = Phases.TYPE_2;
+            ResetType(phases);
+            phase1_repeated = false;
+            return true;
+        }
+        else if (phase2_repeated)
+        {
+            phases = Phases.TYPE_1;
+            ResetType(phases);
+            phase2_repeated = false;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    void BattlefieldMovement()
+    {
+        switch (static_state)
+        {
+            case StaticState.ENTER_BATTLEFIELD:
+                if (gameObject.transform.position.x >= 6.5f)
+                {
+                    MoveLeft();
+                    // if attack growl DO STUFF
+                    exit_battelfield = false;
+                }
+                else
+                {
+                    if (first_exit_battelfield)
+                    {
+                       
+                        if (timer_enter_battelfield > 2.5f)
+                        {
+                            static_state = StaticState.FIRST_EXIT_BATTLEFIELD;
+                            first_exit_battelfield = false;
+                        }
+                        else if(timer_enter_battelfield > 0.5f && first_kamehameha)
+                        {
+                            phases = Phases.TYPE_3;
+                            ResetType(phases);
+                        }
+                        else
+                        {
+                            timer_enter_battelfield += Time.deltaTime;
+                        }
+                    }                 
+                }
+                break;
+
+            case StaticState.EXIT_BATTLEFIELD:
+                if (gameObject.transform.position.x <= 7.5f)
+                {
+                    MoveRight();
+                }
+                else
+                {
+                    CalculatePhases();
+                    exit_battelfield = true;
+                }
+                break;
+
+            case StaticState.FIRST_EXIT_BATTLEFIELD:
+                if (gameObject.transform.position.x <= 7.5f)
+                {
+                    MoveRight();
+                }
+                else
+                {
+                    rand_type = Random.Range(1, 3);
+                    if (rand_type == 1)
+                    {
+                        phases = Phases.TYPE_1;
+                        type1_state = Type1State.PREPARE_SHOT;
+                        timer_enter_battelfield = 0;
+                    }
+                    else if (rand_type == 2)
+                    {
+                        phases = Phases.TYPE_2;
+                        type2_state = Type2State.PREPARE_SHOT;
+                        timer_enter_battelfield = 0;
+                    }
+                }
+                break;
         }
     }
 
