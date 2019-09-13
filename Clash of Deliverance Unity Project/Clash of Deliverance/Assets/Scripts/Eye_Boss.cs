@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Eye_Boss : MonoBehaviour
 {
+    enum EyeState
+    {
+        BLINK,
+        FOLLOW,
+        GETHIT,
+        NONE,
+    }
+
+    EyeState state;
 
     [SerializeField]
     private int life;
@@ -19,33 +28,49 @@ public class Eye_Boss : MonoBehaviour
     public float Player_pos_MIN;
     public float Player_pos_MAX;
 
-    public Quaternion Eye_Close;
-    public Quaternion Eye_Normal;
+    Quaternion Eye_Close;
+    Quaternion Eye_Normal;
+
+    [SerializeField]
+    private float scale_eye_close;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         Boss = GetComponentInParent<Boss_Manager>();
 
-        Eye_Close = Quaternion.Euler(90, 0, 90);
-        Eye_Normal = Quaternion.Euler(0, 0, 90);
+        Eye_Close = Quaternion.Euler(88, 0, 0);
+        Eye_Normal = Quaternion.Euler(0, 0, 0);
     }
 
     private void Update()
     {
-        FollowPlayer();
 
-        Blink();
+        switch(state)
+        {
+            case EyeState.BLINK:
+                Blink();
+                break;
+
+            case EyeState.FOLLOW:
+                FollowPlayer();
+                break;
+
+            case EyeState.GETHIT:
+                // TO DO: Rotate around the eye, stroke screen, make little and close eye
+                break;
+        }
     }
+
+
+
+      /**-*-*-*ALGORITM*-*-*-*
     
+      1  MIN = 0.6 min    
+      100 MAX = 1.4 max
+     N = Position player, n = unity meters
 
-   
-
-    //  1  MIN = 0.6 min    
-    //  100 MAX = 1.4 max
-    // N = Position player, n = unity meters
-
-    //  N*((max-min)/(MAX-MIN) - max = n      FORMULA PARA TRADUCIR Position player to screen unity meters
+      N* ((max-min)/(MAX-MIN) - max = n FORMULA PARA TRADUCIR Position player to screen unity meters*/
 
     void FollowPlayer()
     {
@@ -56,7 +81,8 @@ public class Eye_Boss : MonoBehaviour
 
     void Blink()
     {
-       White_Eye.transform.rotation = Quaternion.Lerp(Black_Eye.transform.rotation, Eye_Close, 4 * Time.deltaTime);
+       White_Eye.transform.rotation = Quaternion.Lerp(White_Eye.transform.rotation, Eye_Close, 4 * Time.deltaTime);
+        StartCoroutine("ScaleEyeClose");
     }
 
     public bool IsDead()
@@ -78,5 +104,21 @@ public class Eye_Boss : MonoBehaviour
             life--;
             get_hit = true;
         }
+    }
+
+    IEnumerator ScaleEyeClose()
+    {
+        float actual_scale = Black_Eye.transform.localScale.x;
+
+        if (Black_Eye.transform.localScale.x <= scale_eye_close)
+        {
+            StopCoroutine("ScaleEyeClose");
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.01f);
+            Black_Eye.transform.localScale = new Vector3(actual_scale -= 0.012f, actual_scale -= 0.012f, actual_scale -= 0.012f);
+        }
+
     }
 }
