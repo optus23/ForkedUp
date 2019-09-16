@@ -431,6 +431,7 @@ public class Boss_Manager : MonoBehaviour
                 {
                     MoveLeft();
                     // if attack growl DO STUFF
+                    eye.state = Eye_Boss.EyeState.BLINK_UP; 
                     exit_battelfield = false;
                 }
                 else
@@ -460,6 +461,7 @@ public class Boss_Manager : MonoBehaviour
                 if (gameObject.transform.position.x <= 7.5f)
                 {
                     MoveRight();
+                    eye.state = Eye_Boss.EyeState.BLINK;
                 }
                 else
                 {
@@ -472,6 +474,7 @@ public class Boss_Manager : MonoBehaviour
                 if (gameObject.transform.position.x <= 7.5f)
                 {
                     MoveRight();
+                    eye.state = Eye_Boss.EyeState.BLINK;
                 }
                 else
                 {

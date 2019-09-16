@@ -2675,7 +2675,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1312110469
   m_SortingLayer: 6
-  m_SortingOrder: 7
+  m_SortingOrder: 25
   m_Sprite: {fileID: 21300000, guid: 9b5607ef8cf873c42ada1ab14d7e6ee4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2830,6 +2830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec23c27b8da9f2429e3c15480601d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   life: 10
   get_hit: 0
   Black_Eye: {fileID: 1277021135}
@@ -2839,6 +2840,7 @@ MonoBehaviour:
   Player_pos_MIN: -4.6
   Player_pos_MAX: 4.6
   scale_eye_close: 0.15
+  scale_eye_open: 0.43
 --- !u!1 &1358375631
 GameObject:
   m_ObjectHideFlags: 0
@@ -3011,25 +3013,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 367850510765192062, guid: 1cadb8c43fc2f924b8a409092176213d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2018183336039309045, guid: 1cadb8c43fc2f924b8a409092176213d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1266788626076882736, guid: 1cadb8c43fc2f924b8a409092176213d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 367850510765192062, guid: 1cadb8c43fc2f924b8a409092176213d, type: 3}
-    - {fileID: 1266788626076882736, guid: 1cadb8c43fc2f924b8a409092176213d, type: 3}
-    - {fileID: 7023402215351219415, guid: 1cadb8c43fc2f924b8a409092176213d, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cadb8c43fc2f924b8a409092176213d, type: 3}
 --- !u!1 &1626292418 stripped
 GameObject:
@@ -3935,18 +3919,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e578038d4885e04abe5abba97478eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Eye1: {fileID: 782293546}
-  Eye2: {fileID: 1064440098}
-  Eye3: {fileID: 682738262}
-  Eye4: {fileID: 1000208683}
-  Eye5: {fileID: 2034070519}
-  Eye6: {fileID: 1303860616}
-  Eye7: {fileID: 1130840174}
-  Eye8: {fileID: 1189260387}
-  Eye9: {fileID: 1715988609}
-  Eye10: {fileID: 1631408359}
-  Eye11: {fileID: 2103877476}
-  Eye12: {fileID: 1244304348}
+  Eyes:
+  - {fileID: 782293546}
+  - {fileID: 1064440098}
+  - {fileID: 682738262}
+  - {fileID: 1000208683}
+  - {fileID: 2034070519}
+  - {fileID: 1303860616}
+  - {fileID: 1130840174}
+  - {fileID: 1189260387}
+  - {fileID: 1715988609}
+  - {fileID: 1631408359}
+  - {fileID: 2103877476}
+  - {fileID: 1244304348}
+  random_eye: 0
+  last_random_eye: 0
+  Blinking_eye: {fileID: 0}
 --- !u!1 &2118796740
 GameObject:
   m_ObjectHideFlags: 0

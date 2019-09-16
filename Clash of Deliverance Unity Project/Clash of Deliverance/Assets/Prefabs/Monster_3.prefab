@@ -602,7 +602,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8596876608589450752}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 0f9f251959388424d8d4096c5c131b95, type: 2}
   m_CullingMode: 0
@@ -808,7 +808,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Body: {fileID: 8596876608333891906}
-  start: 0
 --- !u!95 &466553088801192503
 Animator:
   serializedVersion: 3
@@ -961,18 +960,7 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.18677004
       objectReference: {fileID: 0}
-    - target: {fileID: 1564439089862096853, guid: 193b9ca6017b0b34c821448eaee0b792,
-        type: 3}
-      propertyPath: Money_1
-      value: 
-      objectReference: {fileID: 1317558485862333509}
-    - target: {fileID: 1564439089862096853, guid: 193b9ca6017b0b34c821448eaee0b792,
-        type: 3}
-      propertyPath: Money_10
-      value: 
-      objectReference: {fileID: 421936514240296206}
-    m_RemovedComponents:
-    - {fileID: 5904401065357750455, guid: 193b9ca6017b0b34c821448eaee0b792, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 193b9ca6017b0b34c821448eaee0b792, type: 3}
 --- !u!1 &6460127676376516227 stripped
 GameObject:
@@ -1072,11 +1060,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.13017079
-      objectReference: {fileID: 0}
-    - target: {fileID: 3299476723517290362, guid: 9dc9eeccb2b09a645ae0fa754c584cff,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dc9eeccb2b09a645ae0fa754c584cff, type: 3}
@@ -1179,23 +1162,7 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.086190015
       objectReference: {fileID: 0}
-    - target: {fileID: 3842502798151742961, guid: 97ddc3d8483669649b00e20cd9eee4fb,
-        type: 3}
-      propertyPath: Money_5
-      value: 
-      objectReference: {fileID: 6460127676376516227}
-    - target: {fileID: 3842502798151742961, guid: 97ddc3d8483669649b00e20cd9eee4fb,
-        type: 3}
-      propertyPath: Money_10
-      value: 
-      objectReference: {fileID: 421936514240296206}
-    - target: {fileID: 2999414095064381356, guid: 97ddc3d8483669649b00e20cd9eee4fb,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2506828133176755001, guid: 97ddc3d8483669649b00e20cd9eee4fb, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97ddc3d8483669649b00e20cd9eee4fb, type: 3}
 --- !u!1 &1317558485862333509 stripped
 GameObject:
@@ -1296,13 +1263,7 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.25120005
       objectReference: {fileID: 0}
-    - target: {fileID: 1164551328944953379, guid: 93cd11b08b8ddd341a153660e5624d72,
-        type: 3}
-      propertyPath: Money_5
-      value: 
-      objectReference: {fileID: 6460127676376516227}
-    m_RemovedComponents:
-    - {fileID: 6350160275419222771, guid: 93cd11b08b8ddd341a153660e5624d72, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93cd11b08b8ddd341a153660e5624d72, type: 3}
 --- !u!1 &421936514240296206 stripped
 GameObject:

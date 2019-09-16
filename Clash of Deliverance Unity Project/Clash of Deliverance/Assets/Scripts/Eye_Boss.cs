@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Eye_Boss : MonoBehaviour
 {
-    enum EyeState
+    public enum EyeState
     {
         BLINK,
+        BLINK_UP,
         FOLLOW,
         GETHIT,
         NONE,
     }
 
-    EyeState state;
+    public EyeState state;
 
     [SerializeField]
     private int life;
@@ -33,11 +34,19 @@ public class Eye_Boss : MonoBehaviour
 
     [SerializeField]
     private float scale_eye_close;
+    [SerializeField]
+    private float scale_eye_open;
+
+    private float initial_position_y;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         Boss = GetComponentInParent<Boss_Manager>();
+
+        state = EyeState.FOLLOW;
+
+        initial_position_y = Black_Eye.transform.position.y;
 
         Eye_Close = Quaternion.Euler(88, 0, 0);
         Eye_Normal = Quaternion.Euler(0, 0, 0);
@@ -50,6 +59,10 @@ public class Eye_Boss : MonoBehaviour
         {
             case EyeState.BLINK:
                 Blink();
+                break;
+
+            case EyeState.BLINK_UP:
+                BlinkUp();
                 break;
 
             case EyeState.FOLLOW:
@@ -82,7 +95,13 @@ public class Eye_Boss : MonoBehaviour
     void Blink()
     {
        White_Eye.transform.rotation = Quaternion.Lerp(White_Eye.transform.rotation, Eye_Close, 4 * Time.deltaTime);
-        StartCoroutine("ScaleEyeClose");
+       StartCoroutine("ScaleEyeClose");
+    }
+
+    void BlinkUp()
+    {
+        White_Eye.transform.rotation = Quaternion.Lerp(White_Eye.transform.rotation, Eye_Normal, 4 * Time.deltaTime);
+        StartCoroutine("ScaleEyeOpen");
     }
 
     public bool IsDead()
@@ -118,6 +137,24 @@ public class Eye_Boss : MonoBehaviour
         {
             yield return new WaitForSeconds(0.01f);
             Black_Eye.transform.localScale = new Vector3(actual_scale -= 0.012f, actual_scale -= 0.012f, actual_scale -= 0.012f);
+            Black_Eye.transform.position = Vector2.MoveTowards(Black_Eye.transform.position, new Vector2(Black_Eye.transform.position.x, initial_position_y), 4 * Time.deltaTime);
+        }
+
+    }
+
+    IEnumerator ScaleEyeOpen()
+    {
+        float actual_scale = Black_Eye.transform.localScale.x;
+
+        if (Black_Eye.transform.localScale.x >= scale_eye_close)
+        {
+            StopCoroutine("ScaleEyeOpen");
+            state = EyeState.FOLLOW;
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.01f);
+            Black_Eye.transform.localScale = new Vector3(actual_scale += 0.012f, actual_scale += 0.012f, actual_scale += 0.012f);
         }
 
     }
