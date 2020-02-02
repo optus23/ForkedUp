@@ -432,8 +432,7 @@ public class Player_Jump : MonoBehaviour
         if (collision.transform.tag == "Wall")
         {
             cameraShake.Shake(0.2f, 0.2f);
-            //Score.score_value++;
-            //Score.player_pickup_score = true;
+            
             transform.rotation = Quaternion.identity;
             rb2D.velocity = Vector2.zero;
             rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -497,16 +496,13 @@ public class Player_Jump : MonoBehaviour
             }
             else
             {
-                if(!enemy_4.get_hit)
-                {
-                    cameraShake.Shake(0.1f, 0.2f);
-                    dead = true;
-                    rb2D.AddForce(transform.right * (force / 1.5f));
-                    rb2D.AddForce(transform.up * (force / 1.5f));
-                    dashing = false;
-                }
-               
-                
+                cameraShake.Shake(0.1f, 0.2f);
+                dead = true;
+                rb2D.AddForce(transform.right * (force / 1.5f));
+                rb2D.AddForce(transform.up * (force / 1.5f));
+                dashing = false;
+
+
             }
         }
     }
