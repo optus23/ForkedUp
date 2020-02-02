@@ -17,6 +17,8 @@ public class Player_Jump : MonoBehaviour
     public GameObject enemy4;
 
     Score score;
+    public GameObject ScoreNum;
+    public GameObject ScoreDead;
     public float force;
     public float dash_force;
     public bool dash;
@@ -45,6 +47,7 @@ public class Player_Jump : MonoBehaviour
     public float offset_wipe_high;
 
     public static bool dead;
+    public static bool despawn_deadplayer;
     private bool restart_shake;
     public CameraShake cameraShake;
     private float time_death = 1.5f;
@@ -75,8 +78,8 @@ public class Player_Jump : MonoBehaviour
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         //enemy_3 = enemy3.GetComponent<Enemy_3>();
         //enemy_2 = enemy2.GetComponent<Enemy_2>();
-        enemy_1 = enemy1.GetComponent<Enemy_1>();
-        enemy_4 = enemy4.GetComponent<Enemy4>();
+        //enemy_1 = enemy1.GetComponent<Enemy_1>();
+        //enemy_4 = enemy4.GetComponent<Enemy4>();
 
 
         initial_player_position_x = gameObject.transform.position.x;
@@ -99,8 +102,12 @@ public class Player_Jump : MonoBehaviour
         rb2D.velocity = Vector2.zero;
         rb2D.AddForce(Vector2.up * force);
         dead = false;
+        despawn_deadplayer = false;
         transform.rotation = Quaternion.Lerp(forwardRotation, transform.rotation, 2 * Time.deltaTime);
         restart_shake = true;
+
+        ScoreDead.SetActive(false);
+        ScoreNum.SetActive(true);
 
 
     }
@@ -150,7 +157,7 @@ public class Player_Jump : MonoBehaviour
             //=============================================================================================
 
             if (Input.touches.Length > 0)
-        {
+            {
             Touch t = Input.GetTouch(0);
             if (t.phase == TouchPhase.Began)
             {
@@ -286,7 +293,12 @@ public class Player_Jump : MonoBehaviour
                 Restart.gameObject.SetActive(true);
                 cameraShake.Shake(0.1f, 0.3f);
                 restart_shake = false;
+                ScoreNum.SetActive(false);
+                ScoreDead.SetActive(true);
+                despawn_deadplayer = true;
             }
+
+           
         }
         
     }
@@ -420,8 +432,8 @@ public class Player_Jump : MonoBehaviour
         if (collision.transform.tag == "Wall")
         {
             cameraShake.Shake(0.2f, 0.2f);
-            Score.score_value++;
-            Score.player_pickup_score = true;
+            //Score.score_value++;
+            //Score.player_pickup_score = true;
             transform.rotation = Quaternion.identity;
             rb2D.velocity = Vector2.zero;
             rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;

@@ -15,6 +15,7 @@ public class Score : MonoBehaviour
     public int change_cont_limit;   
     public int animation_score_number;   
 
+
     // Start is called before the first frame update
     void Start()
     {

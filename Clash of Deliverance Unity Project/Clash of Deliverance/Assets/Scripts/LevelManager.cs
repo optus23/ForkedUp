@@ -17,7 +17,6 @@ public class LevelManager : MonoBehaviour
     Scene scene;
     Touch touch;
 
-    public GameObject panel;
     public float velocity_panel;
     public float offset_panel_shop;
     public float offset_panel_play;
@@ -26,6 +25,7 @@ public class LevelManager : MonoBehaviour
     private bool  moving_panel;
 
     private Panel_Stats panel_stats;
+    public GameObject Player;
     
 
     // Start is called before the first frame update
@@ -49,6 +49,13 @@ public class LevelManager : MonoBehaviour
         {
             MainMenuMovement();
         }
+
+        if(Player_Jump.dead && Player_Jump.despawn_deadplayer)
+        {
+            Player.SetActive(false);
+        }
+        else
+            Player.SetActive(true);
     }
 
     public void StartLevel(string level_name)
@@ -64,6 +71,7 @@ public class LevelManager : MonoBehaviour
     public void TouchToJump()
     {
         SceneManager.LoadScene("Clash of Deliverance");
+        Score.score_value = 0;
     }
 
     public void ReturnMainMenu()
@@ -75,6 +83,7 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene("WaitingPlayer");
         Player_Jump.dead = false;
+        
     }
     
     public void ShopButton()

@@ -66,9 +66,6 @@ MonoBehaviour:
   Money_1: {fileID: 459841535018726462}
   Money_5: {fileID: 5980430147256990323}
   Money_10: {fileID: 5534996852849200413}
-  spawn_ratio_1: 0
-  spawn_ratio_5: 0
-  spawn_ratio_10: 0
 --- !u!1 &3291445734896616349
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,6 +525,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6315604877301134429, guid: 193b9ca6017b0b34c821448eaee0b792,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564439089862096853, guid: 193b9ca6017b0b34c821448eaee0b792,
+        type: 3}
+      propertyPath: Money_1
+      value: 
+      objectReference: {fileID: 459841535018726462}
+    - target: {fileID: 1564439089862096853, guid: 193b9ca6017b0b34c821448eaee0b792,
+        type: 3}
+      propertyPath: Money_10
+      value: 
+      objectReference: {fileID: 5534996852849200413}
     - target: {fileID: 6164304606885672065, guid: 193b9ca6017b0b34c821448eaee0b792,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -583,16 +595,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1564439089862096853, guid: 193b9ca6017b0b34c821448eaee0b792,
-        type: 3}
-      propertyPath: Money_1
-      value: 
-      objectReference: {fileID: 459841535018726462}
-    - target: {fileID: 1564439089862096853, guid: 193b9ca6017b0b34c821448eaee0b792,
-        type: 3}
-      propertyPath: Money_10
-      value: 
-      objectReference: {fileID: 5534996852849200413}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 193b9ca6017b0b34c821448eaee0b792, type: 3}
 --- !u!1 &5980430147256990323 stripped
@@ -622,6 +624,11 @@ PrefabInstance:
     - target: {fileID: 754167508729887977, guid: 97ddc3d8483669649b00e20cd9eee4fb,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 754167508729887977, guid: 97ddc3d8483669649b00e20cd9eee4fb,
+        type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 294468791032609257, guid: 97ddc3d8483669649b00e20cd9eee4fb,
@@ -720,6 +727,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4552477049967143707, guid: 93cd11b08b8ddd341a153660e5624d72,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164551328944953379, guid: 93cd11b08b8ddd341a153660e5624d72,
+        type: 3}
+      propertyPath: Money_5
+      value: 
+      objectReference: {fileID: 5980430147256990323}
     - target: {fileID: 3716378683117844292, guid: 93cd11b08b8ddd341a153660e5624d72,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -775,11 +792,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1164551328944953379, guid: 93cd11b08b8ddd341a153660e5624d72,
-        type: 3}
-      propertyPath: Money_5
-      value: 
-      objectReference: {fileID: 5980430147256990323}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93cd11b08b8ddd341a153660e5624d72, type: 3}
 --- !u!1 &5534996852849200413 stripped
