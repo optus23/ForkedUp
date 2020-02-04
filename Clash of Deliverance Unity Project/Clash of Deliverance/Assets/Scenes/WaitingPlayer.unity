@@ -473,6 +473,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425395800}
   m_CullTransparentMesh: 0
+--- !u!1 &551347176 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2034939430670154495, guid: c571bac8b4159d54f917cdf7398b8760,
+    type: 3}
+  m_PrefabInstance: {fileID: 573195906}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &573195906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1747,11 +1753,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e570947f1cfe504cb44607c27e06da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 0}
   velocity_panel: 0
   offset_panel_shop: 0
   offset_panel_play: 0
   offset_panel_credits: 0
+  Player: {fileID: 551347176}
 --- !u!4 &1355799870
 Transform:
   m_ObjectHideFlags: 0

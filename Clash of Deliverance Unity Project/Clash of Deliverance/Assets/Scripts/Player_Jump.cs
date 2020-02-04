@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class Player_Jump : MonoBehaviour
 {
-    Enemy_1 enemy_1;
+   
     Enemy_2 enemy_2;
     Enemy_3 enemy_3;
     Enemy4 enemy_4;
 
-    public GameObject enemy1;
+    //public GameObject enemy1;
     public GameObject enemy2;
     public GameObject enemy3;
     public GameObject enemy4;
@@ -78,7 +78,6 @@ public class Player_Jump : MonoBehaviour
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         //enemy_3 = enemy3.GetComponent<Enemy_3>();
         //enemy_2 = enemy2.GetComponent<Enemy_2>();
-        //enemy_1 = enemy1.GetComponent<Enemy_1>();
         //enemy_4 = enemy4.GetComponent<Enemy4>();
 
 
@@ -454,19 +453,21 @@ public class Player_Jump : MonoBehaviour
                 rb2D.AddForce(Vector2.left * dash_force / 4);
                 InitialPosition.SetActive(true);
                 dashing = false;
+                Enemy_1 enemy_1;
+                enemy_1 = collision.gameObject.GetComponent<Enemy_1>();
 
                 enemy_1.life--;
-                if(enemy_1.life >= 1)
+                if (enemy_1.life >= 1)
                     enemy_1.get_hit = true;
 
             }
             else
             {
-                cameraShake.Shake(0.1f, 0.2f);
-                dead = true;
-                rb2D.AddForce(transform.right * (force / 1.5f));
-                rb2D.AddForce(transform.up * (force / 1.5f));
-                dashing = false;
+                //cameraShake.Shake(0.1f, 0.2f);
+                //dead = true;
+                //rb2D.AddForce(transform.right * (force / 1.5f));
+                //rb2D.AddForce(transform.up * (force / 1.5f));
+                //dashing = false;
             }
         }
 
@@ -521,12 +522,12 @@ public class Player_Jump : MonoBehaviour
             }
             else
             {
-                cameraShake.Shake(0.1f, 0.2f);
-                dead = true;
-                rb2D.AddForce(transform.right * (force * 1.5f));
-                transform.rotation = downDash;
-                rb2D.AddForce(transform.up * (-force *1.5f));
-                dashing = false;
+                //cameraShake.Shake(0.1f, 0.2f);
+                //dead = true;
+                //rb2D.AddForce(transform.right * (force * 1.5f));
+                //transform.rotation = downDash;
+                //rb2D.AddForce(transform.up * (-force *1.5f));
+                //dashing = false;
             }
         }
 

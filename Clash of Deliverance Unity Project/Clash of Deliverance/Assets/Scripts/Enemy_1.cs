@@ -38,7 +38,7 @@ public class Enemy_1 : MonoBehaviour
     public GameObject Ears;
     public GameObject Eyes;
     public GameObject Mouth;
-    public GameObject death;
+   // public GameObject death;
     public int life;
 
     public bool start_fading;
@@ -58,7 +58,7 @@ public class Enemy_1 : MonoBehaviour
 
     void Update()
     {
-         
+        Debug.Log(life);
         if (gameObject.transform.position.x >= Camera.main.transform.position.x + offset_camera_x && !stop)
         {
             MoveLeft();
@@ -123,10 +123,11 @@ public class Enemy_1 : MonoBehaviour
             can_second_shot = false;
             stop = true;
             shot_once = true;
+            first_shot = true;
 
         }
         // Enemy prepare shot
-        if((gameObject.transform.position.y <= first_shot_position +3 && can_first_shot) || (gameObject.transform.position.y >= second_shot_position - 3 && can_second_shot) && !eyes_changed)
+        if ((gameObject.transform.position.y <= first_shot_position +3 && can_first_shot) || (gameObject.transform.position.y >= second_shot_position - 3 && can_second_shot) && !eyes_changed)
         {
             if(can_prepare_particle)
             {
@@ -163,9 +164,9 @@ public class Enemy_1 : MonoBehaviour
                 if(shot_once)
                 {
                     Kamehameha();
-                    ParticlePrepareKamehameha.SetActive(false);
+                    if(ParticlePrepareKamehameha != null)
+                        ParticlePrepareKamehameha.SetActive(false);
                     shot_once = false;
-                    first_shot = true;
                 }
                 if (stop_timer >= time_stopped)
                 {
@@ -233,7 +234,7 @@ public class Enemy_1 : MonoBehaviour
                 Body.SetActive(false);
             else
             {
-                Body .SetActive(true);
+                Body.SetActive(true);
                 get_hit = false;
                 get_hit_timer = 0;
             }
@@ -254,7 +255,7 @@ public class Enemy_1 : MonoBehaviour
                 Eyes.SetActive(false);
                 Mouth.SetActive(false);
                 Destroy(ParticlePrepareKamehameha);
-                death.SetActive(true);
+                //death.SetActive(true);
                 GetComponent<EchoEffect>().enabled = false;
                 start_fading = true;
                 Destroy(gameObject, 0.5f);
