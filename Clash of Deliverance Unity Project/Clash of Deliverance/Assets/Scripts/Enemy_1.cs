@@ -214,7 +214,6 @@ public class Enemy_1 : MonoBehaviour
         }
     }
 
-
     void EnemyGetHit()
     {
         get_hit_timer += Time.deltaTime;
@@ -238,8 +237,6 @@ public class Enemy_1 : MonoBehaviour
                 get_hit = false;
                 get_hit_timer = 0;
             }
-
-
 
         }
     }
