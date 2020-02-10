@@ -363,7 +363,7 @@ public class Player_Jump : MonoBehaviour
         if (collision.transform.tag == "DeathFloor")
         {
             cameraShake.Shake(0.1f, 0.2f);
-            //dead = true;
+            dead = true;
             rb2D.AddForce(transform.right * (force / 1.5f));
             rb2D.AddForce(transform.up * (force / 1.5f));
             dashing = false;
@@ -445,6 +445,38 @@ public class Player_Jump : MonoBehaviour
             InitialPosition.SetActive(true);
         }
 
+        if(collision.transform.tag == "EyeBoss")
+        {
+            if (dashing)
+            {
+                cameraShake.Shake(0.5f, 0.5f);
+
+                transform.rotation = Quaternion.identity;
+                rb2D.velocity = Vector2.zero;
+                rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+                rb2D.AddForce(Vector2.left * dash_force / 4);
+                //InitialPosition.SetActive(true);
+                dashing = false;
+
+                //Lose life
+                Eye_Boss boss;
+                boss = collision.gameObject.GetComponentInChildren<Eye_Boss>();
+                boss.life--;
+                if (boss.life >= 1)
+                    boss.get_hit = true;
+
+            }
+            else
+            {
+                cameraShake.Shake(0.1f, 0.2f);
+                dead = true;
+                rb2D.AddForce(transform.right * (force / 1.5f));
+                rb2D.AddForce(transform.up * (force / 1.5f));
+                dashing = false;
+            }
+        }
+
         if (collision.transform.tag == "Enemy_Wall")
         {
             if (dashing)
@@ -524,6 +556,22 @@ public class Player_Jump : MonoBehaviour
             {
                 cameraShake.Shake(0.2f, 0.2f);
                 enemy2_shot_inmune = false;
+            }
+            else
+            {
+                cameraShake.Shake(0.1f, 0.2f);
+                dead = true;
+                rb2D.AddForce(transform.right * (force * 1.5f));
+                transform.rotation = downDash;
+                rb2D.AddForce(transform.up * (-force * 1.5f));
+                dashing = false;
+            }
+        }
+        if (collision.transform.tag == "Boss_Projectile") //  Enemy Shot
+        {
+            if (dashing)
+            {
+                cameraShake.Shake(0.2f, 0.2f);
             }
             else
             {

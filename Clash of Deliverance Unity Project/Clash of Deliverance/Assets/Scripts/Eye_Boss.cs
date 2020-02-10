@@ -15,8 +15,7 @@ public class Eye_Boss : MonoBehaviour
 
     public EyeState state;
 
-    [SerializeField]
-    private int life;
+    public int life;
     public bool get_hit;
     Boss_Manager Boss;
 
@@ -39,8 +38,12 @@ public class Eye_Boss : MonoBehaviour
 
     private float initial_position_y;
 
+    public Animator getHitAnimation;
+
     private void Start()
     {
+        getHitAnimation = GetComponentInChildren<Animator>();
+        getHitAnimation.Play("GetHit", 0, 1);
         player = GameObject.FindGameObjectWithTag("Player");
         Boss = GetComponentInParent<Boss_Manager>();
 
@@ -50,12 +53,13 @@ public class Eye_Boss : MonoBehaviour
 
         Eye_Close = Quaternion.Euler(88, 0, 0);
         Eye_Normal = Quaternion.Euler(0, 0, 0);
+
+        scale_eye_open = Black_Eye.transform.localScale.x;
     }
 
     private void Update()
     {
-
-        switch(state)
+        switch (state)
         {
             case EyeState.BLINK:
                 Blink();
@@ -66,11 +70,15 @@ public class Eye_Boss : MonoBehaviour
                 break;
 
             case EyeState.FOLLOW:
+               
                 FollowPlayer();
                 break;
 
             case EyeState.GETHIT:
-                // TO DO: Rotate around the eye, stroke screen, make little and close eye
+                
+                if (life <= 2)
+                    scale_eye_open = scale_eye_close;
+                
                 break;
         }
     }
@@ -116,14 +124,7 @@ public class Eye_Boss : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.transform.tag == "Player")
-        {
-            life--;
-            get_hit = true;
-        }
-    }
+   
 
     IEnumerator ScaleEyeClose()
     {
@@ -138,22 +139,23 @@ public class Eye_Boss : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             Black_Eye.transform.localScale = new Vector3(actual_scale -= 0.012f, actual_scale -= 0.012f, actual_scale -= 0.012f);
             Black_Eye.transform.position = Vector2.MoveTowards(Black_Eye.transform.position, new Vector2(Black_Eye.transform.position.x, initial_position_y), 4 * Time.deltaTime);
-        }
 
+        }
+          
     }
 
     IEnumerator ScaleEyeOpen()
     {
         float actual_scale = Black_Eye.transform.localScale.x;
 
-        if (Black_Eye.transform.localScale.x >= scale_eye_close)
+        if (Black_Eye.transform.localScale.x >= scale_eye_open)
         {
+            state = EyeState.FOLLOW;   
             StopCoroutine("ScaleEyeOpen");
-            state = EyeState.FOLLOW;
         }
         else
         {
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.02f);
             Black_Eye.transform.localScale = new Vector3(actual_scale += 0.012f, actual_scale += 0.012f, actual_scale += 0.012f);
         }
 

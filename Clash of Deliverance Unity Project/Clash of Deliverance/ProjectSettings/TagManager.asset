@@ -22,6 +22,8 @@ TagManager:
   - Enemy_Down
   - Boss
   - Enemy_4
+  - EyeBoss
+  - Boss_Projectile
   layers:
   - Default
   - TransparentFX

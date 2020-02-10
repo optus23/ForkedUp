@@ -2856,6 +2856,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1277021136}
   - component: {fileID: 1277021137}
+  - component: {fileID: 1277021138}
   m_Layer: 0
   m_Name: Eye Black
   m_TagString: Untagged
@@ -2916,7 +2917,7 @@ SpriteRenderer:
   m_SortingLayer: 6
   m_SortingOrder: 25
   m_Sprite: {fileID: 21300000, guid: 9b5607ef8cf873c42ada1ab14d7e6ee4, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.91764706}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2926,6 +2927,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1277021138
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277021135}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 79c2e8c8a9e3e2c469fc3ed9b26c18ce, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1303860616
 GameObject:
   m_ObjectHideFlags: 0
@@ -3015,11 +3035,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1309385256}
-  - component: {fileID: 1309385257}
   - component: {fileID: 1309385258}
+  - component: {fileID: 1309385257}
   m_Layer: 0
   m_Name: Eye
-  m_TagString: Wall
+  m_TagString: EyeBoss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3032,7 +3052,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309385255}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.12, y: 0, z: 0}
+  m_LocalPosition: {x: -2.12, y: 0, z: 106.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1277021136}
@@ -3051,12 +3071,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.16, y: 1.05}
+  m_Offset: {x: -2.66, y: 1.04}
   serializedVersion: 2
-  m_Radius: 0.68
+  m_Radius: 0.59
 --- !u!114 &1309385258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3070,7 +3090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  life: 10
+  life: 3
   get_hit: 0
   Black_Eye: {fileID: 1277021135}
   White_Eye: {fileID: 1991540683}
@@ -3080,6 +3100,7 @@ MonoBehaviour:
   Player_pos_MAX: 4.6
   scale_eye_close: 0.15
   scale_eye_open: 0.43
+  getHitAnimation: {fileID: 0}
 --- !u!1 &1358375631
 GameObject:
   m_ObjectHideFlags: 0
@@ -3289,7 +3310,7 @@ PrefabInstance:
     - target: {fileID: 8596876608333891906, guid: 1cadb8c43fc2f924b8a409092176213d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8596876608333891910, guid: 1cadb8c43fc2f924b8a409092176213d,
         type: 3}
@@ -3498,14 +3519,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1682684422}
   - component: {fileID: 1682684421}
-  - component: {fileID: 1682684423}
   m_Layer: 0
   m_Name: Monster_5
-  m_TagString: Enemy_Wall
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1682684421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3529,8 +3549,10 @@ MonoBehaviour:
   velocity: 3
   first_exit_battelfield: 1
   eye: {fileID: 1309385258}
-  Body: {fileID: 0}
+  Body: {fileID: 2087529916}
   Shot: {fileID: 3831726135534955130, guid: 48939d95458b2184097520c1f33cd638, type: 3}
+  LittleEyes: {fileID: 2108971678}
+  WhiteEye: {fileID: 1991540683}
   number_max_of_shots: 15
   number_of_directional_shots: 0
   Kamehameha: {fileID: 8939532206334638131, guid: c4fb93aa84b03a144af74077e4f925ed,
@@ -3540,6 +3562,7 @@ MonoBehaviour:
   Boss: {fileID: 1682684422}
   Eye: {fileID: 1309385255}
   type2_max_repeat_number: 3
+  invulnerable: 0
 --- !u!4 &1682684422
 Transform:
   m_ObjectHideFlags: 0
@@ -3548,7 +3571,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682684420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.484, y: 0, z: -159.88766}
+  m_LocalPosition: {x: 9.484, y: 0, z: -74.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2087529917}
@@ -3557,32 +3580,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1682684423
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682684420}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -4.14, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5136337, y: 10.16}
-  m_EdgeRadius: 0
 --- !u!1 &1690060709 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1475352097250202474, guid: b192f2c574ec2454093e5108b996c580,
@@ -4054,9 +4051,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2087529917}
   - component: {fileID: 2087529918}
+  - component: {fileID: 2087529919}
+  - component: {fileID: 2087529920}
   m_Layer: 0
   m_Name: BOSS
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4124,6 +4123,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &2087529919
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087529916}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 7.558923, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 28.1303, y: 23.68}
+    newSize: {x: 28.13, y: 22.6908}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 13.012457, y: 23.68}
+  m_EdgeRadius: 0
+--- !u!95 &2087529920
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087529916}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a33c55340df34064b97ac945039598be, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2103877476
 GameObject:
   m_ObjectHideFlags: 0
@@ -4259,6 +4303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e578038d4885e04abe5abba97478eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EyeBoss: {fileID: 1309385255}
   Eyes:
   - {fileID: 782293546}
   - {fileID: 1064440098}
@@ -4274,7 +4319,6 @@ MonoBehaviour:
   - {fileID: 1244304348}
   random_eye: 0
   last_random_eye: 0
-  Blinking_eye: {fileID: 0}
 --- !u!1 &2118796740
 GameObject:
   m_ObjectHideFlags: 0

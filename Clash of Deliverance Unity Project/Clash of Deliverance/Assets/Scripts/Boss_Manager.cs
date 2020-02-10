@@ -12,6 +12,7 @@ public class Boss_Manager : MonoBehaviour
         TYPE_3,
         STATIC,
         FAKE_STATIC,
+        DEAD,
         NONE
     }
 
@@ -65,6 +66,8 @@ public class Boss_Manager : MonoBehaviour
     public Eye_Boss eye;
     public GameObject Body;
     public GameObject Shot;
+    public GameObject LittleEyes;
+    public GameObject WhiteEye;
     private int number_of_shots;
     [SerializeField]
     private int number_max_of_shots;
@@ -96,6 +99,7 @@ public class Boss_Manager : MonoBehaviour
     private bool phase2_repeated;
 
     private bool get_hit;
+    public bool invulnerable = false;
 
     // Start is called before the first frame update
     void Start()
@@ -219,17 +223,21 @@ public class Boss_Manager : MonoBehaviour
                 break;
 
             case Phases.STATIC:
-                //Attack growl = true;
                 CheckEye();
                 CalculatePhases();
                 BattlefieldMovement();        
-                break;        
+                break;
+            case Phases.NONE:
+                phases = Phases.STATIC;
+                break;
         }     
 
         if(get_hit)
         {
             StartCoroutine("GetHit");
             Eye_collider.enabled = false;
+            invulnerable = true;
+            eye.getHitAnimation.Play("GetHit", 0, 0);
             get_hit = false;
         }
     }
@@ -301,18 +309,25 @@ public class Boss_Manager : MonoBehaviour
 
     void CheckEye()
     {
-        Eye_collider.enabled = true;
+        if(!invulnerable)
+            Eye_collider.enabled = true;
+
         if (eye.IsDead())
         {
-            Destroy(gameObject, 5f);
+            get_hit = true;
+            Destroy(gameObject, 2f);
+            phases = Phases.DEAD;
+            //TODO: Particles expansion circles (cash)
         }
         else if (eye.get_hit)
         {
             get_hit = true;
+            eye.state = Eye_Boss.EyeState.GETHIT;
             eye.get_hit = false;
         }
         else
         {
+
             //CalculatePhases();
         }
     }
@@ -568,27 +583,35 @@ public class Boss_Manager : MonoBehaviour
 
     IEnumerator GetHit()
     {
-        for(int i=0; i < 6; ++i)
+        for(int i=0; i < 4; ++i)
         {
             Body.SetActive(false);
+            LittleEyes.SetActive(false);
+            WhiteEye.SetActive(false);
             yield return new WaitForSeconds(0.2f);
             Body.SetActive(true);
+            LittleEyes.SetActive(true);
+            WhiteEye.SetActive(true);
             yield return new WaitForSeconds(0.2f);
         }     
        
-        if (last_fake_phase == Phases.FAKE_STATIC)
-        {
-            can_kamehameha = true;
-            last_fake_phase = Phases.NONE;
-            phases = Phases.STATIC;
-            timer_next_phase = 0;
-        }
-        else
-        {
-            phases = Phases.FAKE_STATIC;
-            timer_fake_static = 0;
-        }
+        //if (last_fake_phase == Phases.FAKE_STATIC)
+        //{
+        //    can_kamehameha = true;
+        //    last_fake_phase = Phases.NONE;
+        //    phases = Phases.STATIC;
+        //    timer_next_phase = 0;
+        //}
+        //else
+        //{
+        //    phases = Phases.FAKE_STATIC;
+        //    timer_fake_static = 0;
+        //}
 
+
+        invulnerable = false;
+
+        Eye_collider.enabled = true;
         StopCoroutine("GetHit");
     }
 }
