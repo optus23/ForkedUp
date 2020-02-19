@@ -378,8 +378,8 @@ public class Player_Jump : MonoBehaviour
                 Score.player_pickup_score = true;
                 enemy2_shot_inmune = true;
 
-                if(enemy_3 != null)
-                    enemy_3.destroy_shot = true;
+                enemy_3 = collision.gameObject.GetComponent<Enemy_3>();
+                enemy_3.destroy_shot = true;
             }
             else
             {
@@ -445,7 +445,7 @@ public class Player_Jump : MonoBehaviour
             InitialPosition.SetActive(true);
         }
 
-        if(collision.transform.tag == "EyeBoss")
+        if(collision.transform.tag == "Eye_Boss")
         {
             if (dashing)
             {
@@ -567,7 +567,7 @@ public class Player_Jump : MonoBehaviour
                 dashing = false;
             }
         }
-        if (collision.transform.tag == "Boss_Projectile") //  Enemy Shot
+        if (collision.transform.tag == "BossProjectile") //  Enemy Shot
         {
             if (dashing)
             {

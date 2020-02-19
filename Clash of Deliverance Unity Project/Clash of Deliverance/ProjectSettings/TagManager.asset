@@ -8,22 +8,22 @@ TagManager:
   - Obstacle
   - Score
   - Destroy
-  - DanceFloor
   - Basic_Money
   - Normal_Money
   - Super_Money
   - Wall
   - InitialPosition
   - Ceiling
-  - Enemy
   - Enemy_Wall
   - Enemy_Shot
   - Enemy_Up
   - Enemy_Down
   - Boss
   - Enemy_4
-  - EyeBoss
-  - Boss_Projectile
+  - DanceFloor
+  - Enemy
+  - Eye_Boss
+  - BossProjectile
   layers:
   - Default
   - TransparentFX

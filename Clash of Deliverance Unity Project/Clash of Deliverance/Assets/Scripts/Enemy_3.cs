@@ -26,6 +26,7 @@ public class Enemy_3 : MonoBehaviour
     public GameObject Wings;
 
     public GameObject Money;
+    public List<GameObject> enemyShots = new List<GameObject>();
 
 
     void Start()
@@ -55,6 +56,18 @@ public class Enemy_3 : MonoBehaviour
 
         }
 
+        if(destroy_shot)
+        {
+            foreach (GameObject shot in enemyShots)
+            {
+                if(shot != null)
+                {
+                    DestroyEnemyShot destroyShot = shot.GetComponent<DestroyEnemyShot>();
+                    destroyShot.start_fading = true;
+                }
+                
+            }
+        }
 
         //Main Direction
 
@@ -105,7 +118,8 @@ public class Enemy_3 : MonoBehaviour
 
     void Shot()
     {
-        Instantiate(Enemy_Shot, gameObject.transform.position, Quaternion.identity);
+        GameObject newShot = (GameObject)Instantiate(Enemy_Shot, gameObject.transform.position, Quaternion.identity);
+        enemyShots.Add(newShot);
         Invoke("Shot", 0.5f);
     }
 }

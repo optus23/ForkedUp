@@ -3039,7 +3039,7 @@ GameObject:
   - component: {fileID: 1309385257}
   m_Layer: 0
   m_Name: Eye
-  m_TagString: EyeBoss
+  m_TagString: Eye_Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3090,7 +3090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  life: 3
+  life: 5
   get_hit: 0
   Black_Eye: {fileID: 1277021135}
   White_Eye: {fileID: 1991540683}

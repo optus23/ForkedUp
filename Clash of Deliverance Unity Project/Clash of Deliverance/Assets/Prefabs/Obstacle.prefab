@@ -95,8 +95,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3291445734896616349}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.77, y: 0.34, z: 0}
-  m_LocalScale: {x: 0.85, y: 2.9835937, z: 1}
+  m_LocalPosition: {x: -9.77, y: 0, z: 0}
+  m_LocalScale: {x: 0.85, y: 2.4927578, z: 1}
   m_Children: []
   m_Father: {fileID: 3130710472357529734}
   m_RootOrder: 2
@@ -250,7 +250,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3291445735474355157}
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0.00000041723246}
-  m_LocalPosition: {x: -9.8028, y: 10.94, z: 20.234617}
+  m_LocalPosition: {x: -9.8028, y: 10.6, z: 20.234617}
   m_LocalScale: {x: 1.2125, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3130710472357529734}
@@ -393,7 +393,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3291445736299041386}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.771, y: -10.56, z: 20.234617}
+  m_LocalPosition: {x: -9.771, y: -10.6, z: 20.234617}
   m_LocalScale: {x: 1.2125, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3130710472357529734}
@@ -530,16 +530,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1564439089862096853, guid: 193b9ca6017b0b34c821448eaee0b792,
-        type: 3}
-      propertyPath: Money_1
-      value: 
-      objectReference: {fileID: 459841535018726462}
-    - target: {fileID: 1564439089862096853, guid: 193b9ca6017b0b34c821448eaee0b792,
-        type: 3}
-      propertyPath: Money_10
-      value: 
-      objectReference: {fileID: 5534996852849200413}
     - target: {fileID: 6164304606885672065, guid: 193b9ca6017b0b34c821448eaee0b792,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -595,6 +585,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1564439089862096853, guid: 193b9ca6017b0b34c821448eaee0b792,
+        type: 3}
+      propertyPath: Money_1
+      value: 
+      objectReference: {fileID: 459841535018726462}
+    - target: {fileID: 1564439089862096853, guid: 193b9ca6017b0b34c821448eaee0b792,
+        type: 3}
+      propertyPath: Money_10
+      value: 
+      objectReference: {fileID: 5534996852849200413}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 193b9ca6017b0b34c821448eaee0b792, type: 3}
 --- !u!1 &5980430147256990323 stripped
@@ -732,11 +732,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1164551328944953379, guid: 93cd11b08b8ddd341a153660e5624d72,
-        type: 3}
-      propertyPath: Money_5
-      value: 
-      objectReference: {fileID: 5980430147256990323}
     - target: {fileID: 3716378683117844292, guid: 93cd11b08b8ddd341a153660e5624d72,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -792,6 +787,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1164551328944953379, guid: 93cd11b08b8ddd341a153660e5624d72,
+        type: 3}
+      propertyPath: Money_5
+      value: 
+      objectReference: {fileID: 5980430147256990323}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93cd11b08b8ddd341a153660e5624d72, type: 3}
 --- !u!1 &5534996852849200413 stripped

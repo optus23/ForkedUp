@@ -62,7 +62,6 @@ public class Fade : MonoBehaviour
             if (enemy_4.start_fading)
             {
                 StartCoroutine("Fading");
-                
                 enemy_4.start_fading = false;
             }
         }

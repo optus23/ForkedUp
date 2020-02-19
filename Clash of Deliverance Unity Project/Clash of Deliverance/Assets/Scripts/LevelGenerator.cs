@@ -7,6 +7,9 @@ public class LevelGenerator : MonoBehaviour
     public GameObject[] pipe;
     public GameObject[] enemy3;
     public GameObject[] enemy2;
+    public GameObject[] Boss;
+    public GameObject[] easyPipe;
+    public GameObject[] normalPipe;
     public float time;
 
     public int random_pipe_number;
@@ -79,19 +82,14 @@ public class LevelGenerator : MonoBehaviour
             if (Score.score_value >= 100) // FINAL BOSS
             {
                 Debug.Log("4");
-                if (!boss_enemy_defeat)
+                if (!boss_enemy_defeat && !boss_enemy_appear)
                 {
                     BossEnemyGenerator();
                     random_boss_enemy_number = Random.Range(1, 101);
                     boss_enemy_appear = true;
-                }
-                else
-                {
-                    // TODO: Victory!!!!!!! Go to credits
-                }
-                
+                }          
             }
-            else if(Score.score_value >= 75) //  DIFFICULTY: High   (no pipes)
+            else if (Score.score_value >= 75) //  DIFFICULTY: High   (no pipes)
             {
                 Debug.Log("3");
                 if (random_both_enemy_number <= 20)
@@ -114,7 +112,7 @@ public class LevelGenerator : MonoBehaviour
                     multiple_enemy_appear = true;
 
                 }
-                else if (random_multiple_enemy3_number <= 50) 
+                else if (random_multiple_enemy3_number <= 50)
                 {
                     MultipleEnemy3Generator();
                     random_multiple_enemy3_number = Random.Range(1, 101);
@@ -147,24 +145,31 @@ public class LevelGenerator : MonoBehaviour
                         Enemy1Generator();
                         random_enemy1_number = Random.Range(1, 101);
                         enemy_appear = true;
-                    }                  
+                    }
                 }
             }
             else
             {
                 if (random_pipe_number <= pipe_limit_generator) // Instantiate pipe     90% - 5% every time a pipe is repeated
                 {
-                    PipeGenerator();
-                    if(Score.score_value >= 50)
+                    if (Score.score_value <= 7)
+                        EasyPipeGenerator();
+                    else if (Score.score_value <= 50)
+                        NormalPipeGenerator();
+                    else
+                        PipeGenerator();
+
+                    // repeat % pipe
+                    if (Score.score_value >= 50)
                     {
-                        pipe_limit_generator -= 15;
+                        pipe_limit_generator -= 5;
                     }
                     else if (Score.score_value >= 20)
                     {
                         pipe_limit_generator -= 10;
                     }
                     else
-                        pipe_limit_generator -= 5;
+                        pipe_limit_generator -= 20;
 
                 }
                 else // Instantiate Enemies
@@ -219,7 +224,10 @@ public class LevelGenerator : MonoBehaviour
                             }
                             else
                             {
-                                PipeGenerator();
+                                //PipeGenerator();
+                                Enemy2Generator();
+                                random_enemy2_number = Random.Range(1, 101);
+                                enemy_appear = true;
                                 Debug.Log("pipe else");
                             }
                         }
@@ -272,7 +280,10 @@ public class LevelGenerator : MonoBehaviour
                             //}
                             else
                             {
-                                PipeGenerator();
+                                //PipeGenerator();
+                                Enemy2Generator();
+                                random_enemy2_number = Random.Range(1, 101);
+                                enemy_appear = true;
                             }
                         }
                     }
@@ -291,7 +302,7 @@ public class LevelGenerator : MonoBehaviour
                         }
                     }
                 }
-            
+
             }
         }
         //  Random vars
@@ -305,6 +316,17 @@ public class LevelGenerator : MonoBehaviour
     void PipeGenerator()
     {
         Instantiate(pipe[0], new Vector3(transform.position.x + pipe_offset, Random.Range(-2.2f, 2.6f), 0), Quaternion.identity);
+        Invoke("Generator", time);
+    }
+
+    void EasyPipeGenerator()
+    {
+        Instantiate(easyPipe[0], new Vector3(transform.position.x + pipe_offset, Random.Range(-2.2f, 2.6f), 0), Quaternion.identity);
+        Invoke("Generator", time);
+    }
+    void NormalPipeGenerator()
+    {
+        Instantiate(normalPipe[0], new Vector3(transform.position.x + pipe_offset, Random.Range(-2.2f, 2.6f), 0), Quaternion.identity);
         Invoke("Generator", time);
     }
 
@@ -369,6 +391,7 @@ public class LevelGenerator : MonoBehaviour
     void BossEnemyGenerator()
     {
         //  Boss Time :D
+        Instantiate(Boss[0]/*, new Vector3(transform.position.x + pipe_offset - 2, Random.Range(2f, 4f), 0), Quaternion.identity*/);
         Invoke("Generator", time);
     }
 

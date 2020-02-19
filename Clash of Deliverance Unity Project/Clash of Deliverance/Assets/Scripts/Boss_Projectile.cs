@@ -7,7 +7,7 @@ public class Boss_Projectile : MonoBehaviour
    
     [SerializeField]
     private float velocity;
-  
+    private GameObject Player;
     private Boss_Manager Boss;
     private Vector2 distance;
 
@@ -17,8 +17,9 @@ public class Boss_Projectile : MonoBehaviour
     void Start()
     {      
         Boss = gameObject.GetComponentInParent<Boss_Manager>();
+        Player = GameObject.FindGameObjectWithTag("Player");
 
-        distance = Boss.Goal.position - transform.position;
+        distance = Player.transform.position - transform.position;
         calculate_directional_angle = true;
 
         Destroy(gameObject, 3);
