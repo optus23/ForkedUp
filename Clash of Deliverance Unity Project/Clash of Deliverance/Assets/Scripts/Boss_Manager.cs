@@ -63,6 +63,8 @@ public class Boss_Manager : MonoBehaviour
     private bool first_exit_battelfield;
     private bool exit_battelfield;
 
+    GameObject levelGenerator;
+
     public Eye_Boss eye;
     public GameObject Body;
     public GameObject Shot;
@@ -100,6 +102,7 @@ public class Boss_Manager : MonoBehaviour
 
     private bool get_hit;
     public bool invulnerable = false;
+    LevelGenerator lvlGenScript;
 
     // Start is called before the first frame update
     void Start()
@@ -108,6 +111,8 @@ public class Boss_Manager : MonoBehaviour
         Eye_collider = GetComponentInChildren<CircleCollider2D>();
         Eye_collider.enabled = false;
 
+        levelGenerator = GameObject.FindGameObjectWithTag("LevelGenerator");
+        lvlGenScript = levelGenerator.GetComponent<LevelGenerator>();
 
         SetTypesNONE();
         phases = Phases.STATIC;
@@ -316,7 +321,15 @@ public class Boss_Manager : MonoBehaviour
         {
             get_hit = true;
             Destroy(gameObject, 2f);
+            
             phases = Phases.DEAD;
+            if(!lvlGenScript.boss_enemy_defeat)
+            {
+                lvlGenScript.boss_enemy_defeat = true;
+                lvlGenScript.Generator();
+            }
+            
+
             //TODO: Particles expansion circles (cash)
         }
         else if (eye.get_hit)
