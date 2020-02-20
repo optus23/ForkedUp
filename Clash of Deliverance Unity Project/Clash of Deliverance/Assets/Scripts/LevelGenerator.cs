@@ -31,7 +31,9 @@ public class LevelGenerator : MonoBehaviour
     private bool enemy_appear;
     private bool multiple_enemy_appear;
     private bool boss_enemy_appear;
+    private bool miniboss_enemy_appear;
     public bool boss_enemy_defeat;
+    public bool miniboss_enemy_defeat;
 
     float timer_pre_boss = 0;
 
@@ -83,6 +85,11 @@ public class LevelGenerator : MonoBehaviour
             PrepareBossTimer();
             CancelInvoke("Generator");
         }
+        if (miniboss_enemy_appear)
+        {
+            PrepareMiniBossTimer();
+            CancelInvoke("Generator");
+        }
     }
 
     void PrepareBossTimer()
@@ -98,17 +105,39 @@ public class LevelGenerator : MonoBehaviour
             timer_pre_boss += Time.deltaTime;
     }
 
+    void PrepareMiniBossTimer()
+    {
+        if (timer_pre_boss >= 2.5f)
+        {
+          
+            timer_pre_boss = 0;
+            Debug.Log("MiniBoss1");
+            Enemy1Generator();
+            miniboss_enemy_appear = false;
+        }
+        else
+            timer_pre_boss += Time.deltaTime;
+    }
+
     public void Generator()
     {
 
         if (!Player_Jump.dead)
         {
-            if (!boss_enemy_defeat &&  Score.score_value >= 50) // FINAL BOSS
+            if (!boss_enemy_defeat &&  Score.score_value >= 13) // FINAL BOSS
             {
                 if (!boss_enemy_appear)
                 {
                     random_boss_enemy_number = Random.Range(1, 101);
                     boss_enemy_appear = true;
+                }
+            }
+            else if (!miniboss_enemy_defeat &&  Score.score_value >= 2) // FINAL BOSS
+            {
+                if (!miniboss_enemy_appear)
+                {
+                    //random_boss_enemy_number = Random.Range(1, 101);
+                    miniboss_enemy_appear = true;
                 }
             }
             else if (Score.score_value >= 75) //  DIFFICULTY: High   (no pipes)
@@ -186,9 +215,9 @@ public class LevelGenerator : MonoBehaviour
                     {
                         pipe_limit_generator -= 15;
                     }
-                    else if (Score.score_value >= 20)
+                    else if (Score.score_value >= 15)
                     {
-                        pipe_limit_generator -= 20;
+                        pipe_limit_generator -= 15;
                     }
                     else
                         pipe_limit_generator -= 25;
@@ -311,7 +340,6 @@ public class LevelGenerator : MonoBehaviour
                     }
                     else //  DIFFICULTY: Low
                     {
-                        Debug.Log("1");
                         if (random_enemy3_number <= 50)
                         {
                             Enemy3Generator();

@@ -45,6 +45,10 @@ public class Enemy_1 : MonoBehaviour
 
     Rigidbody2D rb;
 
+    LevelGenerator lvlGenScript;
+    GameObject levelGenerator;
+
+    Animator OpenEyesAnimation;
     void Start()
     {
         bounce_number = Random.Range(1, 3);
@@ -52,13 +56,15 @@ public class Enemy_1 : MonoBehaviour
         rb.isKinematic = true;
         get_hit = false;
 
+        levelGenerator = GameObject.FindGameObjectWithTag("LevelGenerator");
+        lvlGenScript = levelGenerator.GetComponent<LevelGenerator>();
 
-
+        OpenEyesAnimation = GetComponentInChildren<Animator>();
+        OpenEyesAnimation.Play("Enemy1_Kamehameha", 0, 1);
     }
 
     void Update()
     {
-        Debug.Log(life);
         if (gameObject.transform.position.x >= Camera.main.transform.position.x + offset_camera_x && !stop)
         {
             MoveLeft();
@@ -129,29 +135,30 @@ public class Enemy_1 : MonoBehaviour
         // Enemy prepare shot
         if ((gameObject.transform.position.y <= first_shot_position +3 && can_first_shot) || (gameObject.transform.position.y >= second_shot_position - 3 && can_second_shot) && !eyes_changed)
         {
-            if(can_prepare_particle)
+            if(can_prepare_particle && ParticlePrepareKamehameha != null)
             {
                 ParticlePrepareKamehameha.SetActive(true);
+                OpenEyesAnimation.Play("Enemy1_Kamehameha", 0, 0);
                 can_prepare_particle = false;
             }
 
-            if (eye_scale <= 2.5f)
-            {
-                eye_scale += 0.1f;
-                eyes.transform.localScale = new Vector3(1, eye_scale, 1);
+            //if (eye_scale <= 2.5f)
+            //{
+            //    eye_scale += 0.1f;
+            //    eyes.transform.localScale = new Vector3(1, eye_scale, 1);
 
-            }
-            if(eye_position <= 0.2f)
-            {
-                eye_position += 0.01f;
-                eyes.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + eye_position);
+            //}
+            //if(eye_position <= 0.2f)
+            //{
+            //    eye_position += 0.01f;
+            //    eyes.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + eye_position);
 
-            }
-            if(eye_scale > 2.5f && eye_position > 0.2f)
-            {
-                eyes_changed = true;
+            //}
+            //if(eye_scale > 2.5f && eye_position > 0.2f)
+            //{
+            //    eyes_changed = true;
 
-            }
+            //}
         }
         
 
@@ -246,6 +253,7 @@ public class Enemy_1 : MonoBehaviour
         {
             if (life <= 1) 
             {
+
                 rb.isKinematic = false;
                 rb.AddForce(transform.right * -5000 * Time.deltaTime);
                 Ears.SetActive(false);
@@ -257,6 +265,12 @@ public class Enemy_1 : MonoBehaviour
                 start_fading = true;
                 Destroy(gameObject, 0.5f);
                 dead = true;
+
+                if (!lvlGenScript.miniboss_enemy_defeat)
+                {
+                    lvlGenScript.miniboss_enemy_defeat = true;
+                    lvlGenScript.Generator();
+                }
             }          
         }
     }

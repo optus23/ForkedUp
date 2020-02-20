@@ -45,7 +45,7 @@ public class FlagScore : MonoBehaviour
 
         //  N*((max-min)/(MAX-MIN) - max = n      FORMULA PARA TRADUCIR Score.score_value to screen unity meters
        
-        player_position_x = test/* Score.score_value*/ * ((Unity_screen_max - Unity_screen_min) / (Score_MAX - Score_MIN)) - Unity_screen_max;
+        player_position_x = /*test*/ Score.score_value * ((Unity_screen_max - Unity_screen_min) / (Score_MAX - Score_MIN)) - Unity_screen_max;
         player.transform.position = new Vector2(player_position_x, player.transform.position.y);
     }
     private void OnCollisionEnter2D(Collision2D collision)
