@@ -70,13 +70,13 @@ public class LevelGenerator : MonoBehaviour
 
         if (enemy_appear)
         {
-            pipe_offset += 3;
+            //pipe_offset += 2;
             enemy_appear = false;
             
         }
         if(multiple_enemy_appear)
         {
-            pipe_offset += 9;
+            //pipe_offset += 9;
             multiple_enemy_appear = false;
         }
 
@@ -94,7 +94,7 @@ public class LevelGenerator : MonoBehaviour
 
     void PrepareBossTimer()
     {
-        if (timer_pre_boss >= 5.5f)
+        if (timer_pre_boss >= 4.25f)
         {
           
             timer_pre_boss = 0;
@@ -107,7 +107,7 @@ public class LevelGenerator : MonoBehaviour
 
     void PrepareMiniBossTimer()
     {
-        if (timer_pre_boss >= 2.5f)
+        if (timer_pre_boss >= 3f)
         {
           
             timer_pre_boss = 0;
@@ -124,7 +124,7 @@ public class LevelGenerator : MonoBehaviour
 
         if (!Player_Jump.dead)
         {
-            if (!boss_enemy_defeat &&  Score.score_value >= 13) // FINAL BOSS
+            if (!boss_enemy_defeat &&  Score.score_value >= 49) // FINAL BOSS
             {
                 if (!boss_enemy_appear)
                 {
@@ -132,7 +132,7 @@ public class LevelGenerator : MonoBehaviour
                     boss_enemy_appear = true;
                 }
             }
-            else if (!miniboss_enemy_defeat &&  Score.score_value >= 2) // FINAL BOSS
+            else if (!miniboss_enemy_defeat &&  Score.score_value >= 14) // FINAL BOSS
             {
                 if (!miniboss_enemy_appear)
                 {
@@ -229,27 +229,28 @@ public class LevelGenerator : MonoBehaviour
 
                     if (Score.score_value > 20) //  DIFFICULTY: Medium
                     {
-                        if (random_both_enemy_number <= 20)
-                        {
-                            Enemy2AndEnemy3Generator();
-                            random_both_enemy_number = Random.Range(1, 101);
-                            enemy_appear = true;
-                            Debug.Log("random_both_enemy_number");
-                        }
-                        else if (random_multiple_enemy2_number <= 25)
-                        {
-                            MultipleEnemy2Generator();
-                            random_multiple_enemy2_number = Random.Range(1, 101);
-                            multiple_enemy_appear = true;
-                            Debug.Log("random_multiple_enemy2_number");
-                        }
-                        //else if (random_boss_enemy_number <= 5)
+                        //if (random_both_enemy_number <= 20)
                         //{
-                        //    BossEnemyGenerator();
-                        //    random_boss_enemy_number = Random.Range(1, 101);
-                        //    boss_enemy_appear = true;
-
+                        //    Enemy2AndEnemy3Generator();
+                        //    random_both_enemy_number = Random.Range(1, 101);
+                        //    enemy_appear = true;
+                        //    Debug.Log("random_both_enemy_number");
                         //}
+                        //else if (random_multiple_enemy2_number <= 25)
+                        //{
+                        //    MultipleEnemy2Generator();
+                        //    random_multiple_enemy2_number = Random.Range(1, 101);
+                        //    multiple_enemy_appear = true;
+                        //    Debug.Log("random_multiple_enemy2_number");
+                        //}
+                        if (random_boss_enemy_number <= 100)
+                        {
+                            //BossEnemyGenerator();
+                            random_boss_enemy_number = Random.Range(1, 101);
+                            boss_enemy_appear = true;
+                            boss_enemy_defeat = false;
+
+                        }
                         else
                         {
                             if (random_enemy3_number <= 33)
@@ -268,7 +269,9 @@ public class LevelGenerator : MonoBehaviour
                             }
                             else if (random_enemy1_number <= 33)
                             {
-                                Enemy1Generator();
+                                //Enemy1Generator();
+                                miniboss_enemy_defeat = false;
+                                miniboss_enemy_appear = true;
                                 random_enemy1_number = Random.Range(1, 101);
                                 enemy_appear = true;
                                 Debug.Log("random_enemy1_number");
@@ -383,21 +386,21 @@ public class LevelGenerator : MonoBehaviour
 
     void Enemy2Generator()
     {
-        Instantiate(enemy2, new Vector3(transform.position.x + pipe_offset - 2, Random.Range(-4f, 0f), 0), Quaternion.identity);
+        Instantiate(enemy2, new Vector3(transform.position.x + pipe_offset - 3, Random.Range(-4f, -2f), 0), Quaternion.identity);
         Invoke("Generator", time);
     }
 
     void Enemy3Generator()
     {
-        Instantiate(enemy3, new Vector3(transform.position.x + pipe_offset - 2, Random.Range(2f, 4f), 0), Quaternion.identity);
+        Instantiate(enemy3, new Vector3(transform.position.x + pipe_offset - 3, Random.Range(2f, 4f), 0), Quaternion.identity);
         Invoke("Generator", time);
     }
 
 
     void Enemy2AndEnemy3Generator()
     {
-        Instantiate(enemy2, new Vector3(transform.position.x + pipe_offset, Random.Range(-4f, -2f), 0), Quaternion.identity);
-        Instantiate(enemy3, new Vector3(transform.position.x + pipe_offset - 2, Random.Range(3f, 4f), 0), Quaternion.identity);
+        Instantiate(enemy2, new Vector3(transform.position.x + pipe_offset -1, Random.Range(-4f, -2f), 0), Quaternion.identity);
+        Instantiate(enemy3, new Vector3(transform.position.x + pipe_offset - 3, Random.Range(3f, 4f), 0), Quaternion.identity);
         Invoke("Generator", time);
     }
 
