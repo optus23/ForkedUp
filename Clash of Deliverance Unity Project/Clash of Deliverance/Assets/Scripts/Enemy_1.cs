@@ -271,6 +271,10 @@ public class Enemy_1 : MonoBehaviour
                     lvlGenScript.miniboss_enemy_defeat = true;
                     lvlGenScript.Generator();
                 }
+                if (lvlGenScript.enter_on_75_phase && FindObjectOfType<Enemy4>() == null)
+                {
+                    lvlGenScript.Generator();
+                }
             }          
         }
     }

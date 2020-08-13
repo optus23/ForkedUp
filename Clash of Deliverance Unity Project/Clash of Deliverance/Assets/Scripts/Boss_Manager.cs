@@ -326,7 +326,7 @@ public class Boss_Manager : MonoBehaviour
             if(!lvlGenScript.boss_enemy_defeat)
             {
                 lvlGenScript.boss_enemy_defeat = true;
-                lvlGenScript.Generator();
+                lvlGenScript.InvokingGenerator(1.5f);
             }
             
 

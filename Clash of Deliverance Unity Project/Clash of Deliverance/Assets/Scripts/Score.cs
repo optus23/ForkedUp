@@ -20,6 +20,11 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //-*-Start Debug-*-
+        score_value = 0;
+        //-*-End Debug-*-
+
+
         value_animation = 5;
         if (TryGetComponent<Animator>(out var sizeUpScoreAnim))
         {
@@ -34,6 +39,8 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (score_value >= 100) score_value = 100;
         score.text = "" + score_value;
 
         if (Score.score_value >= value_animation && TryGetComponent<Animator>(out var sizeUpScoreAnim))

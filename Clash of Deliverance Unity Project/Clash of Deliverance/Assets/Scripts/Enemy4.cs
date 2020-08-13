@@ -40,6 +40,9 @@ public class Enemy4 : MonoBehaviour
     TrailRenderer trail;
     BoxCollider2D box_collider;
 
+    LevelGenerator lvlGenScript;
+    GameObject levelGenerator;
+
     public bool dead;
     public bool start_fading;
     public int life;
@@ -53,6 +56,9 @@ public class Enemy4 : MonoBehaviour
         angry_renderer = AngryMouth.GetComponent<SpriteRenderer>();
         trail = GetComponent<TrailRenderer>();
         box_collider = GetComponent<BoxCollider2D>();
+
+        levelGenerator = GameObject.FindGameObjectWithTag("LevelGenerator");
+        lvlGenScript = levelGenerator.GetComponent<LevelGenerator>();
 
         player = GameObject.FindGameObjectWithTag("Player");
         
@@ -300,6 +306,16 @@ public class Enemy4 : MonoBehaviour
                 Destroy(gameObject, 1f);
                 Destroy(AngryMouth);
                 Destroy(HappyMouth);
+
+                if (!lvlGenScript.miniboss2_enemy_defeat)
+                {
+                    lvlGenScript.miniboss2_enemy_defeat = true;
+                    lvlGenScript.Generator();
+                }
+                if(lvlGenScript.enter_on_75_phase && FindObjectOfType<Enemy_1>() == null)
+                {
+                    lvlGenScript.Generator();
+                }
             }
             else
                 get_hit = true;

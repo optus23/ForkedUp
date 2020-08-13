@@ -110,13 +110,17 @@ public class Player_Jump : MonoBehaviour
 
 
     }
-
+    
+    
     // Update is called once per frame
     void Update()
     {
-
-        //  Dash
-        if (dash)
+        if (dead) //Flip when die and SetActive Restart Button
+        {
+            dead = false;
+        }
+            //  Dash
+            if (dash)
         {
             //Timer to prepare dash
             prepare_dash_timer += Time.deltaTime;

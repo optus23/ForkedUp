@@ -58,7 +58,7 @@ public class Eye_Boss : MonoBehaviour
     }
 
     private void Update()
-    {
+    {      
         switch (state)
         {
             case EyeState.BLINK:
@@ -81,6 +81,9 @@ public class Eye_Boss : MonoBehaviour
                 
                 break;
         }
+        //Debug
+        if (Input.GetKeyDown(KeyCode.F5))
+            life = 0;
     }
 
 
