@@ -42,7 +42,7 @@ public class LevelManager : MonoBehaviour
             if (Input.touchCount > 0)
                 touch = Input.GetTouch(0);
 
-            TouchToJump();
+            //TouchToJump();
         }
 
         if (scene.name == "Main Menu" && moving_panel)

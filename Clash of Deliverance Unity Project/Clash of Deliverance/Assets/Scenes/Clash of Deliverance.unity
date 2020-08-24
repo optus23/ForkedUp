@@ -1113,10 +1113,10 @@ RectTransform:
   m_Father: {fileID: 1931117364}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 21, y: 205}
-  m_SizeDelta: {x: -629.26, y: -1109.7}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 21, y: 139}
+  m_SizeDelta: {x: 170.73999, y: 314.30005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &425395802
 MonoBehaviour:
@@ -1859,6 +1859,7 @@ MonoBehaviour:
   random_boss_enemy_number: 0
   pipe_limit_generator_var: 90
   pipe_offset: 0
+  final_boss_enemy_defeat: 0
   boss_enemy_defeat: 0
   miniboss_enemy_defeat: 0
   miniboss2_enemy_defeat: 0
@@ -2315,8 +2316,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -381, y: 290}
-  m_SizeDelta: {x: -629.26, y: -1109.7}
+  m_AnchoredPosition: {x: -329, y: 217}
+  m_SizeDelta: {x: -631.03, y: -1240.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1405463401
 MonoBehaviour:
@@ -2612,8 +2613,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1902605698}
   player_position_x: 0
-  Unity_screen_min: -2.54
-  Unity_screen_max: 2.54
+  Unity_screen_min: -2.4
+  Unity_screen_max: 2.4
   Score_MIN: 1
   Score_MAX: 100
   force: 5

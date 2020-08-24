@@ -115,10 +115,10 @@ public class Player_Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dead) //Flip when die and SetActive Restart Button
-        {
-            dead = false;
-        }
+        //if (dead) //Flip when die and SetActive Restart Button
+        //{
+        //    dead = false;
+        //}
             //  Dash
             if (dash)
         {

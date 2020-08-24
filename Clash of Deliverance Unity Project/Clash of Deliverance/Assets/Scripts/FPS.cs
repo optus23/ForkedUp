@@ -9,12 +9,14 @@ public class FPS : MonoBehaviour
     private float deltaTime;
 
     // Update is called once per frame
+#if UNITY_EDITOR
     void Update()
     {
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
         float fps = 1.0f / deltaTime;
         fpsText.text = Mathf.Ceil(fps).ToString();
-    }
+    } 
+#endif
 
 
 }
