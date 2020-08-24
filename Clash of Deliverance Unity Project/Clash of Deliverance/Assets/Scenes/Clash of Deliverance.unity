@@ -172,7 +172,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7377155}
   m_LocalRotation: {x: -0, y: -0, z: -0.70710677, w: 0.7071068}
-  m_LocalPosition: {x: 11.74, y: 0.4, z: 87.64633}
+  m_LocalPosition: {x: 11.6, y: 0.4, z: 87.64633}
   m_LocalScale: {x: 17.7111, y: 18.163, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1034,7 +1034,7 @@ GameObject:
   - component: {fileID: 369987820}
   m_Layer: 0
   m_Name: DeathFloor
-  m_TagString: Untagged
+  m_TagString: DeathFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1073,7 +1073,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 369987819}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.9, y: -6.12, z: 87.64633}
+  m_LocalPosition: {x: -2.9, y: -6, z: 87.64633}
   m_LocalScale: {x: 25.860973, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1929,7 +1929,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1160659731}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.27, y: 5.83, z: 87.64633}
+  m_LocalPosition: {x: -0.27, y: 5.58, z: 87.64633}
   m_LocalScale: {x: 17.7111, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2614,12 +2614,11 @@ MonoBehaviour:
   player: {fileID: 1902605698}
   player_position_x: 0
   Unity_screen_min: -2.4
-  Unity_screen_max: 2.4
+  Unity_screen_max: 2.56
   Score_MIN: 1
   Score_MAX: 100
   force: 5
   Dust: {fileID: 1683300373093542404, guid: 144630b6079b4fc42a072441e085cd81, type: 3}
-  test: 0
 --- !u!1 &1931117360
 GameObject:
   m_ObjectHideFlags: 0

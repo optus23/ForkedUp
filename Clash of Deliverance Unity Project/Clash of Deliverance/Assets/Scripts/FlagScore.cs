@@ -28,8 +28,8 @@ public class FlagScore : MonoBehaviour
     }
 
 
-    [Range(0, 150)]
-    public int test;
+    //[Range(0, 150)]
+    //public int test;
 
     // Update is called once per frame
     void Update()
@@ -44,7 +44,7 @@ public class FlagScore : MonoBehaviour
         // N = Score, n = unity meters
 
         //  N*((max-min)/(MAX-MIN) - max = n      FORMULA PARA TRADUCIR Score.score_value to screen unity meters
-       
+        if (Score.score_value <= 5) Unity_screen_max = -Unity_screen_min;
         player_position_x = /*test*/ Score.score_value * ((Unity_screen_max - Unity_screen_min) / (Score_MAX - Score_MIN)) - Unity_screen_max;
         player.transform.position = new Vector2(player_position_x, player.transform.position.y);
     }

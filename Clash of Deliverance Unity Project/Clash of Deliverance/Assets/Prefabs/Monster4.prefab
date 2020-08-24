@@ -185,7 +185,7 @@ MonoBehaviour:
   HappyMouth: {fileID: 4420378382167362896}
   dead: 0
   start_fading: 0
-  life: 3
+  life: 2
   get_hit: 0
 --- !u!61 &4420378381393128069
 BoxCollider2D:
