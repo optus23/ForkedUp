@@ -21,7 +21,7 @@ public class Score : MonoBehaviour
     void Start()
     {
         //-*-Start Debug-*-
-        //score_value = 25;
+        //score_value = 50;
         //-*-End Debug-*-
 
 

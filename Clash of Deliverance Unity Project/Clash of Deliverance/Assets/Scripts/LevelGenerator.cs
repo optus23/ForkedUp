@@ -201,18 +201,18 @@ public class LevelGenerator : MonoBehaviour
                     boss_enemy_appear = true;
                 }
             }
-            else if (!miniboss_enemy_defeat &&  Score.score_value >= 24) // MINI BOSS
-            {
-                if (!miniboss_enemy_appear)
-                {
-                    miniboss_enemy_appear = true;
-                }
-            }
-            else if (!miniboss2_enemy_defeat &&  Score.score_value >= 14) // MINI BOSS
+            else if (!miniboss2_enemy_defeat &&  Score.score_value >= 24) // MINI BOSS
             {
                 if (!miniboss2_enemy_appear)
                 {
                     miniboss2_enemy_appear = true;
+                }
+            }
+            else if (!miniboss_enemy_defeat &&  Score.score_value >= 14) // MINI BOSS
+            {
+                if (!miniboss_enemy_appear)
+                {
+                    miniboss_enemy_appear = true;
                 }
             }
 

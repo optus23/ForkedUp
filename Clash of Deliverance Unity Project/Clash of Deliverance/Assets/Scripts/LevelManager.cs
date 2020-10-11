@@ -38,8 +38,8 @@ public class LevelManager : MonoBehaviour
     {
         if (scene.name == "WaitingPlayer" && (Input.GetKey("space") /*|| Input.touchCount > 0*/))
         {
-            if (Input.touchCount > 0)
-                touch = Input.GetTouch(0);
+            //if (Input.touchCount > 0)
+            //    touch = Input.GetTouch(0);
 
             TouchToJump();
         }
@@ -60,6 +60,7 @@ public class LevelManager : MonoBehaviour
     public void StartLevel(string level_name)
     {
         SceneManager.LoadScene(level_name);
+        FindObjectOfType<AudioManager>().Play("UI_Button");
     }
 
     public void ExitGame()
@@ -71,40 +72,48 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene("Clash of Deliverance");
         Score.score_value = 0;
+        FindObjectOfType<AudioManager>().Play("TouchToJump");
     }
 
     public void ReturnMainMenu()
     {
         SceneManager.LoadScene("Main Menu");
+        FindObjectOfType<AudioManager>().Play("UI_Button");
     }
 
     public void ReturnWaitinfPlayer()
     {
         SceneManager.LoadScene("WaitingPlayer");
         Player_Jump.dead = false;
-        
+        FindObjectOfType<AudioManager>().Play("Restart");
+
     }
-    
+
     public void ShopButton()
     {
         moving_panel = true;
         panel_stats = Panel_Stats.SHOP;
+        FindObjectOfType<AudioManager>().Play("UI_Button");
     }
     public void ReturnShopButton()
     {
         moving_panel = true;
         panel_stats = Panel_Stats.RETURN_SHOP;
+        FindObjectOfType<AudioManager>().Play("UI_Button");
 
     }
     public void CreditsButton()
     {
         moving_panel = true;
         panel_stats = Panel_Stats.CREDITS;
+        FindObjectOfType<AudioManager>().Play("UI_Button");
+
     }
     public void ReturnCreditsButton()
     {
         moving_panel = true;
         panel_stats = Panel_Stats.RETURN_CREDITS;
+        FindObjectOfType<AudioManager>().Play("UI_Button");
 
     }
 

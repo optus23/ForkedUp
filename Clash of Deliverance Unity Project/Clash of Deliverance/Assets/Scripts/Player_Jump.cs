@@ -186,6 +186,7 @@ public class Player_Jump : MonoBehaviour
 
                     arrow_up = true;
                     dash = true;
+                    FindObjectOfType<AudioManager>().Play("Dash");
                 }
                 //swipe down
                 if (currentSwipe.y < -offset_wipe_high && currentSwipe.x > -offset_wipe_width && currentSwipe.x < offset_wipe_width && !dead && !dashing)
@@ -196,6 +197,7 @@ public class Player_Jump : MonoBehaviour
                     arrow_down = true;
                     dash = true;
                     dashing_down = true;
+                    FindObjectOfType<AudioManager>().Play("Dash");
                 }
                 //swipe right
                 if (currentSwipe.x > offset_wipe_high && currentSwipe.y > -offset_wipe_width && currentSwipe.y < offset_wipe_width && !dead && !dashing)
@@ -205,6 +207,7 @@ public class Player_Jump : MonoBehaviour
 
                     arrow_right = true;
                     dash = true;
+                    FindObjectOfType<AudioManager>().Play("Dash");
                 }
                 ////swipe left
                 //if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f && !dead && !dashing)
@@ -223,7 +226,7 @@ public class Player_Jump : MonoBehaviour
 
             arrow_up = true;
             dash = true;
-
+            FindObjectOfType<AudioManager>().Play("Dash");
         }
         if (Input.GetKeyDown("down") && !dead && !dashing)
         {
@@ -233,6 +236,7 @@ public class Player_Jump : MonoBehaviour
             arrow_down = true;
             dash = true;
             dashing_down = true;
+            FindObjectOfType<AudioManager>().Play("Dash");
         }
         if (Input.GetKeyDown("right") && !dead && !dashing)
         {
@@ -241,6 +245,7 @@ public class Player_Jump : MonoBehaviour
 
             arrow_right = true;
             dash = true;
+            FindObjectOfType<AudioManager>().Play("Dash");
         }
 
         //Jump
@@ -266,6 +271,8 @@ public class Player_Jump : MonoBehaviour
             
             timer_animation = 0f;
             smoothRotation = 1;
+
+            FindObjectOfType<AudioManager>().Play("Jump");
         }
         else if ((Input.GetKeyUp("space") || Input.touchCount == 0) && key_down)
         {
@@ -311,11 +318,9 @@ public class Player_Jump : MonoBehaviour
         
     }
 
-
     void PrepareDash()
     {
         rb2D.velocity = Vector2.zero;
-
         if (arrow_up)
         {
             rb2D.AddForce(Vector2.down * prepare_dash_force);
