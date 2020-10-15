@@ -306,6 +306,7 @@ public class Enemy4 : MonoBehaviour
                 Destroy(gameObject, 1f);
                 Destroy(AngryMouth);
                 Destroy(HappyMouth);
+                FindObjectOfType<AudioManager>().Play("Death_Enemy4");
 
                 if (!lvlGenScript.miniboss2_enemy_defeat)
                 {
@@ -335,5 +336,6 @@ public class Enemy4 : MonoBehaviour
         StopCoroutine("GetHit");
         get_hit = false;
         trail.enabled = true;
+        FindObjectOfType<AudioManager>().Play("GetHit_Enemy4");
     }
 }

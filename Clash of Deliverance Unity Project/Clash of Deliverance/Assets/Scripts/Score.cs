@@ -49,6 +49,17 @@ public class Score : MonoBehaviour
             sizeUpScoreAnim.Play("Score animation", 0, 0);
         }
 
+
+        if(score_value >= 1 && PlayerPrefs.GetInt("Checkpoint") < 1)
+            PlayerPrefs.SetInt("Checkpoint", 1);
+        if(score_value >= 2 && PlayerPrefs.GetInt("Checkpoint") < 2)
+            PlayerPrefs.SetInt("Checkpoint", 2);
+        if(score_value >= 3 && PlayerPrefs.GetInt("Checkpoint") < 3)
+            PlayerPrefs.SetInt("Checkpoint", 3);
+        if (score_value >= 4 && PlayerPrefs.GetInt("Checkpoint") < 4)
+            PlayerPrefs.SetInt("Checkpoint", 4);
+
+
         //if (player_pickup_score && score_value > animation_score_number) //  Size effect
         //{
         //    if (change_scale)
@@ -100,5 +111,5 @@ public class Score : MonoBehaviour
 
     }
 
-    
+
 }

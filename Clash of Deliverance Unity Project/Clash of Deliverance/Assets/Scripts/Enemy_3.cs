@@ -111,6 +111,7 @@ public class Enemy_3 : MonoBehaviour
             Left_eye.SetActive(false);
             Enemy_mouth.SetActive(false);
             collider.enabled = false;
+            FindObjectOfType<AudioManager>().Play("Death_Enemy3");
 
             Destroy(Money);
         }

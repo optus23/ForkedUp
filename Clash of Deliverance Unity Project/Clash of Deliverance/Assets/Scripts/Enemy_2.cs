@@ -130,6 +130,7 @@ public class Enemy_2 : MonoBehaviour
             Mouth.SetActive(false);
 
             collider.enabled = false;
+            FindObjectOfType<AudioManager>().Play("Death_Enemy2");
 
             Destroy(Money);
             

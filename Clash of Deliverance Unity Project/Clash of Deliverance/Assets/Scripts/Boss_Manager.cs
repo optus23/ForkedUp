@@ -132,6 +132,7 @@ public class Boss_Manager : MonoBehaviour
                     case Type1State.PREPARE_SHOT:
                         Eye_collider.enabled = false;
                         InvokeFollowShot();
+                        FindObjectOfType<AudioManager>().Play("Kamehameha_Big");
                         type1_state = Type1State.SHOT;
                         break;
 
@@ -328,7 +329,8 @@ public class Boss_Manager : MonoBehaviour
                 lvlGenScript.boss_enemy_defeat = true;
                 lvlGenScript.InvokingGenerator(1.5f);
             }
-            
+
+            FindObjectOfType<AudioManager>().Play("Death_Enemy5");
 
             //TODO: Particles expansion circles (cash)
         }
@@ -336,6 +338,7 @@ public class Boss_Manager : MonoBehaviour
         {
             get_hit = true;
             eye.state = Eye_Boss.EyeState.GETHIT;
+            FindObjectOfType<AudioManager>().Play("GetHit_Enemy5");
             eye.get_hit = false;
         }
         else

@@ -27,6 +27,7 @@ public class HighScore : MonoBehaviour
             high_score_value = Score.score_value;
             high_score.text = "High Score: " + high_score_value;
             PlayerPrefs.SetInt("HighScore", high_score_value);
+            FindObjectOfType<AudioManager>().Play("High_Score");
 
         }
     }

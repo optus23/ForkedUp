@@ -43,7 +43,7 @@ public class FlagScore : MonoBehaviour
         //  50 MID = 0 mid
         // N = Score, n = unity meters
 
-        //  N*((max-min)/(MAX-MIN) - max = n      FORMULA PARA TRADUCIR Score.score_value to screen unity meters
+        //  N*(max-min)/(MAX-MIN) - max = n      FORMULA PARA TRADUCIR Score.score_value to screen unity meters
         if (Score.score_value <= 5) Unity_screen_max = -Unity_screen_min;
         player_position_x = /*test*/ Score.score_value * ((Unity_screen_max - Unity_screen_min) / (Score_MAX - Score_MIN)) - Unity_screen_max;
         player.transform.position = new Vector2(player_position_x, player.transform.position.y);
@@ -53,14 +53,13 @@ public class FlagScore : MonoBehaviour
         if (collision.transform.tag == "DanceFloor" && collision.gameObject.layer == 5)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
-            //transform.position = new Vector2(transform.position.x, 0.4f);
-            //rb2D.AddRelativeForce(transform.up * 0);
             rb2D.AddForce(transform.up * force, ForceMode2D.Impulse);
-            //rb2D.AddForceAtPosition(transform.up * 2 * force, new Vector2(transform.position.x, 0.4f));
             Instantiate(Dust, new Vector2(transform.position.x, transform.position.y), Dust.transform.rotation);
+            FindObjectOfType<AudioManager>().Play("Jump_FlagScore");
+
 
         }
-        if(collision.gameObject.layer == 0)
+        if (collision.gameObject.layer == 0)
         {
             Collider2D player_collider = GetComponent<Collider2D>();
             Collider2D tube_collider = collision.gameObject.GetComponent<Collider2D>();

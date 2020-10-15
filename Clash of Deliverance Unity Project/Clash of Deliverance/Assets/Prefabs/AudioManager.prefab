@@ -74,7 +74,127 @@ MonoBehaviour:
     pitch_: 1
     loop_: 0
     source: {fileID: 0}
-  - name: Play
+  - name: Die_Floor
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: Die_Enemy
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: Ceiling_Crash
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: Ceiling
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: Die_Shot
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: Score1
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: Score5
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: Score10
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: Flag_Score_Appear
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: Death_Enemy1
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: Death_Enemy2
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: Death_Enemy3
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: Death_Enemy4
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: Death_Enemy5
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: GetHit_Enemy1
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: GetHit_Enemy4
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: GetHit_Enemy5
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: Kamehameha_Big
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: Kamehameha_Little
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: High_Score
+    clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
+    volume_: 1
+    pitch_: 1
+    loop_: 0
+    source: {fileID: 0}
+  - name: Jump_FlagScore
     clip_: {fileID: 8300000, guid: 7e8996b8303f31344843708fa21f6ac1, type: 3}
     volume_: 1
     pitch_: 1

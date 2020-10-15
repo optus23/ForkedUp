@@ -170,6 +170,7 @@ public class Enemy_1 : MonoBehaviour
             {
                 if(shot_once)
                 {
+                    FindObjectOfType<AudioManager>().Play("Kamehameha_Little");
                     Kamehameha();
                     if(ParticlePrepareKamehameha != null)
                         ParticlePrepareKamehameha.SetActive(false);
@@ -264,6 +265,7 @@ public class Enemy_1 : MonoBehaviour
                 GetComponent<EchoEffect>().enabled = false;
                 start_fading = true;
                 Destroy(gameObject, 0.5f);
+                FindObjectOfType<AudioManager>().Play("Death_Enemy1");
                 dead = true;
 
                 if (!lvlGenScript.miniboss_enemy_defeat)
@@ -275,7 +277,8 @@ public class Enemy_1 : MonoBehaviour
                 {
                     lvlGenScript.Generator();
                 }
-            }          
+            }
+            FindObjectOfType<AudioManager>().Play("GetHit_Enemy1");
         }
     }
 

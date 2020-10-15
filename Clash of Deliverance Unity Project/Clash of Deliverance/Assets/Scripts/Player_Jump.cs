@@ -311,9 +311,10 @@ public class Player_Jump : MonoBehaviour
                 ScoreNum.SetActive(false);
                 ScoreDead.SetActive(true);
                 despawn_deadplayer = true;
+                FindObjectOfType<AudioManager>().Play("Flag_Score_Appear");
             }
 
-           
+
         }
         
     }
@@ -367,6 +368,7 @@ public class Player_Jump : MonoBehaviour
             rb2D.AddForce(transform.right * -force);
             rb2D.AddForce(transform.up * force);
             dashing = false;
+            FindObjectOfType<AudioManager>().Play("Die_Enemy");
 
         }
         if (collision.transform.tag == "DeathFloor")
@@ -376,6 +378,8 @@ public class Player_Jump : MonoBehaviour
             rb2D.AddForce(transform.right * (force / 1.5f));
             rb2D.AddForce(transform.up * (force / 1.5f));
             dashing = false;
+            FindObjectOfType<AudioManager>().Play("Die_Floor");
+
         }
         if (collision.transform.tag == "Enemy_Up")
         {           
@@ -397,6 +401,7 @@ public class Player_Jump : MonoBehaviour
                 rb2D.AddForce(transform.right * (force / 1.5f));
                 rb2D.AddForce(transform.up * (force / 1.5f));
                 dashing = false;
+                FindObjectOfType<AudioManager>().Play("Die_Enemy");
             }
         }
         if (collision.transform.tag == "Enemy_Down")
@@ -425,18 +430,24 @@ public class Player_Jump : MonoBehaviour
                 rb2D.AddForce(transform.right * (force / 1.5f));
                 rb2D.AddForce(transform.up * (force / 1.5f));
                 dashing = false;
+                FindObjectOfType<AudioManager>().Play("Die_Enemy");
             }
         }
         if (collision.transform.tag == "Ceiling")
         {
+
             if (dashing)
             {
                 cameraShake.Shake(0.2f, 0.2f);
 
                 dashing = false;
+                FindObjectOfType<AudioManager>().Play("Ceiling_Crash");
             }
             else
+            {
                 cameraShake.Shake(0.1f, 0.1f);
+                FindObjectOfType<AudioManager>().Play("Ceiling");
+            }
 
             transform.position = new Vector3(simulated_position_player.x, transform.position.y, transform.position.z);
 
@@ -452,9 +463,11 @@ public class Player_Jump : MonoBehaviour
 
             rb2D.AddForce(Vector2.left * dash_force / 4);
             InitialPosition.SetActive(true);
+            FindObjectOfType<AudioManager>().Play("Ceiling_Crash");
+
         }
 
-        if(collision.transform.tag == "Eye_Boss")
+        if (collision.transform.tag == "Eye_Boss")
         {
             if (dashing)
             {
@@ -483,6 +496,7 @@ public class Player_Jump : MonoBehaviour
                 rb2D.AddForce(transform.right * (force / 1.5f));
                 rb2D.AddForce(transform.up * (force / 1.5f));
                 dashing = false;
+                FindObjectOfType<AudioManager>().Play("Die_Enemy");
             }
         }
 
@@ -514,6 +528,7 @@ public class Player_Jump : MonoBehaviour
                 rb2D.AddForce(transform.right * (force / 1.5f));
                 rb2D.AddForce(transform.up * (force / 1.5f));
                 dashing = false;
+                FindObjectOfType<AudioManager>().Play("Die_Enemy");
             }
         }
 
@@ -548,6 +563,7 @@ public class Player_Jump : MonoBehaviour
                 rb2D.AddForce(transform.right * (force / 1.5f));
                 rb2D.AddForce(transform.up * (force / 1.5f));
                 dashing = false;
+                FindObjectOfType<AudioManager>().Play("Die_Enemy");
 
 
             }
@@ -574,6 +590,7 @@ public class Player_Jump : MonoBehaviour
                 transform.rotation = downDash;
                 rb2D.AddForce(transform.up * (-force * 1.5f));
                 dashing = false;
+                FindObjectOfType<AudioManager>().Play("Die_Shot");
             }
         }
         if (collision.transform.tag == "BossProjectile") //  Enemy Shot
@@ -590,6 +607,7 @@ public class Player_Jump : MonoBehaviour
                 transform.rotation = downDash;
                 rb2D.AddForce(transform.up * (-force * 1.5f));
                 dashing = false;
+                FindObjectOfType<AudioManager>().Play("Die_Shot");
             }
         }
 
@@ -606,6 +624,7 @@ public class Player_Jump : MonoBehaviour
             PlayerPrefs.SetInt("Money", Money.player_money_value);
 
             Instantiate(MoneyParticle1, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+            FindObjectOfType<AudioManager>().Play("Score1");
         }
         if (collision.transform.tag == "Normal_Money")
         {
@@ -613,6 +632,7 @@ public class Player_Jump : MonoBehaviour
             PlayerPrefs.SetInt("Money", Money.player_money_value);
 
             Instantiate(MoneyParticle2, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+            FindObjectOfType<AudioManager>().Play("Score5");
         }
         if (collision.transform.tag == "Super_Money")
         {
@@ -620,6 +640,7 @@ public class Player_Jump : MonoBehaviour
             PlayerPrefs.SetInt("Money", Money.player_money_value);
 
             Instantiate(MoneyParticle3, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+            FindObjectOfType<AudioManager>().Play("Score10");
         }
 
         if (collision.transform.tag == "InitialPosition")

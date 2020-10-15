@@ -53,7 +53,7 @@ public class LevelManager : MonoBehaviour
         {
             Player.SetActive(false);
         }
-        else
+        else if(Player != null)
             Player.SetActive(true);
     }
 
