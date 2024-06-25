@@ -1,0 +1,425 @@
+# Funciones para los movimientos
+# Formato: CLAVE;Movimiento referencia1,Mov.ref.2,ect;Descripción
+000;;Sin efecto
+001;Salpicadura;No hace nada en absoluto
+002;Combate;Otra definición del movimiento Combate (cuando el Pokémon se queda sin PPs)
+003;;Duerme al objetivo
+004;Bostezo;Adormece al objetivo, que se duerme al final de la siguiente ronda
+005;;Envenena al objetivo
+006;Tóxico;Envenena gravemente al objetivo
+007;Onda Trueno, At. Fulgor;Paraliza al objetivo
+008;Tueno;Paraliza al objetivo. Precisión 100% en lluvia, 50% en día soleado
+009;Colm. Rayo;Paraliza al objetivo y puede hacerlo retroceder
+00A;;Quema al objetivo 
+00B;Colm. Íngeo;Quema al objetivo y puede hacerlo retroceder
+00C;;Conjela al objetivo
+00D;Ventisca;Conjela al objetivo. Precisión 100% durante el granizo
+00E;Colm. Hielo;Conjela al objetivo y puede hacerlo retroceder
+00F;;Hace retroceder al objetivo
+010;;Hace retroceder al objetivo. Precisión 100% si el objetivo ha usado Reducción
+011;Ronquido;Hace retroceder al objetivo. Falla su el usuario no está dormido
+012;Sorpresa;Hace retroceder al objetivo. Falla si no se usa en el primer turno
+013;Rayo confuso;Confunde al objetivo
+014;Cháchara;Confunde al objetivo. Aumenta % de confundir si se ha grabado una canción
+015;Vendaval;Confunde al objetivo. Precisión 100% en lluvia, 50% en día soleado
+016;Atracción;Enamora al objetivo
+017;Triataque;Quema, congela o paraliza al objetivo
+018;Alivio;Cura al usuario la quemadura, envenenamiento o parálisis
+019;Aromaterapia, Campana Cura;Cura los problemas de estado a todos los Pokémon del equipo
+01A;Velo Sagrado;Protege al equipo del usuario de problemas de estado
+01B;Psico-cambio;El usuario pasa su problema de estado al objetivo
+01C;;Incrementa el Ataque del usuario en 1 nivel
+01D;;Incrementa la Defensa del usuario en 1 nivel
+01E;Rizo Defensa;Incrementa la Defensa del usuario en 1 nivel. El usuario se acurruca
+01F;;Incrementa la Velocidad del usuario en 1 nivel
+020;;Incrementa el Ataque Especial del usuario en 1 nivel
+021;Carga;Incrementa la Defensa Especial del usuario en 1 nivel y potencia su siguiente ataque de tipo Eléctrico
+022;;Incrementa la Evasión del usuario en 1 nivel
+023;Foco Energía;Incrementa la probabilidad de golpe crítico del usuario
+024;Corpulencia;Incrementa el Ataque y la Defensa del usuario en 1 nivel cada una
+025;Enrosque;Incrementa el Ataque, la Defensa y la precisión del usuario en 1 nivel cada una
+026;Danza Dragón;Incrementa el Ataque y la Velocidad del usuario en 1 nivel cada una
+027;Avivar;Incrementa el Ataque y el Ataque Especial del usuario en 1 nivel cada una
+028;Desarrollo;Incrementa el Ataque y el Ataque Especial del usuario en 1 nivel cada una. Con clima es Soleado, el incremento es de 2 niveles
+029;Afilagarras;Incrementa el Ataque y la Precisión del usuario en 1 nivel cada una
+02A;Masa Cósmica;Incrementa la Defensa y la Defensa Especial del usuario en 1 nivel cada una
+02B;Danza Aleteo;Incrementa el Ataque Especial, la Defensa Especial y la Velocidad del usuario en 1 nivel cada una
+02C;Paz Mental;Incrementa el Ataque Especial y la Defensa Especial del usuario en 1 nivel cada una
+02D;Poder Pasado;Incrementa el Ataque, Defensa, Velocidad, Ataque Especial y Defensa Especial del usuario en 1 nivel cada una
+02E;;Incrementa el Ataque del usuario en 2 niveles
+02F;;Incrementa el Defensa del usuario en 2 niveles
+030;;Incrementa el Velocidad del usuario en 2 niveles
+031;Aligerar;Incrementa la Velocidad del usuario en 2 niveles. Reduce el peso del usuario en 100 kg
+032;;Incrementa el Ataque Especial del usuario en 2 niveles
+033;;Incrementa la Defensa Especial del usuario en 2 niveles
+034;Reducción;Incrementa la evasión del usuario en 2 niveles. Reducción del usuario
+035;Rompecoraza;Reduce la Defensa y la Defensa Especial del usuario en 1 nivel cada una. Incrementa el Ataque, la Velocidad y el Ataque Especial del usuario en 2 niveles cada uno
+036;Cambiomarcha;Incrementa la Velocidad del usuario en 2 niveles y su Ataque en 1
+037;Acupresión;Incrementa una característica del usuario al azar en 2 niveles (salvo PS)
+038;;Incrementa la Defensa del usuario en 3 niveles
+039;;Incrementa el Ataque Especial del usuario en 3 niveles
+03A;Tambor;Reduce los PS del usuario por la mitad de los PS máximos y sube su Ataque al máximo
+03B;Fuerza Bruta;Reduce el Ataque y la Defensa del usuario en 1 nivel cada una
+03C;A Bocajarro;Reduce la Defensa y la Defensa Especial del usuario en 1 nivel cada una
+03D;V de Fuego;Reduce la Defensa, Defensa Especial y Velocidad del usuario en 1 nivel cada una. Los aliados del usuario pierden 1/16 de los PS máximos
+03E;;Reduce la Velocidad del usuario en 1 nivel
+03F;;Reduce el Ataque Especial del usuario en 2 niveles
+040;Camelo;Incrementa el Ataque Especial del objetivo en 1 nivel y lo confunde
+041;Contoneo;Incrementa el Ataque del objetivo en 2 niveles y lo confunde.
+042;;Reduce el Ataque del objetivo en 1 nivel
+043;;Reduce el Defensa del objetivo en 1 nivel
+044;;Reduce la Velocidad del objetivo en 1 nivel
+045;;Reduce el Ataque Especial del objetivo en 1 nivel
+046;;Reduce la Defensa Especial del objetivo en 1 nivel
+047;;Reduce la Precisión del objetivo en 1 nivel
+048;Dulce Aroma ;Reduce la Evasión del objetivo en 1 o 2 niveles.
+049;Despejar;Reduce la Evasión del objetivo en 1 nivel. Elimina todas las barreras y obstáculos del lado rival del campo o de ambos lados
+04A;Cosqillas;Reduce el Ataque y la Defensa del objetivo en 1 nivel cada una
+04B;;Reduce el Ataque del objetivo en 2 niveles
+04C;Chirrido;Reduce la Defensa del objetivo en 2 niveles
+04D;Esporagodón, Cara Susto, Disparo Demora;Reduce la Velocidad del objetivo en 2 nivelesEsporagodón, Cara Susto
+04E;Seducción;Reduce el Ataque Especial del objetivo en 2 niveles. Solo funciona con el género opuesto.
+04F;;Reduce la Defensa Especial del objetivo en 2 niveles.
+050;Nieblaclara;Reinicia las características de todos los objetivos a 0
+051;Niebla;Reinicia los niveles de todas las características de todos los combatientes a 0
+052;Cambia Fuerza;El usuario y el objetivo intercambian los niveles de Ataque y Ataque Especial
+053;Cambia Defensa;El usuario y el objetivo intercambian los niveles de Defensa y Defensa Especial
+054;Cambia Almas;El usuario y el objetivo intercambian los niveles de todas las características
+055;Más Psique;El usuario copia los niveles de las características del objetivo
+056;Neblina;Durante 5 rondas, los niveles de las características del usuario y aliados no pueden ser bajadas por los rivales
+057;Truco Fuerza;Intercambia las características de Ataque y Defensa del usuario
+058;Isofuerza;Promedia el Ataque del usuario y el objetivo y el Ataque Especial del usuario y el objetivo
+059;Isoguardia;Promedia la Defensa del usuario y el objetivo y la Defensa Especial del usuario y el objetivo
+05A;Divide Dolor;Promedia los PS actuales del usuario y el objetivo
+05B;Viento Afín;Durante 4 rondas, duplica la Velocidad de todos los combatientes del lado del usuario
+05C;Mimético;Este movimiento se convierte en el último movimiento usado por el objetivo, hasta que el usuario sea cambiado
+05D;Esquema;Este movimiento se convierte permanentemente en el último movimiento utilizado por el objetivo
+05E;Conversión;Cambia el tipo del usuario por el tipo de uno de los demás movimientos del usuario elegido al azar, O por el tipo del primer movimiento del usuario
+05F;Conversión2;Cambia el tipo del usuario por uno al azar que sea resistente o tenga inmunidad al último movimiento usado por el objetivo
+060;Camuflaje;Modifica el tipo del Pokémon según el terreno de combate donde esté
+061;Anegar, Polvo Mágico;El objetivo se convierte en tipo Agua (Anegar) o en tipo Psíquico (Polvo Mágico)
+062;Clonatipo;El usuario copia los tipos del objetivo
+063;Onda Simple;La habilidad del objetivo cambia a Simple
+064;Abatidoras;La habilidad del objetivo cambia a Insomnio
+065;Imitación;El usuario copia la habilidad del objetivo
+066;Danza Amiga;El objetivo copia la habilidad del usuario
+067;Intercambio;El usuario y el objetivo intercambian sus habilidades
+068;Bilis;La habilidad del objetivo es anulada
+069;Transformar;El usuario se transforma en el objetivo
+06A;Bomba Sónica;Inflinge siempre 20 PS de daño
+06B;Furia Dragón;Inflinge siempre 40 PS de daño
+06C;Superdiente;Reduce a la mitad los PS actuales del objetivo
+06D;Tinieblas, Movimiento Sísmico;Inflinge daño igual al nivel del usuario
+06E;Esfuerzo;Reduce los PS del objetivo para que igualen a los del atacante
+06F;Psicoonda;Inflinge un daño entre 0,5 y 1,5 veces el nivel del usuario
+070;;KO de un golpe. La precisión incrementa por diferencia entre los niveles del usuario y el objetivo
+071;Contraataque;Contraataca un movimiento físico usado contra el usuario en la misma ronda, con el doble de potencia
+072;Manto Espejo;Contraataca un movimiento especial usado contra el usuario en la misma ronda, con el doble de potencia
+073;Represión Metal;Contraataca el último movimiento de daño usado contra el usuario en la misma ronda, con 1,5x de potencia
+074;Pirotécnia;Los aliados del objetivo pierden 1/16 de sus PS máximos
+075;Surf;La potencia se duplica si el objetivo estó usando Buceo
+076;Terremoto;La potencia se duplica si el objetivo estó usando Excavar. La potencia se reduce a la mitad si el Campo de Hierba está activo
+077;Tornado;La potencia se duplica si el objetivo estó usando Bote, Vuelo o Caída Libre
+078;Ciclón;La potencia se duplica si el objetivo estó usando Bote, Vuelo o Caída Libre. Puede hacer que el objetivo retroceda
+079;Rayo Fusión;La potencia se duplica si se ha utilizado Llama Fusión en la misma ronda
+07A;Llama Fusión;La potencia se duplica si se ha utilizado Rayo Fusión en la misma ronda
+07B;Cargatóxica;La potencia se duplica si el objetivo está envenenado
+07C;Estímulo;La potencia se duplica si el objetivo está paralizado. El objetivo se libera de la parálisis
+07D;Espabila;La potencia se duplica si el objetivo está dormido. El objetivo se despierta
+07E;Imagen;La potencia se duplica es el usuario está quemado, envenenado o paralizado
+07F;Infortunio;La potencia se duplica si el objetivo tiene algún problema de estado
+080;Salmuera;La potencia se duplica si el objetivo tiene los PS a la mitad o menos
+081;Desquite, Alud;La potencia se duplica si el usuario perdió PS debido al movimiento del objetivo en la misma ronda
+082;Buena Baza;La potencia se duplica si el objetivo ya ha perdido PS en la misma ronda
+083;Canon;La potencia se duplica si un aliado del usuario ya ha usado este movimiento en la misma ronda. Si un aliado está por usar el mismo movimiento, se ejecuta a continuación, ignorando las prioridades
+084;Vendetta;La potencia se duplica si el objetivo ya se ha movido en la misma ronda
+085;Represalia;La potencia se duplica si se ha debilitado un compañero del usuario en la ronda anterior
+086;Acróbata;La potencia se duplica si el usuario no lleva ningún objeto
+087;Meteorobola;La potencia se duplica con algún clima activo. El tipo cambia depende del clima activo
+088;Persecución;La potencia se duplica si el rival intenta cambiar o usa Ida y Vuelta/Voltiocambio/Última Palabra
+089;Retroceso;La potencia se incrementa con la felicidad del usuario
+08A;Frustración;La potencia se merma con la felicidad del usuario
+08B;Estallido, Salpicar;La potencia se incrementa con los PS del usuario
+08C;Agarrón, Estrujón;La potencia se incrementa según los PS del oponente
+08D;Giro Bola;La potencia se incrementa mientras el objetivo es más rápido que el usuario
+08E;Poderreserva;La potencia se incrementa con los cambios positivos en las características del usuario, se ignoran los negativos
+08F;Castigo;La potencia se incrementa con los cambios positivos en las características del objetivo, se ignoran los negativos
+090;Poder Oculto;La potencia y el tipo dependen de los IVs del usuario
+091;Cortefuria;La potencia se duplica con cada uso consecutivo
+092;Eco Voz;La potencia es multiplicada por el número de rondas consecutivas en los que este movimiento ha sido utilizado por cualquier Pokémon del lado del usuario
+093;Furia;El usuario se mantiene furioso hasta el inicio de una ronda en la que no utilice este movimiento
+094;Presente;Daña o cura aleatoriamente al objetivo
+095;Magnitud;La potencia es tomada al azar, se duplica si el objetivo está usando Excavar
+096;Don Natural;La potencia y el tipo de este movimiento depende de la baya que porta el usuario. La baya se destruye
+097;As Oculto;La potencia aumenta mientras menos PP le quede a este movimiento
+098;Azote, Inversión;La potencia aumenta mientras menos PS le quede al usuario
+099;Bola Voltio;La pontencia aumenta mientras el usuario sea más rápido que el objetivo
+09A;Hierba Lazo, Patada Baja;La potencia aumenta mientras más pesado sea el objetivo
+09B;Golpe Calor, Cuerpopesado;La potencia aumenta mientras más pesado sea el usuario en relación al objetivo
+09C;Refuerzo;Potencia el ataque de un aliado por 1,5 en esta ronda
+09D;Chapoteolodo;Debilita ataques de tipo Eléctrico
+09E;Hidrochorro;Debilita ataques de tipo Fuego
+09F;Sentencia;El tipo del movimiento depende del objetivo portado por el usuario
+0A0;Vaho Gélido, Llave Corsé;Este ataque siempre resulta en un golpe crítico
+0A1;Conjuro;Durante 5 rondas, los ataques enemigos no podrán ser críticos
+0A2;Reflejo;Durante 5 rondas, se debilita la potencia de los movimientos físicos contra el equipo del usuario
+0A3;Pantalla Luz;Durante 5 rondas, se debilita la potencia de los ataques especiales contra el equipo del usuario
+0A4;Daño Secreto;El efecto depende del entorno
+0A5;Rapidez, Finta;Golpea siempre
+0A6;Fijar Blanco, Telépata;Asegura el golpe del ataque del usuario en la siguiente ronda
+0A7;Profecía, Rastreo;Los cambios en la evasión del objetivo son ignorados desde esta ronda en adelante. Los movimientos de tipo Normal y Lucha tienen eficiencia normal contra los objetivos de tipo Fantasma
+0A8;Gran Ojo;Los cambios en la evasión del objetivo son ignorados desde esta ronda en adelante. Los movimientos de tipo Psíquico tienen eficiencia normal contra los objetivos de tipo Siniestro
+0A9;Guardia Baja, Espadasanta;Este movimiento ignora los cambios en la Defensa, Defensa Especial y evasión del objetivo
+0AA;Detección, Protección;El usuario se protege de movimientos con la bandera 'B' en esta ronda
+0AB;Anticipo;El equipo del usuario es protegido de movimientos con prioridad mayor a 0 esta ronda
+0AC;Vastaguardia;El equipo del usuario es protegido de movimientos de objetivos múltiples esta ronda
+0AD;Amago;Ignora las protecciones del objetivo. Si tiene éxito, todos los demás movimientos de esta ronda también las ignoran
+0AE;Movimiento Espejo;Utiliza el último movimiento que haya usado el objetivo
+0AF;Copión;Utiliza el último movimiento que haya sido usado
+0B0;Yo Primero;Usa el movimiento que el objetivo está por usar esta ronda, con x1,5 de potencia
+0B1;Capa Mágica;Esta ronda, refleja todos los movimientos con la bandera 'C' dirigidos al usuario de vuelta al origen
+0B2;Robo;Esta ronda, roba todos los movimientos con bandera 'D' que se usen
+0B3;Adaptación;Utiliza un movimientos diferente dependiendo del entorno
+0B4;Sonámbulo;Utiliza un movimiento al azar entre los conocidos por el usuario. Falla si el usuario no está dormido
+0B5;Ayuda;Uses a random move known by any non-user Pokémon in the user's party
+0B6;Metrónomo;Utiliza un movimiento al azar entre todos los existentes
+0B7;Tormento;El objetivo no podrá volver a usar el mismo movimiento dos veces seguidas
+0B8;Cerca;Desactiva todos los movimientos del objetivo que el usuario también conozca
+0B9;Anulación;Durante 5 rondas, desactiva el último movimiento usado por el objetivo
+0BA;Mofa;Durante 4 rondas, desactiva los movimientos que no hacen daño del objetivo
+0BB;Anticura;Durante 5 rondas, desactiva los movimientos de salud del objetivo
+0BC;Otra Vez;Durante 4 rondas, el objetivo debe utilizar el mismo movimiento en cada ronda
+0BD;Doble Patada, Huesomerang;Golpea dos veces
+0BE;Dobleataque;Golpea dos veces. Puede envenenar al objetivo con cada golpe
+0BF;Triplepatada;Golpea  3 veces. La potencia se multiplica por el número de golpes
+0C0;Doble Bofetón, Ataque Furia;Golpea de 2 a 5 veces
+0C1;Paliza;Golpea tantas veces como el número de Pokémon que haya en el equipo
+0C2;;Ataque de dos turnos. Ataca el primer turno, se salta el segundo (si fue exitoso)
+0C3;V. Cortante;Ataque de dos turnos. Se salta el primer turno, ataca el segundo
+0C4;Rayo Solar;Ataque de dos turnos. Se salta el primer turno, ataca el segundo. El poder se reduce a la mitad en cualquier clima salvo día soleado. En día soleado, este movimiento toma 1 solo turno
+0C5;Rayo Gélido;Ataque de dos turnos. Se salta el primer turno, ataca el segundo. Puede paralizar al objetivo
+0C6;Llama Gélida;Ataque de dos turnos. Se salta el primer turno, ataca el segundo. Puede quemar al objetivo
+0C7;Ataque Aéreo;Ataque de dos turnos. Se salta el primer turno, ataca el segundo. Puede hacer retroceder al objetivo
+0C8;Cabezado;Ataque de dos turnos. Sube la Defensa del usuario en 1 nivel el primer turno, ataca en el segundo
+0C9;Vuelo;Ataque de dos turnos. Se salta el primer turno, ataca el segundo
+0CA;Escavar;Ataque de dos turnos. Se salta el primer turno, ataca el segundo
+0CB;Buceo;Ataque de dos turnos. Se salta el primer turno, ataca el segundo
+0CC;Bote;Ataque de dos turnos. Se salta el primer turno, ataca el segundo. Puede paralizar al objetivo
+0CD;Golpe Umbrio;Ataque de dos turnos. Se salta el primer turno, ataca el segundo. Es invulnerable durante el uso. Ignora la Detección, Escudo Real, Escudo Tatami, Protección y Barrera Espinosa del objetivo en esta ronda. Si tiene éxito, anula esas barreras por el resto de la ronda
+0CE;Caída Libre;Ataque de dos turnos. Se salta el primer turno, ataca el segundo. Es semi-invulnerable durante el uso. El objetivo también es semi-invulnerable durante el uso, y no puede tomar ninguna acción. No hace daño a los objetivos que están en el aire (pero tampoco los deja moverse)
+0CF;Atadura, Bucle Arena;Movimiento de trampa. Atrapa por 5 o 6 rondas. Los objetivos atrapados pierden 1/16 de sus PS máximos al final de cada ronda.
+0D0;Torbellino;Movimiento de trampa. Atrapa por 5 o 6 rondas. Los objetivos atrapados pierden 1/16 de sus PS máximos al final de cada ronda. La potencia se duplica si el objetivo está usando Buceo
+0D1;Alboroto;El usuario debe utilizar este movimiento por 2 rondas más Ningún combatiente del campo puede dormir
+0D2;Enfado, Golpe;El usuario usará este movimiento por 1 o 2 rondas más. Al final, el usuario termina confuso
+0D3;Desenrollar, Bola Hielo;El usuario usará este movimiento 4 rondas más. La potencia se duplica en cada ronda. La potencia también se duplica si el usuario a usado Rizo Defensa
+0D4;Venganza;El usuario resiste ésta y la siguiente ronda. Luego, causa el doble del daño total recibido mientras resistía al último combatiente que lo dañó
+0D5;;Cura al usuario por 1/2 de sus PS máximos
+0D6;Respiro;Cura al usuario por 1/2 de sus PS máximos. El usuario descansa, por lo que su tipo Volador es ignorado en los ataques dirigidos a él
+0D7;Deseo;Cura al combatiente que se encuentre en la posición del usuario por 1/2 de sus PS máximos al final del siguiente turno
+0D8;Luz Lunar, Sol Matinal, Sintesis;Cura al usuario por una cantidad que depende del clima
+0D9;Descanso;El usuario recupera sus PS máximos y queda dormido por 2 rondas más
+0DA;Acua Aro;Rodea al usuario. El usuario rodeado recupera 1/16 de sus PS máximos al final de cada ronda
+0DB;Arraigo;Arraiga al usuario. El usuario arraigado recupera 1/16 de sus PS máximos al final de cada ronda, y no puede huir o ser cambiado
+0DC;Drenadoras;Lanza semillas al objetivo. El objetivo pierde 1/8 de sus PS máximos al final de cada ronda, y el combatiente que se encuentre en la posición del usuario ganará la misma cantidad
+0DD;;El usuario recupera la mitad de los PS que inflinge como daño
+0DE;Come Sueños;El usuario recupera la mitad de los PS que inflinge como daño. Falla si el objetivo no está dormido
+0DF;Pulso Cura;El objetivo recupera 1/2 de sus PS máximos
+0E0;Autodescrucción, Esplosión;El usuario se debilita
+0E1;Sacrificio;Inflinge un daño fijo igual a los PS actuales. El usuario se debilita (si tiene éxito)
+0E2;Legado;Reduce el Ataque y Ataque Especial del objetivo en 2 niveles cada uno. El usuario se debilita incluso si el efecto no hace nada.
+0E3;Deseo Cura;El usuario se debilita. El combatiente que remplace al usuario se recuperará completamente (PS y estado). Falla si el usuario no puede ser remplazado
+0E4;Danza Lunar;El usuario se debilita. El combatiente que remplace al usuario se recuperará completamente (PS, PP y estado). Falla si el usuario no puede ser remplazado
+0E5;Canto Mortal;Todos los combatientes actuales se debilitarán después de 3 rondas más
+0E6;Rabia;Si el usuario es debilitado antes de su siguiente movimiento, el ataque que lo haga perderá todos sus PP
+0E7;Mismodestino;Si el usuario es debilitado antes de su siguiente movimiento, el atacante que lo haga también se debilitará
+0E8;Aguante;Si el usuario fuese a debilitarse esta ronda, sobrevivirá con 1 PS
+0E9;Falsotortazo;Si el objetivo fuera a debilitarse por este ataque, sobrevivirá con 1 PS
+0EA;;
+0EB;Rugido, Remolino;En batallas con salvajes, hace huir al objetivo. Falla si el nivel del objetivo es mayor que el del usuario. En batallas con entrenadores, el objetivo es intercambiado. Para movimientos de estado
+0EC;Llave Giro, Cola Dragón;En batallas con salvajes, hace que el objetivo huya. Falla si el objetivo es de mayor nivel que el usuario. En batallas con entrenadores, el objetivo es cambiado. Para movimientos de daño
+0ED;Relevo;El usuario es cambiado. Varios efectos que lleva el usuario son pasados al remplazo
+0EE;Ida y Vuelta, Voltiocambio;Después de causar daño, el usuario es cambiado. Se ignoran los movimientos de trampas
+0EF;Bloqueo, Mal de Ojo;El objetivo no podrá huir ni ser cambiado, mientras que el usuario se mantenga activo
+0F0;Desarme;El objetivo tira su objeto. Lo recuperará al final del combate. Si el objetivo tiene un objeto que pueda parder, el daño es multiplicado x1,5
+0F1;Antojo, Ladrón;El usuario roba el objeto al objetivo en caso que el usuario no tenga ninguno. El usuario se queda con los objetos robados en batallas con salvajes después de la batalla
+0F2;Trapicheo, Truco;El usuario y el objetivo intercambian los objetos. Se conserva el objeto cambiado en una batalla con salvajes
+0F3;Ofrenda;El usuario le entrega su objeto al objetivo. No se recupera al final de una batalla con salvajes
+0F4;Picadura, Picoteo;El usuario consume la baya del objetivo y obtiene su efecto
+0F5;Calcinación;La baya del objetivo es destruida
+0F6;Reciclaje;El usuario recupera el último objeto que llevaba y consumió
+0F7;Lanzamiento;El usuario lanza el objeto al objetivo. La potencia y el efecto depende del objeto
+0F8;Embargo;Durante 5 rondas, el objetivo no puede usar el objeto que lleva, el objeto pierde el efecto que pueda tener y el entrenador no puede usar ningún objeto en el objetivo
+0F9;Zona Mágica;Durante 5 rondas, los objetos no se pueden usar de ninguna forma y tampoco tienen efecto. Los objetos se pueden cambiar de mano, pero no tirar
+0FA;;El usuario recibe daño de retroceso igual a 1/4 del daño causado
+0FB;;El usuario recibe daño de retroceso igual a 1/3 del daño causado
+0FC;Testarazo;El usuario recibe daño de retroceso igual a 1/3 del daño causado
+0FD;Placaje Eléctrico;El usuario recibe daño de retroceso igual a 1/3 del daño causado. Puede paralizar al objetivo
+0FE;Envite Ígneo;El usuario recibe daño de retroceso igual a 1/3 del daño causado. Puede quemar al objetivo
+0FF;Día Soleado;Activa el clima Soleado
+100;Danza Lluvia;Activa el clima lluvioso
+101;Tormenta Arena;Activa el clima Tormenta de Arena
+102;Granizo;Activa el clima Granizo
+103;Púas;Trampa de entrada. Se coloca una capa de púas en el campo enemigo (máx. 3 capas)
+104;Púas Tóxicas;Trampa de entrada. Se coloca una capa de púas venenosas en el campo enemigo (máx. 2 capas)
+105;Trampa Rocas;Trampa de entrada. Arroja rocas puntiagudas en el campo enemigo
+106;Voto Planta;Fuerza a un movimiento Voto aliado ser usado a continuación, si no estaba listo. Voto Planta e combina con un movimiento Voto de un aliado en caso de ser usado. La potencia se duplica, y puede causar un mar de llamas o un pantano en el campo rival
+107;Voto Fuego;Fuerza a un movimiento Voto aliado ser usado a continuación, si no estaba listo. Voto Fuego se combina con un movimiento Voto de un aliado en caso de ser usado. La potencia se duplica, y puede causar un mar de llamas en el campo rival o un arcoiris sobre el campo del usuario
+108;Voto Agua;Fuerza a un movimiento Voto aliado ser usado a continuación, si no estaba listo. Voto Agua se combina con un movimiento Voto de un aliado en caso de ser usado. La potencia se duplica, y puede causar un pantano en el campo rival o un arcoiris sobre el campo del usuario
+109;Dia de Pago;Dispersa monedas que el jugador levanta cuando gana la batalla
+10A;Demolición;Acaba con Pantalla Luz y Reflejo del lado enemigo
+10B;Patada Super Alta, Patada Salto;Si el ataque falla, el usuario es dañado restando 1/2 de los PS máximos
+10C;Sustituto;El usuario conviente 1/4 de sus PS máximos en un sustituto
+10D;Maldición;Si el usuario no es Fantasma: Reduce la Velocidad del usuario, pero incrementa su Ataque y Defensa en 1 nivel cada uno. Si el usuario es Fantasma: Se resta 1/2 de los PS máximos del usuario y maldice al objetivo. Un Pokémon maldecido pierde 1/4 de sus PS máximos al final de cada ronda
+10E;Rencor;El último movimiento del objetivo pierde 4 PP
+10F;Pesadilla;El objetivo perderá 1/4 de sus PS máximos al final de cada ronda mientras permanezca dormido
+110;Giro Rápido;Remueve movimientos de trampa, obstáculos de entrada y Drenadoras del lado del usuario
+111;Deseo Oculto, Premonición;Ataca 2 rondas en el futuro
+112;Reserva;Incrementa la Defensa y Defensa Especial del usuario en 1 nivel cada una. Sube la Reserva del usuario en 1 (máximo 3)
+113;Escupir;La potencia es de 100 multiplicada por las reservas del usuario (X). Restablece la reserva en 0. Reduce la Defensa y Defensa Especial del usuario en X niveles cada una
+114;Tragar;Recupera los PS del usuario dependiendo del contador de la reserva (X). Restablece la reserva en 0. Reduce la Defensa y Defensa Especial del usuario en X niveles cada una
+115;Puño Certero;Falla si el usuario ha sido golpeado por un movimiento de daño esta ronda
+116;Golpe Bajo;Falla si el objetivo no ha elegido un movimiento de daño en esta ronda, o si ya se ha movido
+117;Señuelo, Polvo Ira;Esta ronda, el usuario de convierte en el objetivo de los ataques que tienen un solo objetivo
+118;Gravedad;Durante 5 rondas, incrementa la gravedad en el campo. Los Pokémon no pueden mantenerse en el aire
+119;Levitación;Durante 5 rondas, el usuario se mantiene en el aire
+11A;Telequinesis;Durante 3 rondas, el objetivo es mantenido en el aire y puede ser golpeado siempre
+11B;Gancho Algo;Golpea a objetivos semi-invulnerables que esté en el aire
+11C;Antiaéreo, Mil Flechas;Mantiene en el suelo al objetivo mientras esté activo
+11D;Cede Paso;El objetivo se mueve inmediatamente después del usuario, ignorando prioridad y velocidad
+11E;Último Lugar;El objetivo se mueve último esta ronda, ignorando prioridad y velocidad
+11F;Espacio Raro;Durante 5 rondas, por cada soporte de prioridad, los combatientes más lentos se mueven antes que los más rápidos
+120;Cambio Banda;El usuario intercambia la posición con un aliado
+121;Juego Sucio;En los cálculos de este movimiento se utiliza el Ataque del objetivo en lugar del Ataque del usuario
+122;Psicocarga;En los cálculos de este movimiento se utiliza la Defensa del objetivo en lugar de la Defensa Especial
+123;Sincroruido;Solamente daña a objetivos que comparte algún tipo con el usuario
+124;Zona Extraña;Durante 5 rondas, intercambia la Defensa base con la Defensa Especial base de todos los combatientes
+125;Última Baza;Falla salvo que el usuario ya haya utilizado todos los demás movimientos que conoce
+#region Movimientos oscuros
+126;;
+127;;
+128;;
+129;;
+12A;;
+12B;;
+12C;;
+12D;;
+12E;;
+12F;;
+130;;
+131;;
+132;;
+#endregion
+
+133;Manos Juntas;No hace nada en absoluto
+134;Celebración;No hace nada en absoluto. Muestra un mensaje especial
+135;Liofilización;Enfría súbitamente al objetivo e incluso puede congelarlo. La efectividad contra el tipo Agua es x2
+136;Tormenta Diamantes;Incrementa la Defensa del usuario en 1 nivel por cada objetivo golpeado
+137;Aura Magnética;Incrementa la Defensa y Defensa Especial del usuario y de los compañeros que tengan las habilidades Más o Menos
+138;Niebla Aromática;Incrementa la Defensa Especial de los compañeros en 1 nivel
+139;Camaradería;Reduce el Ataque del objetivo en un nivel. Golpea siempre
+13A;Rugido de Guerra;Reduce el Ataque y Ataque Especial del objetivo en 1 nivel cada uno
+13B;Cerco Dimensión;Reduce la Defensa del objetivo en 1 nivel. Golpea siempre
+13C;Confidencia;Reduce el Ataque Especial del objetivo en 1 nivel. Golpea siempre
+13E;Fertilizante;Incrementa el Ataque y Ataque Especialde todos los Pokémon de tipo Planta en el terreno de combate en 1 nivel cada uno. No afecta a los Pokémon que están en el aire
+13F;Defensa Floral;Incrementa la Defensa de todos los Pokémon de tipo Planta en el terreno de combate en 1 nivel cada uno
+141;Trampa Venenosa;Reduce el Ataque, Ataque Especial y la Velocidad de todos los rivales envenenados en 1 nivel cada uno
+141;Reversión;Invierte por completo los cambios en las características del Pokémon objetivo
+142;Halloween;Agrega al objetivo el tipo Fantasma
+143;Condena Silvana;Agrega al objetivo el tipo Planta
+144;Plancha Voladora;El daño es multiplicado por la efectividad del tipo Volador contra el objetivo. Hace el doble de daño y tiene precisión perfecta si el objetivo ha usado Reducción
+145;Electrificación;Los movimientos del objetivo se vuelven de tipo Eléctrico por el resto de la ronda
+146;Cortina Plasma;Todos los movimientos de tipo Normal se vuelven Eléctricos por el resto de la ronda
+147;Paso Dimensional;Golpea siempre
+148;Polvo Explosivo;Cubre de polvo al enemigo. Durante esta ronda, si el objetivo utiliza un movimiento de tipo Fuego, perderá 1/4 de sus PS máximos
+149;Escudo Tatami;Esta ronda, el equipo del usuario es inmune a movimientos de daño
+14A;Truco Defensa;Esta ronda, el equipo del usuario es inmune a movimientos de estado
+14B;Escudo Real;El usuario se protege contra movimientos de daño esta ronda. Reduce el Ataque del usuario de un movimiento de contacto en 2 niveles
+14C;Barrera Espinosa;El usuario se protege de movimientos que lo tienen como objetivo esta ronda. Causa daño al usuario de un movimiento de contacto por 1/8 de sus PS máximos
+14D;Golpe Fantasma;Movimiento de dos turnos. Desaparece del campo el primer turno. Ataca en el segundo turno. Es invulnerable durante el uso. Este turno, ignora movimientos del objetivo como Detección, Escudo Real, Escudo Tatami, Protección y Barrera Espinosa. Si tiene éxito, los anula este turno. Causa el doble de daño y tiene precisión perfecta si el objetivo ha usado Reducción
+14E;;Movimiento de dos turnos. Salta el primer turno. En el segundo, se incrementan el Ataque Especial, Defensa Especial y Velocidad del usuario en 2 niveles cada uno
+14F;Beso Drenaje, Ala Mortífera;El usuario gana 3/4 de los PS inflingidos como daño al objetivo
+150;Aguijón Letal;Si el objetivo es debilitado con este movimiento, se incrementa el Ataque del usuario en 2 niveles
+151;Última Palabra;Reduce el Ataque y Ataque Especial del objetivo en 1 nivel cada uno. Luego, el usuario es cambiado. Ignora movimientos de trampa
+152;Cerrojo Feérico;Ningún Pokémon puede se cambiado o huir hasta el final de la siguiente ronda, mientras que el usuario se mantenga activo
+153;Red Viscosa;Obstáculo de entrada. Coloca una red pegajosa en el campo rival que reduce la Velocidad de los Pokémon
+154;Electric Terrain;Durante 5 rondas, crea un campo eléctrico que potencia los movimientos de tipo Eléctrico y evita que los Pokémon se duerman. Solo afecta a los Pokémon no voladores
+155;Grassy Terrain;Durante 5 rondas, crea un campo de hierba que potencia los movimientos de tipo Planta y cura a los Pokémon al final de cada ronda. Solo afecta a los Pokémon no voladores
+156;Misty Terrain;For 5 rounds, creates a misty terrain which weakens Dragon-type moves and protects Pokémon from status problems. Affects non-airborne Pokémon only
+157;Paga Extra;Duplica el dinero que obtiene el jugador tras ganar el combate
+158;Eructo;Fallará salvo que el usuario haya consumido una baya en algún momento
+159;Psychic Terrain;For 5 rounds, creates a psychic terrain which boosts Psychic-type moves and protects Pokémon from priority moves. Affects non-airborne Pokémon only
+15A;First Impression;Fails if this isn't the user's first turn
+15B;Baneful Bunker;User is protected against damaging moves this round. Poisons the user of a stopped contact move
+
+170;Photon Geyser;Ignores foe's ignoring abilities. This move's category is Special, if Special Attack of the attacker is greater than its Attack, and Physical otherwise
+171;Sunsteel Strike, Moongeist Beam;Ignores foe's ignoring abilities
+
+174;Aura Wheel;Increases the user's Speed by 1 stage. Fail if the user is not a Morpeko. If the user is a Morpeko-Hangry, this move will be Dark type
+175;Body Press;User's Defense is used instead of user's Attack for this move's calculations
+176;Bolt Beak, Fishious Rend;If the user moves before the target, this move's power is doubled
+177;Clangorous Soul;Raises all user's stats by 1 stage in exchange for the user losing 1/3 of its maximum HP, rounded down. Fails if the user would faint
+
+179;Decoración;Aumenta mucho el Ataque y Ataque Especial del objetivo
+180;Disparo Certero;No es redirigido por habilidades como Storm Drain
+181;Jaw Lock;Prevents both the user and the target from escaping
+182;Life Dew;The user restores 1/4 of its maximum HP, rounded half up. If there is and adjacent ally, the user restores 1/4 of both its and its ally's maximum HP, rounded up
+183;No RetreatIncreases each stat by 1 stage. Prevents user from fleeing
+184;Obstruct;User is protected against damaging moves this round. Decreases the Defense of the user of a stopped contact move by 2 stages
+185;Octolock;Lowers target's Defense and Special Defense by 1 stage at the end of each  turn. Prevents target from retreating
+187;Tea Time;Forces all active Pokémon to consume their held berries. This move bypasses Substitutes
+188;Stuff Cheeks;Consumes berry and raises the user's Defense by 2 stages
+189;Azote Torrencial;De 2 a 5 golpes, siempre golpes críticos
+190;Rayo Meteórico;Ataque de dos turnos. Sube el Ataque Especial del usuario en 1 nivel el primer turno, ataca en el segundo
+191;Double Iron Bash;Hits twice. May cause the target to flinch
+192;Revelation Dance;Move type changes based on user's primary type
+193;Shell Trap;Shell Trap
+19A;Laser Focus;The user's next move will be a critical hit
+            
+1A1;Gas Corrosivo;Los objetos equipados de los objetivos son inutilizados
+
+1BC;;If anyone makes contact with the Pokemon while they are charging this move, they will be inflicted with a burn
+1B9;Toxic Thread;Poisons the target. Decreases the target's Speed by 1 stage
+
+1C9;Burn Up;After attacking, the user removes this move's type from their own typing. This move cannot be used for a Pokemon for which the move isn't STAB
+1CF;Mind Blown;User takes recoil damage equal to 1/2 of the damage this move dealt
+
+200;Motivación;Sube el Ataque y la Defensa del objetivo
+201;Alto Voltaje;Golpea con el doble de potencia si el terreno es eléctrico
+202;Bruma Explosiva;Aumenta el daño en 1.5 con terreno misterioso
+203;Pulso de Campo;La potencia se duplica con algún campo activo. El tipo cambia depende del campo activo
+204;Poltergeist;El movimiento falla si el rival no lleva objeto
+205;Allanador Férreo;Elimina el campo activo y falla si no hay ningún campo activo
+206;Moluscañón;Ataca por la parte física si la Defensa del oponente es menor que su Def. Esp
+207;Vasta Fuerza;El ataque se potencia en Campo Psíquico y golpea a todos los Pokémon
+208;Desahogo;La potencia se duplica si las estadísticas del atacante bajaron en el turno
+209;Envidia Ardiente;Quema al oponente si se sube las estadísticas en el turno
+210;Cura Selvática;Restaura 1/4 de los PS totales del atacante y sus aliados en combate. También elimina los problemas de estado
+211;Fitoimpulso;El ataque tiene prioridad +1 en Campo de Hierba"},
+212;Dracoflechas;Golpea 2 veces y, en combates dobles, un golpe a cada objetivo.
+213;Fuerza G;Reduce la Defensa del objetivo en 1 nivel y x1.5 de potencia en Gravedad.
+214;Metaláser;El usuario pierde la mitad de sus PS totales al usar el ataque.
+215;Conjuro Funesto;Golpea y quita 3 PP al último movimiento usado por el oponente.
+
+300;Teletransporte;Cambia de Pokémon en el combate. Prioridad negativa
+
+CF0;Instruct;Instructs the target to use the move it last used again
+CF1;Clanging Scales;Reduce la Defensa del usuario
+CF2;Floral Healing;Heals user by an amount depending on the terrain
+CF3;Purify;Heals the target's Status condition and heals the user by 50%
+CF5;Shore Up;Heals user by an amount depending on the weather
+CF6;Aurora Veil;For 5 rounds, lowers power of physical and special attacks against the user's Side
+CF8;Sparkling Aria;Inflicts damage to the target. If the target is burned, the burn is healed
+CF9;Spectral Thief;Copies the opponent's stat changes and then resets it. After this, it will Attack
+CF10;Speed Swap;User and target swap their Speed stats
+CF11;Spirit Shackle;Deals damage and makes the target unable to switch out
+CF12;Gear Up;Raises the Attack and Special Attack of an ally
+CF13;Strength Sap;Heals the user for an amount equal to the target's effective Attack stat Lowers the target's Attack by 1 stage
+CF14;Tearful Look;Lowers the target's Attack and Special Attack. Bypasses Accuracy
+
+CF15;;Lo que haga Throat Chop
+            
+CF19;Pollen Puff;If the target is an ally, heals the target for the amount of damage that would have been dealt.  If target is an opponent, damages them normally
+
+CF21;Core Enforcer;Deals damage. If target has already moved, its ability will be supressed
+CF22;;Lo que haga Stomping Tantrum
+CF23;;Lo que haga Spotlight

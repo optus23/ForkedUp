@@ -1,0 +1,93 @@
+
+******************************************
+[Habilidad disparada] Intimidación de Gyarados
+[Cambio características] Ataque de Nidoran salvaje bajó 1 nivel(es) (era 0, ahora -1)
+
+***Round 1***
+[AI] Nidoran salvaje's moves: Arañazo=100, Látigo=100, Doble Patada=100, Picotazo Ven=100
+[AI] Will use Látigo
+[Priority] Gyarados (0), Nidoran salvaje (1)
+Gyarados usó Cascada
+Move's damage calculated to be 53
+[Modificación PS] Nidoran salvaje perdió 44 PS (44=>0)
+[Pokémon debilitado] Nidoran salvaje
+El movimiento golpeó 1 vez(es), daño total=44
+
+***Jugador ganó***
+
+******************************************
+
+***Round 1***
+[AI] Hoppip salvaje's moves: Placaje=100, Polvo Veneno=100, Paralizador=100, Somnífero=100
+[AI] Will use Placaje
+[Priority] Chansey (0), Hoppip salvaje (1)
+Chansey usó Amortiguador
+Hoppip salvaje usó Placaje
+Move's damage calculated to be 11
+[Modificación PS] Chansey perdió 11 PS (130=>119)
+El movimiento golpeó 1 vez(es), daño total=11
+[Final de la ronda]
+
+***Round 2***
+[AI] Hoppip salvaje's moves: Placaje=100, Polvo Veneno=100, Paralizador=100, Somnífero=100
+[AI] Will use Placaje
+[Priority] Chansey (0), Hoppip salvaje (1)
+Chansey usó Dulce Aroma
+[Cambio características] Evasión de Hoppip salvaje bajó 1 nivel(es) (era 0, ahora -1)
+El movimiento golpeó 1 vez(es), daño total=0
+Hoppip salvaje usó Placaje
+Move's damage calculated to be 11
+[Modificación PS] Chansey perdió 11 PS (119=>108)
+El movimiento golpeó 1 vez(es), daño total=11
+[Final de la ronda]
+
+***Round 3***
+[AI] Hoppip salvaje's moves: Placaje=100, Polvo Veneno=100, Paralizador=100, Somnífero=100
+[AI] Will use Polvo Veneno
+[Priority] Chansey (0), Hoppip salvaje (1)
+Chansey usó Ofrenda
+El movimiento golpeó 1 vez(es), daño total=0
+Hoppip salvaje usó Polvo Veneno
+[Movimiento falló] Falló pbAccuracyCheck (código de función 05) o el objetivo es semi-invulnerable
+[Final de la ronda]
+
+***Round 4***
+[AI] Hoppip salvaje's moves: Placaje=100, Polvo Veneno=100, Paralizador=100, Somnífero=100
+[AI] Will use Placaje
+[Priority] Chansey (0), Hoppip salvaje (1)
+Chansey usó Fuerza
+Move's damage calculated to be 14
+[Modificación PS] Hoppip salvaje perdió 14 PS (38=>24)
+El movimiento golpeó 1 vez(es), daño total=14
+Hoppip salvaje usó Placaje
+Move's damage calculated to be 12
+[Modificación PS] Chansey perdió 12 PS (108=>96)
+El movimiento golpeó 1 vez(es), daño total=12
+[Final de la ronda]
+
+***Round 5***
+[AI] Hoppip salvaje's moves: Placaje=100, Polvo Veneno=100, Paralizador=100, Somnífero=100
+[AI] Will use Paralizador
+[Priority] Chansey (0), Hoppip salvaje (1)
+Chansey usó Fuerza
+Move's damage calculated to be 15
+[Modificación PS] Hoppip salvaje perdió 15 PS (24=>9)
+El movimiento golpeó 1 vez(es), daño total=15
+Hoppip salvaje usó Paralizador
+[Cambio de estado] Chansey ha sido paralizado
+El movimiento golpeó 1 vez(es), daño total=0
+[Final de la ronda]
+
+***Round 6***
+[AI] Hoppip salvaje's moves: Placaje=100, Polvo Veneno=100, Paralizador=100, Somnífero=100
+[AI] Will use Somnífero
+[Priority] Hoppip salvaje (1), Chansey (0)
+Hoppip salvaje usó Somnífero
+[Movimiento falló] Falló pbAccuracyCheck (código de función 03) o el objetivo es semi-invulnerable
+Chansey usó Fuerza
+Move's damage calculated to be 15
+[Modificación PS] Hoppip salvaje perdió 9 PS (9=>0)
+[Pokémon debilitado] Hoppip salvaje
+El movimiento golpeó 1 vez(es), daño total=9
+
+***Jugador ganó***

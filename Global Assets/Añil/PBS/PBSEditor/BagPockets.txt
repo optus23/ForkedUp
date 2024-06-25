@@ -1,0 +1,8 @@
+1,Objetos
+2,Botiquín
+3,Poké Balls
+4,Mts y MOs
+5,Bayas
+6,Correo
+7,Obtejos batalla
+8,Objetos clave

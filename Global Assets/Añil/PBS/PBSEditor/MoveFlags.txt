@@ -1,0 +1,12 @@
+a,Movimiento de CONTACTO.
+b,Se puede bloquear con PROTECCIÓN o DETECCIÓN.
+c,El oponente puede usar CAPA MÁGICA para redirigir los efectos.
+d,El oponente puede usar ROBO para robar el efecto.
+e,Puede ser copiado por MOVIMIENTO ESPEJO.
+f,Retroceso +10% si el Pokémon lleva equipada la ROCA DEL REY.
+g,DESCONGELA al usuario para usar este movimiento.
+h,Alta probabilidad de GOLPE CRÍTICO.
+i,Movimiento de CURA.
+j,Movimiento de PERFORACIÓN.
+k,Movimiento basado en SONIDO.
+l,No puede usarse si GRAVEDAD está activada.

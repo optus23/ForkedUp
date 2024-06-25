@@ -1,0 +1,58 @@
+GUIA DE UNA POSIBLE SOLUCIÓN SI NO TE DEJA ENTRAR AL JUEGO EN ANDROID
+
+1. Ve a las opciones/settings del emulador Joiplay
+
+2. Desactiva la opción Scripts de Postcarga, guarda los ajustes y prueba a ver
+si ya te deja entrar en el juego
+
+
+
+
+GUIA DE UNA POSIBLE SOLUCIÓN SI TE SALEN LAS ZONAS EN NEGRO EN ANDROID
+
+1. Ve a las opciones del emulador Joiplay
+
+2. Activa la opción Optimize Maps (Optimizar Mapas)
+
+
+
+
+GUIA DE UNA SOLUCIÓN SI EL JUEGO TE VA DEMASIADO RÁPIDO
+
+1. Borra el archivo "mkxp.json" de la carpeta del juego
+
+2. Entra en la carpeta Audio y copia el archivo "mkxp.json" que encontrarás ahí dentro a
+donde estaba el archivo que has borrado
+
+
+
+
+GUIA DE UNA SOLUCIÓN SI EL JUEGO SE CIERRA CUANDO TE SACAN UN POKÉMON EN COMBATE
+
+1. Desactiva los sprites animados en las opciones del juego, ya que tu PC no los carga bien
+
+
+
+
+GUIA DE UNA POSIBLE SOLUCIÓN SI TIENES UN ERROR DE OPENGL O TE SALEN UNAS BARRAS VERDES EN PC:
+
+1. Borra el archivo Game.exe
+
+2. Entra en la carpeta Audio y renombra el archivo GameOld.exe a Game.exe
+
+3. Mueve el nuevo Game.exe al mismo sitio donde estaba el primer Game.exe
+
+4. Juega al juego desde ese nuevo Game.exe
+
+
+
+
+GUIA DE UNA SOLUCIÓN SI TIENES UN ERROR de Random: NameError ocurred EN PC
+
+1. Ve a Panel de Control de tu PC
+
+2. Ve a "Región"
+
+3. Ve a la pestaña "Administrativo"
+
+4. Cambia el idioma a Español para Programas no Unicode
